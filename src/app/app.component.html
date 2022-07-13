@@ -1,3 +1,14 @@
+
+<!-- TODO: make nav (and probably each <a>) as component -->
 <h1 class="text-3xl font-bold underline">
   Hello world!
 </h1>
+
+<nav class="flex flex-col">
+  <a routerLink="/fleet">fleet</a>
+  <a routerLink="/reports">reports</a>
+  <a routerLink="/drivers">drivers</a>
+  <a routerLink="/people">people</a>
+  <a routerLink="/account">account</a>
+</nav>
+<router-outlet></router-outlet>
