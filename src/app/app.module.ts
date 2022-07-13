@@ -8,6 +8,8 @@ import { FleetComponent } from './pages/fleet/fleet.component';
 import { PeopleComponent } from './pages/people/people.component';
 import { DriversComponent } from './pages/drivers/drivers.component';
 import { AccountComponent } from './pages/account/account.component';
+import { NavbarComponent } from './common/navbar/navbar.component';
+import { NavTileComponent } from './common/nav-tile/nav-tile.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +19,8 @@ import { AccountComponent } from './pages/account/account.component';
     PeopleComponent,
     DriversComponent,
     AccountComponent,
+    NavbarComponent,
+    NavTileComponent,
   ],
   imports: [
     BrowserModule,
