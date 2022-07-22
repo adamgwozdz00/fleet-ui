@@ -4,12 +4,14 @@
       <th
         mat-header-cell
         *matHeaderCellDef
-        [ngClass]="column.isFirst ? 'first-col' : 'other-col'"
+        class="border-r-2 border-color-navy text-center w-fit"
+        [ngClass]="column.isFirst ? 'first-column first-row' : 'other-column'"
       >
         {{ column.title }}
       </th>
       <td
-        [ngClass]="column.isFirst ? 'first-col' : 'other-col'"
+        class="border-r-2 border-color-navy w-fit"
+        [ngClass]="column.isFirst ? 'first-column w-8' : 'other-column'"
         *matCellDef="let element"
       >
         {{ element[column.definition] }}
