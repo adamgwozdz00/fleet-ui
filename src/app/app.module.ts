@@ -13,6 +13,7 @@ import { NavTileComponent } from './common/navigation/nav-tile/nav-tile.componen
 import { TableComponent } from './common/table/table.component';
 import {MatTableModule} from '@angular/material/table';
 
+
 @NgModule({
   declarations: [
     AppComponent,

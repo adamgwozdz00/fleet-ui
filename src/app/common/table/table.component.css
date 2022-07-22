@@ -1,14 +1,18 @@
-.border-color-navy{
-    border-color: #27187E;
+.border-color-navy {
+  border-color: #27187e;
 }
 
-.mat-column-position{
+.first-col {
   width: 32px;
-  border-right: 2px solid #27187E;
+  border-right: 2px solid #27187e;
   padding-right: 24px;
   text-align: center;
 }
 
-.mat-column-name{
-    padding-left: 24px;
+.other-col {
+  padding-left: 24px;
+}
+
+table {
+  background-color: #f5f5f5;
 }
