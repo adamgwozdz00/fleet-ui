@@ -10,6 +10,8 @@ import { DriversComponent } from './pages/drivers/drivers.component';
 import { AccountComponent } from './pages/account/account.component';
 import { NavigationSidebar } from './common/navigation/navigation-sidebar/navigation-sidebar.component';
 import { NavTileComponent } from './common/navigation/nav-tile/nav-tile.component';
+import { TableComponent } from './common/table/table.component';
+import {MatTableModule} from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -21,10 +23,12 @@ import { NavTileComponent } from './common/navigation/nav-tile/nav-tile.componen
     AccountComponent,
     NavigationSidebar,
     NavTileComponent,
+    TableComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,14 @@
+.border-color-navy{
+    border-color: #27187E;
+}
+
+.mat-column-position{
+  width: 32px;
+  border-right: 2px solid #27187E;
+  padding-right: 24px;
+  text-align: center;
+}
+
+.mat-column-name{
+    padding-left: 24px;
+}
