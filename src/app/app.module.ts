@@ -12,6 +12,7 @@ import { NavigationSidebar } from './common/navigation/navigation-sidebar/naviga
 import { NavTileComponent } from './common/navigation/nav-tile/nav-tile.component';
 import { TableComponent } from './common/table/table.component';
 import {MatTableModule} from '@angular/material/table';
+import { FleetTableComponent } from './tables/fleet/fleet-table/fleet-table.component';
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import {MatTableModule} from '@angular/material/table';
     NavigationSidebar,
     NavTileComponent,
     TableComponent,
+    FleetTableComponent,
   ],
   imports: [
     BrowserModule,
