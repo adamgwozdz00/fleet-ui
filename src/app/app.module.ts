@@ -11,9 +11,10 @@ import { AccountComponent } from './pages/account/account.component';
 import { NavigationSidebar } from './common/navigation/navigation-sidebar/navigation-sidebar.component';
 import { NavTileComponent } from './common/navigation/nav-tile/nav-tile.component';
 import { TableComponent } from './common/table/table.component';
-import {MatTableModule} from '@angular/material/table';
+import { MatTableModule } from '@angular/material/table';
 import { FleetTableComponent } from './tables/fleet/fleet-table/fleet-table.component';
-
+import { DiversTableComponent } from './tables/drivers/divers-table/divers-table.component';
+import { PeopleTableComponent } from './tables/people/people-table/people-table.component';
 
 @NgModule({
   declarations: [
@@ -27,13 +28,11 @@ import { FleetTableComponent } from './tables/fleet/fleet-table/fleet-table.comp
     NavTileComponent,
     TableComponent,
     FleetTableComponent,
+    DiversTableComponent,
+    PeopleTableComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    MatTableModule
-  ],
+  imports: [BrowserModule, AppRoutingModule, MatTableModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

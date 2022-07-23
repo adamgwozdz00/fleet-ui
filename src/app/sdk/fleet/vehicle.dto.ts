@@ -3,4 +3,5 @@ export interface VehicleDTO {
   make: string;
   year: number;
   mileage: number;
+  type: string;
 }

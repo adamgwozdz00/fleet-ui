@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Column } from 'src/app/common/table/column';
 import { Row } from 'src/app/common/table/row';
-import { FleetMockService } from 'src/app/mock/fleet/fleet-mock.service';
+import { FleetMockService } from 'src/app/sdk/fleet/fleet-mock.service';
 
 @Injectable({
   providedIn: 'root',
@@ -14,7 +14,10 @@ export class FleetTableService {
       .getAll()
       .then((vehicles) =>
         vehicles.map(
-          (v) => new Row(new FleetTableRowData(v.id, v.make, v.year, v.mileage))
+          (v) =>
+            new Row(
+              new FleetTableRowData(v.id, v.make, v.year, v.mileage, v.type)
+            )
         )
       );
   }
@@ -23,6 +26,7 @@ export class FleetTableService {
     return [
       new Column('identity', 'id', true),
       new Column('make', 'make'),
+      new Column('car type', 'type'),
       new Column('year', 'year'),
       new Column('mileage', 'mileage'),
     ];
@@ -34,6 +38,7 @@ export class FleetTableRowData {
     public id: string,
     public make: string,
     public year: number,
-    public mileage: number
+    public mileage: number,
+    public type: string
   ) {}
 }
