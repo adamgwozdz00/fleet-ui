@@ -10,11 +10,12 @@ import { DriversComponent } from './pages/drivers/drivers.component';
 import { AccountComponent } from './pages/account/account.component';
 import { NavigationSidebar } from './common/navigation/navigation-sidebar/navigation-sidebar.component';
 import { NavTileComponent } from './common/navigation/nav-tile/nav-tile.component';
-import { TableComponent } from './common/table/table.component';
+import { TableComponent } from './common/table/management-table/management-table.component';
 import { MatTableModule } from '@angular/material/table';
 import { FleetTableComponent } from './tables/fleet/fleet-table/fleet-table.component';
 import { DiversTableComponent } from './tables/drivers/divers-table/divers-table.component';
 import { PeopleTableComponent } from './tables/people/people-table/people-table.component';
+import { TableTitleComponent } from './common/table/table-title/table-title.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { PeopleTableComponent } from './tables/people/people-table/people-table.
     FleetTableComponent,
     DiversTableComponent,
     PeopleTableComponent,
+    TableTitleComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, MatTableModule],
   providers: [],
