@@ -1,16 +1,23 @@
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z8 w-full">
+<div>
+  <h1 class="text-2xl text-navy underline decoration-2">{{ title }}</h1>
+</div>
+<table
+  mat-table
+  [dataSource]="dataSource"
+  class="mat-elevation-z8 w-full background-grey"
+>
   <ng-container *ngFor="let column of columns">
     <ng-container matColumnDef="{{ column.definition }}">
       <th
         mat-header-cell
         *matHeaderCellDef
-        class="border-r-2 border-color-navy text-center w-fit"
+        class="border-r-2 border-navy text-center w-fit"
         [ngClass]="column.isFirst ? 'first-column first-row' : 'other-column'"
       >
         {{ column.title }}
       </th>
       <td
-        class="border-r-2 border-color-navy w-fit"
+        class="border-r-2 border-navy w-fit"
         [ngClass]="column.isFirst ? 'first-column w-8' : 'other-column'"
         *matCellDef="let element"
       >
@@ -22,7 +29,7 @@
   <tr
     mat-header-row
     *matHeaderRowDef="displayedColumns"
-    class="border-b-2 border-color-navy"
+    class="border-b-2 border-navy"
   ></tr>
   <tr
     mat-row

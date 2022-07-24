@@ -10,6 +10,7 @@ import { Row } from './row';
 export class TableComponent implements OnInit {
   @Input() columns: Column[] = [];
   @Input() rows: Row<any>[] = [];
+  @Input() title: string;
   displayedColumns: String[] = [];
   dataSource = [];
 

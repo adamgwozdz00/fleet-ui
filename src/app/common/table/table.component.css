@@ -1,9 +1,5 @@
-.border-color-navy {
-  border-color: #27187e;
-}
-
 .first-row {
-  padding-right: 24px;
+  padding-right: 24px !important;
 }
 
 .first-column {
@@ -15,6 +11,3 @@
   padding-left: 24px !important;
 }
 
-table {
-  background-color: #f5f5f5;
-}

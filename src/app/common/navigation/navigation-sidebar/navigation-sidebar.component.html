@@ -3,7 +3,7 @@
     <nav-tile 
       [navTileRouteLink] = "navTile.route" 
       [tileTitle]= "navTile.title" 
-      [class.selected-tile]="navTile == selectedTile" 
+      [ngClass]="{'text-white background-navy w-64' : navTile == selectedTile}"
       (click)="onSelect(navTile)">
   </nav-tile>
   </div>
