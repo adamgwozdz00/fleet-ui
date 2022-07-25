@@ -1,7 +1,13 @@
-<app-table-title [tableTitle]="title"></app-table-title>
+<div class="flex flex-row justify-between">
+  <app-table-title [tableTitle]="title"></app-table-title>
+  <app-table-button
+    [buttonTitle]="buttonAddTitle"
+    class="pr-4"
+  ></app-table-button>
+</div>
 <table
   mat-table
-  [dataSource]="dataSource"
+  [dataSource]="rows"
   class="mat-elevation-z8 w-full background-grey"
 >
   <ng-container *ngFor="let column of columns">
@@ -19,7 +25,13 @@
         [ngClass]="column.isFirst ? 'first-column w-8' : 'other-column'"
         *matCellDef="let element"
       >
-        {{ element[column.definition] }}
+        <div *ngIf="isOptions(element[column.definition])">
+          <app-table-button class="p-2" [rowButton]="element[column.definition].editButton"></app-table-button>
+          <app-table-button class="p-2" [rowButton]="element[column.definition].removeButton"></app-table-button>
+        </div>
+        <div *ngIf="isPrimitive(element[column.definition])">
+          {{ element[column.definition] }}
+        </div>
       </td>
     </ng-container>
   </ng-container>

@@ -1,6 +1,6 @@
 import { Component, Input, OnInit, Output } from '@angular/core';
 import { Column } from '../column';
-import { Row } from '../row';
+import { Options, Row } from '../row';
 import { TableTitle } from '../table-title';
 
 @Component({
@@ -10,16 +10,32 @@ import { TableTitle } from '../table-title';
 })
 export class TableComponent implements OnInit {
   @Input() columns: Column[] = [];
-  @Input() rows: Row<any>[] = [];
+  @Input() rows: Row[] = [];
   @Input() title: TableTitle = new TableTitle();
+  buttonAddTitle = '+ ADD';
+  buttonEditTitle = 'EDIT';
+  buttonRemoveTitle = 'EDIT';
 
   displayedColumns: String[] = [];
-  dataSource = [];
 
   constructor() {}
 
   ngOnInit(): void {
     this.displayedColumns = this.columns.map((col) => col.definition);
-    this.dataSource = this.rows.map((row) => row.data);
+  }
+
+  isOptions(element: any): boolean {
+    if (!(element instanceof Options)) {
+      return false;
+    }
+    if (element.isEmpty()) {
+      throw new Error('Options column provided but row options are empty...');
+    }
+
+    return true;
+  }
+
+  isPrimitive(element: any): boolean {
+    return !this.isOptions(element);
   }
 }

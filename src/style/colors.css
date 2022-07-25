@@ -7,7 +7,7 @@
 }
 
 .border-orange {
-  border-color: #FF8600;
+  border-color: #ff8600;
 }
 
 .background-navy {
@@ -16,8 +16,4 @@
 
 .background-grey {
   background-color: #f5f5f5;
-}
-
-.text-decoration-color-orange{
-  text-decoration-color: #FF8600;
 }

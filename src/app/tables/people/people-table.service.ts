@@ -9,12 +9,12 @@ import { PeopleMockService } from 'src/app/sdk/people/people-mock.service';
 export class PeopleTableService {
   constructor(private readonly service: PeopleMockService) {}
 
-  async getRows(): Promise<Row<PeopleTableRowData>[]> {
+  async getRows(): Promise<PeopleTableRow[]> {
     return this.service
       .getAll()
       .then((people) =>
         people.map(
-          (p) => new Row(new PeopleTableRowData(p.id, p.surname, p.seniority))
+          (p) => new PeopleTableRow(p.id, p.surname, p.seniority)
         )
       );
   }
@@ -28,10 +28,12 @@ export class PeopleTableService {
   }
 }
 
-export class PeopleTableRowData {
+export class PeopleTableRow extends Row {
   constructor(
     public id: string,
     public surname: string,
     public seniority: number
-  ) {}
+  ) {
+    super();
+  }
 }

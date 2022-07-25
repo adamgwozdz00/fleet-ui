@@ -9,15 +9,12 @@ import { DriversMockService } from 'src/app/sdk/drivers/drivers-mock.service';
 export class DriversTableService {
   constructor(private readonly service: DriversMockService) {}
 
-  async getRows(): Promise<Row<DriversTableRowData>[]> {
+  async getRows(): Promise<DriversTableRow[]> {
     return this.service
       .getAll()
       .then((drivers) =>
         drivers.map(
-          (d) =>
-            new Row(
-              new DriversTableRowData(d.id, d.surname, d.mileage, d.seniority)
-            )
+          (d) => new DriversTableRow(d.id, d.surname, d.mileage, d.seniority)
         )
       );
   }
@@ -32,11 +29,13 @@ export class DriversTableService {
   }
 }
 
-export class DriversTableRowData {
+export class DriversTableRow extends Row {
   constructor(
     public id: string,
     public surname: string,
     public mileage: number,
     public seniority: number
-  ) {}
+  ) {
+    super();
+  }
 }

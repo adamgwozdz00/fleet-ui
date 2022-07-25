@@ -16,6 +16,7 @@ import { FleetTableComponent } from './tables/fleet/fleet-table/fleet-table.comp
 import { DiversTableComponent } from './tables/drivers/divers-table/divers-table.component';
 import { PeopleTableComponent } from './tables/people/people-table/people-table.component';
 import { TableTitleComponent } from './common/table/table-title/table-title.component';
+import { TableButtonComponent } from './common/table/table-button/table-button.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { TableTitleComponent } from './common/table/table-title/table-title.comp
     DiversTableComponent,
     PeopleTableComponent,
     TableTitleComponent,
+    TableButtonComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, MatTableModule],
   providers: [],

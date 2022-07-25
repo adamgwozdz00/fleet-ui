@@ -3,7 +3,7 @@ import { Column } from 'src/app/common/table/column';
 import { Row } from 'src/app/common/table/row';
 import { TableTitle } from 'src/app/common/table/table-title';
 import {
-  DriversTableRowData,
+  DriversTableRow,
   DriversTableService,
 } from '../drivers-table.service';
 
@@ -13,7 +13,7 @@ import {
   styleUrls: ['./divers-table.component.css'],
 })
 export class DiversTableComponent implements OnInit {
-  rows: Row<DriversTableRowData>[] = [];
+  rows: DriversTableRow[] = [];
   columns: Column[] = [];
   title = new TableTitle('Drivers');
 

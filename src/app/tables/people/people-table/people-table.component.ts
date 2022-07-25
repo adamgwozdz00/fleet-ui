@@ -3,7 +3,7 @@ import { Column } from 'src/app/common/table/column';
 import { Row } from 'src/app/common/table/row';
 import { TableTitle } from 'src/app/common/table/table-title';
 import {
-  PeopleTableRowData,
+  PeopleTableRow,
   PeopleTableService,
 } from '../people-table.service';
 
@@ -13,7 +13,7 @@ import {
   styleUrls: ['./people-table.component.css'],
 })
 export class PeopleTableComponent implements OnInit {
-  rows: Row<PeopleTableRowData>[] = [];
+  rows: PeopleTableRow[] = [];
   columns: Column[] = [];
   title = new TableTitle('People');
 

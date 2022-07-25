@@ -2,7 +2,7 @@ import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { Column } from 'src/app/common/table/column';
 import { Row } from 'src/app/common/table/row';
 import { TableTitle } from 'src/app/common/table/table-title';
-import { FleetTableRowData, FleetTableService } from '../fleet-table.service';
+import { FleetTableRow, FleetTableService } from '../fleet-table.service';
 
 @Component({
   selector: 'app-fleet-table',
@@ -10,7 +10,7 @@ import { FleetTableRowData, FleetTableService } from '../fleet-table.service';
   styleUrls: ['./fleet-table.component.css'],
 })
 export class FleetTableComponent implements OnInit {
-  rows: Row<FleetTableRowData>[] = [];
+  rows: FleetTableRow[] = [];
   columns: Column[] = [];
   title = new TableTitle("Fleet");
 
