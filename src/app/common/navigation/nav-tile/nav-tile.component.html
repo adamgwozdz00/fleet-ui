@@ -1,3 +1,6 @@
-<div class="pt-1.5 pb-1 navtile h-10 w-64 text-xl text-center k2d content-center border-b-2 border-navy">
-    <a routerLink= {{navTileRouteLink}}>{{tileTitle}}</a>
+<div
+  class="pt-1.5 pb-1 navtile h-10 w-64 text-xl text-center k2d content-center border-b-2 border-navy"
+  [ngClass]="{ 'text-white background-navy': active }"
+>
+  <a routerLink="{{ navTileRouteLink }}">{{ tileTitle }}</a>
 </div>

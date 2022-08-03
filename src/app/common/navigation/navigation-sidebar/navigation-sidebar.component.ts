@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Router } from '@angular/router';
 import { NavTileDetails } from '../nav-tile-details';
 
 @Component({
@@ -11,16 +12,12 @@ export class NavigationSidebar implements OnInit {
   selectedTile: NavTileDetails;
 
   constructor() {
-    this.navTiles.push({ route: '/fleet', title: 'Fleet' });
-    this.navTiles.push({ route: '/reports', title: 'Reports' });
-    this.navTiles.push({ route: '/drivers', title: 'Drivers' });
-    this.navTiles.push({ route: '/people', title: 'People' });
-    this.navTiles.push({ route: '/account', title: 'Account' });
+    this.navTiles.push(new NavTileDetails('/fleet', 'Fleet'));
+    this.navTiles.push(new NavTileDetails('/reports', 'Reports'));
+    this.navTiles.push(new NavTileDetails('/drivers', 'Drivers'));
+    this.navTiles.push(new NavTileDetails('/people', 'People'));
+    this.navTiles.push(new NavTileDetails('/account', 'Account'));
   }
 
   ngOnInit(): void {}
-
-  onSelect(tile: NavTileDetails): void {
-    this.selectedTile = tile;
-  }
 }

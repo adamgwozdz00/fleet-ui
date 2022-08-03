@@ -1,0 +1,33 @@
+<form
+  (ngSubmit)="onSignIn()"
+  [formGroup]="signInForm"
+ class="flex justify-center place-content-center mt-96" 
+>
+<div class="flex flex-col background-grey p-5">
+  <h1>Sign in</h1>
+  <div class="inputs w-64">
+    <input
+      formControlName="username"
+      type="text"
+      placeholder="username"
+      class="border-2 pt-1.5 pb-1.5 pr-2 pl-2 k2d border-orange text-sm h-8 bg-white mt-1"
+    />
+    <input
+      formControlName="password"
+      type="password"
+      placeholder="password"
+      class="border-2 pt-1.5 pb-1.5 pr-2 pl-2 k2d border-orange text-sm h-8 bg-white mt-1"
+    />
+
+    <div class="center-button">
+      <button
+        class="border-2 pt-1.5 pb-1.5 pr-2 pl-2 k2d border-orange text-sm h-8 bg-white active:bg-gray-400 mt-1"
+        type="submit"
+        [disabled]="!signInForm.valid"
+      >
+        Sign in
+      </button>
+    </div>
+  </div>
+</div>
+</form>

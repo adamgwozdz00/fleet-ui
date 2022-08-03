@@ -17,6 +17,11 @@ import { DiversTableComponent } from './tables/drivers/divers-table/divers-table
 import { PeopleTableComponent } from './tables/people/people-table/people-table.component';
 import { TableTitleComponent } from './common/table/table-title/table-title.component';
 import { TableButtonComponent } from './common/table/table-button/table-button.component';
+import { CarDetailsComponent } from './pages/car-details/car-details.component';
+import { LoginComponent } from './pages/login/login.component';
+import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
+import { AccountTypeComponent } from './common/account-type/account-type.component';
 
 @NgModule({
   declarations: [
@@ -34,8 +39,12 @@ import { TableButtonComponent } from './common/table/table-button/table-button.c
     PeopleTableComponent,
     TableTitleComponent,
     TableButtonComponent,
+    CarDetailsComponent,
+    LoginComponent,
+    AccountTypeComponent,
+    
   ],
-  imports: [BrowserModule, AppRoutingModule, MatTableModule],
+  imports: [BrowserModule, AppRoutingModule, MatTableModule,  HttpClientModule,ReactiveFormsModule],
   providers: [],
   bootstrap: [AppComponent],
 })
