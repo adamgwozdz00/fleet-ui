@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Column } from 'src/app/common/table/column';
 import { Options, Row } from 'src/app/common/table/row';
-import { ButtonDetails } from 'src/app/common/common-button/button-details';
 import { FleetMockService } from 'src/app/sdk/fleet/fleet-mock.service';
+import { DetailsButton } from 'src/app/common/table/details-button';
 
 @Injectable({
   providedIn: 'root',
@@ -40,26 +40,22 @@ export class FleetTableService {
   }
 
   private createOptions(): Options {
-    const editButton = new ButtonDetails('EDIT', () =>
-      console.log('fleet editing execute...')
+    return new Options().withDetailsButton(
+      new DetailsButton('DETAILS', () =>
+        console.log('fleet details execute...')
+      )
     );
-    const removeButton = new ButtonDetails('REMOVE', () =>
-      console.log('fleet removing execute...')
-    );
-    return new Options(editButton, removeButton);
   }
 }
 
 export class FleetTableRow extends Row {
-  private;
-
   constructor(
     public id: string,
     public make: string,
     public year: number,
     public mileage: number,
     public type: string,
-    public options: Options = Options.EMPTY_OPTIONS
+    public options: Options = new Options()
   ) {
     super(options);
   }

@@ -1,7 +1,8 @@
 import { ButtonDetails } from '../common-button/button-details';
+import { DetailsButton } from './details-button';
 
 export abstract class Row {
-  constructor(protected options: Options = Options.EMPTY_OPTIONS) {}
+  constructor(protected options: Options = new Options()) {}
 
   public get editButton(): Options {
     return this.options;
@@ -9,11 +10,20 @@ export abstract class Row {
 }
 
 export class Options {
-  public static EMPTY_OPTIONS = new Options(new ButtonDetails(), new ButtonDetails());
+  private detailsButton: DetailsButton;
 
-  constructor(public editButton: ButtonDetails, public removeButton: ButtonDetails) {}
+  constructor() {}
+
+  withDetailsButton(detailsButton: DetailsButton): Options {
+    this.detailsButton = detailsButton;
+    return this;
+  }
+
+  getButtons(): ButtonDetails[] {
+    return [this.detailsButton];
+  }
 
   public isEmpty(): boolean {
-    return this.editButton.isEmpty() && this.removeButton.isEmpty();
+    return this.detailsButton.isEmpty();
   }
 }
