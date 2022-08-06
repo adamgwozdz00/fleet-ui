@@ -1,4 +1,4 @@
-import { RowButton } from './row-button';
+import { ButtonDetails } from '../common-button/button-details';
 
 export abstract class Row {
   constructor(protected options: Options = Options.EMPTY_OPTIONS) {}
@@ -9,9 +9,9 @@ export abstract class Row {
 }
 
 export class Options {
-  public static EMPTY_OPTIONS = new Options(new RowButton(), new RowButton());
+  public static EMPTY_OPTIONS = new Options(new ButtonDetails(), new ButtonDetails());
 
-  constructor(public editButton: RowButton, public removeButton: RowButton) {}
+  constructor(public editButton: ButtonDetails, public removeButton: ButtonDetails) {}
 
   public isEmpty(): boolean {
     return this.editButton.isEmpty() && this.removeButton.isEmpty();

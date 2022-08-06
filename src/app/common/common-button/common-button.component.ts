@@ -1,15 +1,15 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { RowButton } from '../row-button';
+import { ButtonDetails } from './button-details';
 
 @Component({
-  selector: 'app-table-button',
-  templateUrl: './table-button.component.html',
-  styleUrls: ['./table-button.component.css'],
+  selector: 'common-button',
+  templateUrl: './common-button.component.html',
+  styleUrls: ['./common-button.component.css'],
 })
 export class TableButtonComponent implements OnInit {
   @Input() buttonTitle: string = 'button';
   @Input() buttonFunction: Function = () => console.log('button event');
-  @Input() rowButton: RowButton = new RowButton();
+  @Input() rowButton: ButtonDetails = new ButtonDetails();
 
   constructor() {}
 

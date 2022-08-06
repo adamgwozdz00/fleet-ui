@@ -1,4 +1,4 @@
-export class RowButton {
+export class ButtonDetails {
   constructor(
     private _buttonTitle: string = '',
     private _event: Function = null

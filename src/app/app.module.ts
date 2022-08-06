@@ -16,7 +16,7 @@ import { FleetTableComponent } from './tables/fleet/fleet-table/fleet-table.comp
 import { DiversTableComponent } from './tables/drivers/divers-table/divers-table.component';
 import { PeopleTableComponent } from './tables/people/people-table/people-table.component';
 import { TableTitleComponent } from './common/table/table-title/table-title.component';
-import { TableButtonComponent } from './common/table/table-button/table-button.component';
+import { TableButtonComponent } from './common/common-button/common-button.component';
 import { CarDetailsComponent } from './pages/car-details/car-details.component';
 import { LoginComponent } from './pages/login/login.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -41,8 +41,7 @@ import { AccountTypeComponent } from './common/account-type/account-type.compone
     TableButtonComponent,
     CarDetailsComponent,
     LoginComponent,
-    AccountTypeComponent,
-    
+    AccountTypeComponent,    
   ],
   imports: [BrowserModule, AppRoutingModule, MatTableModule,  HttpClientModule,ReactiveFormsModule],
   providers: [],

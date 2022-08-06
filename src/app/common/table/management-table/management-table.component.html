@@ -1,9 +1,9 @@
 <div class="flex flex-row justify-between">
   <app-table-title [tableTitle]="title"></app-table-title>
-  <app-table-button
+  <common-button
     [buttonTitle]="buttonAddTitle"
     class="pr-4"
-  ></app-table-button>
+  ></common-button>
 </div>
 <table
   mat-table
@@ -26,8 +26,8 @@
         *matCellDef="let element"
       >
         <div *ngIf="isOptions(element[column.definition])">
-          <app-table-button class="p-2" [rowButton]="element[column.definition].editButton"></app-table-button>
-          <app-table-button class="p-2" [rowButton]="element[column.definition].removeButton"></app-table-button>
+          <common-button class="p-2" [rowButton]="element[column.definition].editButton"></common-button>
+          <common-button class="p-2" [rowButton]="element[column.definition].removeButton"></common-button>
         </div>
         <div *ngIf="isPrimitive(element[column.definition])">
           {{ element[column.definition] }}

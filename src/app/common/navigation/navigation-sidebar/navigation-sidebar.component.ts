@@ -1,5 +1,6 @@
 import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
+import { UsersProductMockService } from 'src/app/sdk/users-product/users-product-mock.service';
 import { NavTileDetails } from '../nav-tile-details';
 
 @Component({
@@ -11,13 +12,17 @@ export class NavigationSidebar implements OnInit {
   navTiles: NavTileDetails[] = [];
   selectedTile: NavTileDetails;
 
-  constructor() {
-    this.navTiles.push(new NavTileDetails('/fleet', 'Fleet'));
-    this.navTiles.push(new NavTileDetails('/reports', 'Reports'));
-    this.navTiles.push(new NavTileDetails('/drivers', 'Drivers'));
-    this.navTiles.push(new NavTileDetails('/people', 'People'));
-    this.navTiles.push(new NavTileDetails('/account', 'Account'));
-  }
+  constructor(private userProductService: UsersProductMockService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.userProductService
+      .getPages()
+      .then((pages) =>
+        pages.forEach((userPage) =>
+          this.navTiles.push(
+            new NavTileDetails(userPage.pageRouting,userPage.pageName)
+          )
+        )
+      );
+  }
 }

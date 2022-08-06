@@ -17,3 +17,7 @@
 .background-grey {
   background-color: #f5f5f5;
 }
+
+.on-activate-bg-grey:active{
+  background-color: #f5f5f5;
+}

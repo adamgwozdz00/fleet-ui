@@ -1,6 +1,5 @@
 import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { Column } from 'src/app/common/table/column';
-import { Row } from 'src/app/common/table/row';
 import { TableTitle } from 'src/app/common/table/table-title';
 import { FleetTableRow, FleetTableService } from '../fleet-table.service';
 
