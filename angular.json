@@ -33,7 +33,8 @@
             "styles": [
               "src/styles.css",
               "src/style/colors.css",
-              "src/style/fonts.css"
+              "src/style/fonts.css",
+              "src/style/theme.scss"
             ],
             "scripts": []
           },

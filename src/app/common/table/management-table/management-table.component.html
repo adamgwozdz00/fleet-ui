@@ -1,6 +1,6 @@
 <div class="flex flex-row justify-between">
   <app-table-title [tableTitle]="title"></app-table-title>
-  <common-button [buttonTitle]="buttonAddTitle" class="pr-4"></common-button>
+  <common-button [buttonTitle]="addButton.buttonTitle" [buttonFunction]="addButton.event" class="pr-4"></common-button>
 </div>
 <table
   mat-table

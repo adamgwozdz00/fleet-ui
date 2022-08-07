@@ -17,6 +17,6 @@ export class TableButtonComponent implements OnInit {
     if (!this.rowButton.isEmpty()) {
       this.buttonTitle = this.rowButton.buttonTitle;
       this.buttonFunction = this.rowButton.event;
-    }
+    } 
   }
 }

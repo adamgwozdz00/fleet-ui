@@ -3,12 +3,17 @@ import { Column } from 'src/app/common/table/column';
 import { Options, Row } from 'src/app/common/table/row';
 import { FleetMockService } from 'src/app/sdk/fleet/fleet-mock.service';
 import { DetailsButton } from 'src/app/common/table/details-button';
+import { MatDialog } from '@angular/material/dialog';
+import { AddPopUpComponent } from 'src/app/common/add-pop-up/add-pop-up.component';
 
 @Injectable({
   providedIn: 'root',
 })
 export class FleetTableService {
-  constructor(private readonly service: FleetMockService) {}
+  constructor(
+    private readonly service: FleetMockService,
+    private readonly dialog: MatDialog
+  ) {}
 
   async getRows(): Promise<FleetTableRow[]> {
     return this.service
@@ -37,6 +42,20 @@ export class FleetTableService {
       new Column('mileage', 'mileage'),
       new Column('options', 'options'),
     ];
+  }
+
+  createAddButton(
+    enterAnimationDuration: string,
+    exitAnimationDuration: string
+  ): DetailsButton {
+    return new DetailsButton('+ADD', () => {
+      console.log('test');
+      this.dialog.open(AddPopUpComponent, {
+        width: '250px',
+        enterAnimationDuration,
+        exitAnimationDuration,
+      });
+    });
   }
 
   private createOptions(): Options {

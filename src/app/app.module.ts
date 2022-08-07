@@ -11,7 +11,7 @@ import { AccountComponent } from './pages/account/account.component';
 import { NavigationSidebar } from './common/navigation/navigation-sidebar/navigation-sidebar.component';
 import { NavTileComponent } from './common/navigation/nav-tile/nav-tile.component';
 import { TableComponent } from './common/table/management-table/management-table.component';
-import { MatTableModule } from '@angular/material/table';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FleetTableComponent } from './tables/fleet/fleet-table/fleet-table.component';
 import { DiversTableComponent } from './tables/drivers/divers-table/divers-table.component';
 import { PeopleTableComponent } from './tables/people/people-table/people-table.component';
@@ -22,6 +22,9 @@ import { LoginComponent } from './pages/login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AccountTypeComponent } from './common/account-type/account-type.component';
+import { AddPopUpComponent } from './common/add-pop-up/add-pop-up.component';
+
+import { AppMaterialModule } from './material.module';
 
 @NgModule({
   declarations: [
@@ -41,9 +44,18 @@ import { AccountTypeComponent } from './common/account-type/account-type.compone
     TableButtonComponent,
     CarDetailsComponent,
     LoginComponent,
-    AccountTypeComponent,    
+    AccountTypeComponent,
+    AddPopUpComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, MatTableModule,  HttpClientModule,ReactiveFormsModule],
+  entryComponents: [AddPopUpComponent],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    AppMaterialModule,
+    BrowserAnimationsModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

@@ -1,4 +1,5 @@
 import { Component, Input, OnInit, Output } from '@angular/core';
+import { ButtonDetails } from '../../common-button/button-details';
 import { Column } from '../column';
 import { Options, Row } from '../row';
 import { TableTitle } from '../table-title';
@@ -12,9 +13,8 @@ export class TableComponent implements OnInit {
   @Input() columns: Column[] = [];
   @Input() rows: Row[] = [];
   @Input() title: TableTitle = new TableTitle();
-  buttonAddTitle = '+ ADD';
-  buttonEditTitle = 'EDIT';
-  buttonRemoveTitle = 'EDIT';
+  @Input() addButton: ButtonDetails = new ButtonDetails("+ ADD",() => console.log("fires event add..."))
+  
 
   displayedColumns: String[] = [];
 
