@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Column } from 'src/app/common/table/column';
-import { Row } from 'src/app/common/table/row';
 import { TableTitle } from 'src/app/common/table/table-title';
 import {
   PeopleTableRow,
   PeopleTableService,
-} from '../people-table.service';
+} from '../../../sdk/people/people-table.service';
 
 @Component({
   selector: 'app-people-table',

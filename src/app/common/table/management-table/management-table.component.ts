@@ -13,7 +13,7 @@ export class TableComponent implements OnInit {
   @Input() columns: Column[] = [];
   @Input() rows: Row[] = [];
   @Input() title: TableTitle = new TableTitle();
-  @Input() addButton: ButtonDetails = new ButtonDetails("+ ADD",() => console.log("fires event add..."))
+  @Input() addButtonFunction: Function = () => console.log("add event fires...");
   
 
   displayedColumns: String[] = [];

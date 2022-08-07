@@ -5,7 +5,7 @@ import { TableTitle } from 'src/app/common/table/table-title';
 import {
   DriversTableRow,
   DriversTableService,
-} from '../drivers-table.service';
+} from '../../../sdk/drivers/drivers-table.service';
 
 @Component({
   selector: 'app-divers-table',
