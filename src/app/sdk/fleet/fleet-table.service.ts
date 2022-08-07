@@ -3,12 +3,16 @@ import { Column } from 'src/app/common/table/column';
 import { Options, Row } from 'src/app/common/table/row';
 import { FleetMockService } from 'src/app/sdk/fleet/fleet-mock.service';
 import { DetailsButton } from 'src/app/common/table/details-button';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
 })
 export class FleetTableService {
-  constructor(private readonly service: FleetMockService) {}
+  constructor(
+    private readonly service: FleetMockService,
+    private readonly router: Router
+  ) {}
 
   async getRows(): Promise<FleetTableRow[]> {
     return this.service
@@ -22,7 +26,7 @@ export class FleetTableService {
               v.year,
               v.mileage,
               v.type,
-              this.createOptions()
+              this.createOptions(v.id)
             )
         )
       );
@@ -39,11 +43,9 @@ export class FleetTableService {
     ];
   }
 
-  private createOptions(): Options {
+  private createOptions(id: string): Options {
     return new Options().withDetailsButton(
-      new DetailsButton('DETAILS', () =>
-        console.log('fleet details execute...')
-      )
+      new DetailsButton('DETAILS', () => this.router.navigate(['/details'],{state:{id:id}}))
     );
   }
 }
