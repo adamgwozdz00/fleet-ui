@@ -9,7 +9,7 @@ import { TableTitle } from '../table-title';
   templateUrl: './management-table.component.html',
   styleUrls: ['./management-table.component.css'],
 })
-export class TableComponent implements OnInit {
+export class ManagementTableComponent implements OnInit {
   @Input() columns: Column[] = [];
   @Input() rows: Row[] = [];
   @Input() title: TableTitle = new TableTitle();

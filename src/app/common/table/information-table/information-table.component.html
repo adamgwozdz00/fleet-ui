@@ -1,0 +1,36 @@
+<div class="flex flex-row justify-between">
+  <app-table-title [tableTitle]="title"></app-table-title>
+</div>
+<table
+  mat-table
+  [dataSource]="rows"
+  class="mat-elevation-z8 w-full background-grey"
+>
+  <ng-container *ngFor="let column of columns">
+    <ng-container matColumnDef="{{ column.definition }}">
+      <th
+        mat-header-cell
+        *matHeaderCellDef
+        class="border-r-2 border-navy text-center w-fit other-column"
+      >
+        {{ column.title }}
+      </th>
+      <td
+        class="border-r-2 border-navy w-fit other-column"
+        *matCellDef="let element"
+      >
+        {{ element[column.definition] }}
+      </td>
+    </ng-container>
+  </ng-container>
+  <tr
+    mat-header-row
+    *matHeaderRowDef="displayedColumns"
+    class="border-b-2 border-navy"
+  ></tr>
+  <tr
+    mat-row
+    *matRowDef="let row; columns: displayedColumns"
+    class="border-b-2"
+  ></tr>
+</table>

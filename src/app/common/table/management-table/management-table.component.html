@@ -32,9 +32,9 @@
             ></common-button>
           </ng-container>
         </ng-container>
-        <div *ngIf="isPrimitive(element[column.definition])">
+        <ng-container *ngIf="isPrimitive(element[column.definition])">
           {{ element[column.definition] }}
-        </div>
+        </ng-container>
       </td>
     </ng-container>
   </ng-container>

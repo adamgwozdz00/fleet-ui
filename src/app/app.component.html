@@ -1,1 +1,7 @@
-<router-outlet></router-outlet>
+<!--<router-outlet></router-outlet>-->
+<fleet-table>
+  <ng-template #additionalColumnTemplate let-index='id'>
+
+    <button (click)="console(index)">Button {{index}}</button>
+  </ng-template>
+</fleet-table>

@@ -9,7 +9,7 @@ import { DriversComponent } from './pages/drivers/drivers.component';
 import { AccountComponent } from './pages/account/account.component';
 import { NavigationSidebar } from './common/navigation/navigation-sidebar/navigation-sidebar.component';
 import { NavTileComponent } from './common/navigation/nav-tile/nav-tile.component';
-import { TableComponent } from './common/table/management-table/management-table.component';
+import { ManagementTableComponent } from './common/table/management-table/management-table.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TableTitleComponent } from './common/table/table-title/table-title.component';
 import { TableButtonComponent } from './common/common-button/common-button.component';
@@ -21,8 +21,11 @@ import { AccountTypeComponent } from './common/account-type/account-type.compone
 import { AppMaterialModule } from './material.module';
 import { FleetPopUpComponent } from './pages/fleet/fleet-pop-up/fleet-pop-up.component';
 import { FleetTableComponent } from './pages/fleet/fleet-table/fleet-table.component';
+import { FleetTableComponent as RefactorTableComponent} from './components/fleet-table/fleet-table.component'
 import { DiversTableComponent } from './pages/drivers/divers-table/divers-table.component';
 import { PeopleTableComponent } from './pages/people/people-table/people-table.component';
+import { InformationTableComponent } from './common/table/information-table/information-table.component';
+
 
 @NgModule({
   declarations: [
@@ -35,7 +38,8 @@ import { PeopleTableComponent } from './pages/people/people-table/people-table.c
     AccountComponent,
     NavigationSidebar,
     NavTileComponent,
-    TableComponent,
+    ManagementTableComponent,
+    RefactorTableComponent,
     FleetTableComponent,
     DiversTableComponent,
     TableTitleComponent,
@@ -44,6 +48,7 @@ import { PeopleTableComponent } from './pages/people/people-table/people-table.c
     LoginComponent,
     AccountTypeComponent,
     FleetPopUpComponent,
+    InformationTableComponent,
   ],
   imports: [
     BrowserModule,

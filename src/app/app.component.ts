@@ -7,4 +7,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'fleet-ui';
+
+  console(i: number) {
+    console.log(i)
+  }
 }

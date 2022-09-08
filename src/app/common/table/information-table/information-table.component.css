@@ -1,0 +1,13 @@
+.first-row {
+    padding-right: 24px !important;
+  }
+  
+  .first-column {
+    width: 32px;
+    text-align: center !important;
+  }
+  
+  .other-column {
+    padding-left: 24px !important;
+  }
+  
