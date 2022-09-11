@@ -9,7 +9,7 @@ export type TButtonColor = 'orange' | 'navy' | '';
 })
 export class ButtonComponent implements OnInit {
   @Input()
-  buttonStyle: TButtonColor = 'orange'
+  buttonStyle: TButtonColor;
 
   @Input()
   busy: boolean = false;
@@ -17,7 +17,7 @@ export class ButtonComponent implements OnInit {
   constructor(private ref: ElementRef, private renderer: Renderer2) { }
 
   ngOnInit(): void {
-    this.renderer.addClass(this.ref.nativeElement, 'background-' + (this.buttonStyle))
+    this.renderer.addClass(this.ref.nativeElement, 'background-' + (this.buttonStyle || 'orange'))
   }
 
   ngOnChanges(): void {
