@@ -1,22 +1,22 @@
 <div class="flex flex-col items-center">
   <div>
     <h1 *ngIf="!title.isEmpty()"
-        class="text-2xl text-navy decoration-2 w-24 k2d border-b-2 border-orange">
+        class="text-2xl text-navy decoration-2 p-2 k2d border-b-2 border-orange">
       {{ title.value }}
     </h1>
 
     <table class="k2d background-grey w-fit mt-4 border-navy b-r-2">
 
       <tr>
-        <th class="border-navy  border-b-2 text-center w-28"
+        <th class="border-navy  border-b-2 text-center p-2"
             [class.border-r-2]="!isLast"
             *ngFor="let headerColumn of headerRow.columns; let isLast = last">{{headerColumn.value}}</th>
       </tr>
 
       <tr *ngFor="let row of rows; let i = index">
-        <td class="border-navy  border-r-2 text-center w-28"
+        <td class="border-navy border-r-2 text-center p-2"
             *ngFor="let col of row.columns">{{col.value}}</td>
-        <td *ngIf="additionalColumnTemplate" class="text-center w-28">
+        <td *ngIf="additionalColumnTemplate" class="text-center p-2">
           <ng-container
             *ngTemplateOutlet="additionalColumnTemplate, context: {id: row.columns[0].value}">
           </ng-container>

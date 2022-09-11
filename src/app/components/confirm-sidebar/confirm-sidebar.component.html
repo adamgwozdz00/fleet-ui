@@ -1,0 +1,13 @@
+<sidebar
+  [isOpen]="isOpen"
+  [title]="title"
+  [centerTray]="true"
+  (onClose)="onCloseSidebar()"
+>
+  <p class="p1 mt-6">{{message}}</p>
+  <div class="text-center mt-8">
+    <button buttonStyle="navy" (clicl)="buttonClick()">
+      {{buttonLabel}}
+    </button>
+  </div>
+</sidebar>

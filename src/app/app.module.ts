@@ -25,6 +25,10 @@ import { FleetTableComponent as RefactorTableComponent} from './components/fleet
 import { DiversTableComponent } from './pages/drivers/divers-table/divers-table.component';
 import { PeopleTableComponent } from './pages/people/people-table/people-table.component';
 import { InformationTableComponent } from './common/table/information-table/information-table.component';
+import { ButtonComponent } from './components/button/button.component';
+import { LoaderComponent } from './components/loader/loader.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { ConfirmSidebarComponent } from './components/confirm-sidebar/confirm-sidebar.component';
 
 
 @NgModule({
@@ -49,6 +53,10 @@ import { InformationTableComponent } from './common/table/information-table/info
     AccountTypeComponent,
     FleetPopUpComponent,
     InformationTableComponent,
+    ButtonComponent,
+    LoaderComponent,
+    SidebarComponent,
+    ConfirmSidebarComponent
   ],
   imports: [
     BrowserModule,

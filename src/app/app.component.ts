@@ -11,4 +11,25 @@ export class AppComponent {
   console(i: number) {
     console.log(i)
   }
+
+  isOpenSidebar: boolean = false;
+
+  openSidebar() {
+    this.isOpenSidebar = true;
+  }
+
+  onCloseSidebar() {
+    this.isOpenSidebar = false;
+  }
+
+
+  isOpenConfirmSidebar: boolean = false;
+
+  openConfirmSidebar() {
+    this.isOpenConfirmSidebar = true;
+  }
+
+  onCloseConfirmSidebar() {
+    this.isOpenConfirmSidebar = false;
+  }
 }
