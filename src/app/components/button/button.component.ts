@@ -17,7 +17,7 @@ export class ButtonComponent implements OnInit {
   constructor(private ref: ElementRef, private renderer: Renderer2) { }
 
   ngOnInit(): void {
-    this.renderer.addClass(this.ref.nativeElement, 'background-' + (this.buttonStyle || 'orange'))
+    this.renderer.addClass(this.ref.nativeElement, 'background-' + (this.buttonStyle))
   }
 
   ngOnChanges(): void {
