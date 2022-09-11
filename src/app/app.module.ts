@@ -29,6 +29,7 @@ import { ButtonComponent } from './components/button/button.component';
 import { LoaderComponent } from './components/loader/loader.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { ConfirmSidebarComponent } from './components/confirm-sidebar/confirm-sidebar.component';
+import { DetailsComponent } from './components/details/details.component';
 
 
 @NgModule({
@@ -56,7 +57,8 @@ import { ConfirmSidebarComponent } from './components/confirm-sidebar/confirm-si
     ButtonComponent,
     LoaderComponent,
     SidebarComponent,
-    ConfirmSidebarComponent
+    ConfirmSidebarComponent,
+    DetailsComponent
   ],
   imports: [
     BrowserModule,

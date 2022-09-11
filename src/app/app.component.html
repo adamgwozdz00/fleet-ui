@@ -1,18 +1,49 @@
 <!--<router-outlet></router-outlet>-->
-<fleet-table>
-  <ng-template #additionalColumnTemplate let-index='id'>
-    <button class="mr-2" (click)="console(index)" buttonStyle (click)="openSidebar()">Button {{index}}</button>
-    <button class="mr-2" (click)="console(index)" buttonStyle="navy" (click)="openConfirmSidebar()">Button {{index}}</button>
-    <button  (click)="console(index)" buttonStyle="navy" [busy]="true">Button {{index}}</button>
-  </ng-template>
-</fleet-table>
+<div class="flex flex-col items-center">
+  <div>
+    <fleet-table>
+      <ng-template #additionalColumnTemplate let-index="id">
+        <button
+          class="mr-2"
+          (click)="console(index)"
+          buttonStyle
+          (click)="openSidebar()"
+        >
+          Button {{index}}
+        </button>
+        <button
+          class="mr-2"
+          (click)="console(index)"
+          buttonStyle="navy"
+          (click)="openConfirmSidebar()"
+        >
+          Button {{index}}
+        </button>
+        <button (click)="console(index)" buttonStyle="navy" [busy]="true">
+          Button {{index}}
+        </button>
+      </ng-template>
+    </fleet-table>
+  </div>
+</div>
 
-
-<sidebar [isOpen]="isOpenSidebar" title="Title" (onClose)="onCloseSidebar()">
-  test
+<sidebar [isOpen]="isOpenSidebar" title="Details" (onClose)="onCloseSidebar()">
+  <details-tab [tabs]="detailsTab">
+    <ng-template #tabTemplate let-index="index">
+      <ng-container [ngSwitch]="detailsTab[index]">
+        <div *ngSwitchCase="'Current Review'">
+          Data of next review: 14.05.2023
+        </div>
+        <div *ngSwitchCase="'Driver History'">
+          <fleet-table> </fleet-table>
+        </div>
+        <div *ngSwitchDefault>{{detailsTab[index]}}</div>
+      </ng-container>
+    </ng-template>
+  </details-tab>
 
   <p bottomBar>
-    Is content projection cool?
+    Bottom bar
   </p>
 </sidebar>
 
