@@ -1,5 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { ButtonDetails } from './button-details';
+import {Component, Input, OnInit} from '@angular/core';
+import {ButtonDetails} from './button-details';
 
 @Component({
   selector: 'common-button',
@@ -8,15 +8,17 @@ import { ButtonDetails } from './button-details';
 })
 export class TableButtonComponent implements OnInit {
   @Input() buttonTitle: string = 'button';
-  @Input() buttonFunction: Function = () => console.log('button event');
   @Input() rowButton: ButtonDetails = new ButtonDetails();
 
-  constructor() {}
+  constructor() {
+  }
+
+  @Input() buttonFunction: Function = () => console.log('button event');
 
   ngOnInit(): void {
     if (!this.rowButton.isEmpty()) {
       this.buttonTitle = this.rowButton.buttonTitle;
       this.buttonFunction = this.rowButton.event;
-    } 
+    }
   }
 }

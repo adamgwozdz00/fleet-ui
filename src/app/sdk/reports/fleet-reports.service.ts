@@ -1,1 +1,2 @@
-export interface FleetReportService {}
+export interface FleetReportService {
+}

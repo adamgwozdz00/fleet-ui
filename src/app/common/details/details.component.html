@@ -1,0 +1,16 @@
+<div class=" tabs inline-flex">
+  <p
+    (click)="openTab(i)"
+    *ngFor="let tab of tabs; let i = index"
+    [class.active]="currentTab === tab"
+    class="font-semibold tab-title pr-1.5 pl-1.5"
+  >
+    {{tab}}
+  </p>
+</div>
+<div class="p-3">
+  <div *ngFor="let tab of tabs; let i = index" [class.hidden]="currentTab !== tab">
+    <ng-container *ngTemplateOutlet="tabTemplate, context: {index: i}">
+    </ng-container>
+  </div>
+</div>

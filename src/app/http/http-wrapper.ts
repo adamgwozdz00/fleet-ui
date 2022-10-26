@@ -1,12 +1,13 @@
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { AuthService } from '../auth/auth.service';
-import { ApiUrl } from './api-url';
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
+import {AuthService} from '../auth/auth.service';
+import {ApiUrl} from './api-url';
 
 export class HttpWrapper {
-  constructor(private http: HttpClient, private authService: AuthService) {}
+  constructor(private http: HttpClient, private authService: AuthService) {
+  }
 
   public post(url: ApiUrl, body: {}) {
-    this.http.post(url.url, body, { headers: this.prepareHeaders() });
+    this.http.post(url.url, body, {headers: this.prepareHeaders()});
   }
 
   public get(url: ApiUrl, params: HttpParams) {

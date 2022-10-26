@@ -1,0 +1,22 @@
+@use 'src/style/colors' as color;
+
+.tabs {
+  border-bottom: 2px solid color.$col-navy;
+
+  .tab-title {
+    color: color.$col-navy;
+    cursor: pointer;
+    transition: color 0.4s;
+
+    &:hover {
+      color: color.$col-orange;
+    }
+
+
+    &.active {
+      color: color.$col-orange;
+      margin-bottom: -2px;
+      border-bottom: 2px solid color.$col-orange;
+    }
+  }
+}

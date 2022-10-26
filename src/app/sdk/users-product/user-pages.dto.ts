@@ -1,5 +1,6 @@
 export class UserPagesDTO {
-  constructor(private _pageName: string) {}
+  constructor(private _pageName: string) {
+  }
 
   public get pageName(): string {
     return this._pageName;

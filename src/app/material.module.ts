@@ -12,4 +12,5 @@ import {DialogModule} from '@angular/cdk/dialog';
     MatNativeDateModule,
   ]
 })
-export class AppMaterialModule {}
+export class AppMaterialModule {
+}

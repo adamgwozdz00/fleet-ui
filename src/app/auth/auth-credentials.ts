@@ -1,5 +1,6 @@
 export class AuthCredentials {
-  constructor(public username: Username, public password: Password) {}
+  constructor(public username: Username, public password: Password) {
+  }
 
   get getUsername(): string {
     return this.username.username;
@@ -11,9 +12,11 @@ export class AuthCredentials {
 }
 
 export class Username {
-  constructor(public username: string) {}
+  constructor(public username: string) {
+  }
 }
 
 export class Password {
-  constructor(public password: string) {}
+  constructor(public password: string) {
+  }
 }

@@ -1,0 +1,11 @@
+<nav class="w-full h-48 bg-white">
+  <ul>
+    <li
+      *ngFor="let item of navbarItems"
+      [ngClass]="{ 'text-white background-navy': item.isActive }"
+      class="inline-block pt-1.5 pb-1 navtile h-10 w-64 text-xl text-center k2d content-center border-b-2 border-navy">
+      <a routerLink="{{item.routerLink}}">{{item.title}}</a>
+    </li>
+  </ul>
+</nav>
+

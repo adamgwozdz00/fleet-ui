@@ -4,5 +4,6 @@ export class CarHistoryDetailsDTO {
     public driverId: string,
     public driverName: string,
     public issue: string = ""
-  ) {}
+  ) {
+  }
 }

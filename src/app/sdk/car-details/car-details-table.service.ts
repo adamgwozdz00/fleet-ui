@@ -1,22 +1,23 @@
-import { Injectable } from '@angular/core';
-import { Column } from 'src/app/common/table/column';
-import { Row } from 'src/app/common/table/row';
-import { CarDetailsMockService } from './car-details-mock.service';
+import {Injectable} from '@angular/core';
+import {Column} from 'src/app/common/table/column';
+import {Row} from 'src/app/common/table/row';
+import {CarDetailsMockService} from './car-details-mock.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CarDetailsTableService {
-  constructor(private readonly service: CarDetailsMockService) {}
+  constructor(private readonly service: CarDetailsMockService) {
+  }
 
   async getHistoryRows(carId: string): Promise<HistoryTableRow[]> {
     return this.service
-      .getCarsHistory(carId)
-      .then((history) =>
-        history.map(
-          (h) => new HistoryTableRow(h.date, h.driverId, h.driverName, h.issue)
-        )
-      );
+    .getCarsHistory(carId)
+    .then((history) =>
+      history.map(
+        (h) => new HistoryTableRow(h.date, h.driverId, h.driverName, h.issue)
+      )
+    );
   }
 
   async getHistoryColumns(): Promise<Column[]> {
@@ -39,6 +40,7 @@ export class HistoryTableRow extends Row {
     super();
   }
 }
+
 export class InsuranceTableRow extends Row {
   constructor(
     public startDate: string,

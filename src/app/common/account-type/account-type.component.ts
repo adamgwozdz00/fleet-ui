@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { AuthService } from 'src/app/auth/auth.service';
+import {Component, OnInit} from '@angular/core';
+import {AuthService} from 'src/app/auth/auth.service';
 
 @Component({
   selector: 'app-account-type',
@@ -9,7 +9,8 @@ import { AuthService } from 'src/app/auth/auth.service';
 export class AccountTypeComponent implements OnInit {
   accountTypeName: string = '';
 
-  constructor(private readonly authService: AuthService) {}
+  constructor(private readonly authService: AuthService) {
+  }
 
   ngOnInit(): void {
     this.accountTypeName = this.authService.getAccountType();

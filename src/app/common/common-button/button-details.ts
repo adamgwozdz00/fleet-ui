@@ -2,10 +2,7 @@ export class ButtonDetails {
   constructor(
     private _buttonTitle: string = '',
     private _event: Function = null
-  ) {}
-
-  public isEmpty(): boolean {
-    return this._buttonTitle == '' || this._event == null;
+  ) {
   }
 
   public get buttonTitle(): string {
@@ -14,5 +11,9 @@ export class ButtonDetails {
 
   public get event(): Function {
     return this._event;
+  }
+
+  public isEmpty(): boolean {
+    return this._buttonTitle == '' || this._event == null;
   }
 }

@@ -1,22 +1,23 @@
-import { Injectable } from '@angular/core';
-import { Column } from 'src/app/common/table/column';
-import { Row } from 'src/app/common/table/row';
-import { PeopleMockService } from 'src/app/sdk/people/people-mock.service';
+import {Injectable} from '@angular/core';
+import {Column} from 'src/app/common/table/column';
+import {Row} from 'src/app/common/table/row';
+import {PeopleMockService} from 'src/app/sdk/people/people-mock.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PeopleTableService {
-  constructor(private readonly service: PeopleMockService) {}
+  constructor(private readonly service: PeopleMockService) {
+  }
 
   async getRows(): Promise<PeopleTableRow[]> {
     return this.service
-      .getAll()
-      .then((people) =>
-        people.map(
-          (p) => new PeopleTableRow(p.id, p.surname, p.seniority)
-        )
-      );
+    .getAll()
+    .then((people) =>
+      people.map(
+        (p) => new PeopleTableRow(p.id, p.surname, p.seniority)
+      )
+    );
   }
 
   async getColumns(): Promise<Column[]> {

@@ -1,0 +1,6 @@
+<span [class.busy]="busy" class="content">
+  <ng-content></ng-content>
+</span>
+<div *ngIf="busy" class="loader">
+  <loader class="block"></loader>
+</div>

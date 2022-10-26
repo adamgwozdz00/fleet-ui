@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import { CarHistoryDetailsDTO } from './car-history-details.dto';
+import {Injectable} from '@angular/core';
+import {CarHistoryDetailsDTO} from './car-history-details.dto';
 
 @Injectable({
   providedIn: 'root',

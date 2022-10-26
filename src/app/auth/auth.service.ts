@@ -1,9 +1,9 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
-import { loginApiUrl } from '../http/api-url';
-import { AuthCredentials } from './auth-credentials';
-import { LoginResultTokenDTO } from './login-token.dto';
+import {HttpClient} from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {Router} from '@angular/router';
+import {loginApiUrl} from '../http/api-url';
+import {AuthCredentials} from './auth-credentials';
+import {LoginResultTokenDTO} from './login-token.dto';
 
 @Injectable({
   providedIn: 'root',
@@ -12,7 +12,8 @@ export class AuthService {
   constructor(
     private readonly http: HttpClient,
     private readonly router: Router
-  ) {}
+  ) {
+  }
 
   async login(credentials: AuthCredentials) {
     const loginResult = await this.sendCredentials(credentials);
@@ -54,11 +55,11 @@ export class AuthService {
     credentials: AuthCredentials
   ): Promise<LoginResultTokenDTO> {
     return this.http
-      .post<LoginResultTokenDTO>(loginApiUrl.url, {
-        username: credentials.getUsername,
-        password: credentials.getPassword,
-      })
-      .toPromise();
+    .post<LoginResultTokenDTO>(loginApiUrl.url, {
+      username: credentials.getUsername,
+      password: credentials.getPassword,
+    })
+    .toPromise();
   }
 
   private storeAccountType(credentials: AuthCredentials) {

@@ -1,22 +1,23 @@
-import { Injectable } from '@angular/core';
-import { Column } from 'src/app/common/table/column';
-import { Row } from 'src/app/common/table/row';
-import { DriversMockService } from 'src/app/sdk/drivers/drivers-mock.service';
+import {Injectable} from '@angular/core';
+import {Column} from 'src/app/common/table/column';
+import {Row} from 'src/app/common/table/row';
+import {DriversMockService} from 'src/app/sdk/drivers/drivers-mock.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class DriversTableService {
-  constructor(private readonly service: DriversMockService) {}
+  constructor(private readonly service: DriversMockService) {
+  }
 
   async getRows(): Promise<DriversTableRow[]> {
     return this.service
-      .getAll()
-      .then((drivers) =>
-        drivers.map(
-          (d) => new DriversTableRow(d.id, d.surname, d.mileage, d.seniority)
-        )
-      );
+    .getAll()
+    .then((drivers) =>
+      drivers.map(
+        (d) => new DriversTableRow(d.id, d.surname, d.mileage, d.seniority)
+      )
+    );
   }
 
   async getColumns(): Promise<Column[]> {

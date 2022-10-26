@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import { VehicleDTO } from 'src/app/sdk/fleet/vehicle.dto';
+import {Injectable} from '@angular/core';
+import {VehicleDTO} from 'src/app/sdk/fleet/vehicle.dto';
 
 @Injectable({
   providedIn: 'root',

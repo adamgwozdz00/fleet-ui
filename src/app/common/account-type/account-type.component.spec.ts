@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { AccountTypeComponent } from './account-type.component';
+import {AccountTypeComponent} from './account-type.component';
 
 describe('AccountTypeComponent', () => {
   let component: AccountTypeComponent;
@@ -8,7 +8,7 @@ describe('AccountTypeComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AccountTypeComponent ]
+      declarations: [AccountTypeComponent]
     })
     .compileComponents();
 

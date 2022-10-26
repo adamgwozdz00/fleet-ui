@@ -1,0 +1,33 @@
+<h1
+  *ngIf="!title.isEmpty()"
+  class="text-2xl text-navy decoration-2 p-2 k2d border-b-2 border-orange w-fit"
+>
+  {{ title.value }}
+</h1>
+
+<table class="k2d background-grey w-fit mt-4 border-navy b-r-2">
+  <tr>
+    <th
+      *ngFor="let headerColumn of headerRow.columns; let isLast = last"
+      [class.border-r-2]="!isLast"
+      class="border-navy border-b-2 text-center p-2"
+    >
+      {{headerColumn.value}}
+    </th>
+  </tr>
+
+  <tr *ngFor="let row of rows; let i = index">
+    <td
+      *ngFor="let col of row.columns"
+      class="border-navy border-r-2 text-center p-2"
+    >
+      {{col.value}}
+    </td>
+    <td *ngIf="additionalColumnTemplate" class="text-center p-2">
+      <ng-container
+        *ngTemplateOutlet="additionalColumnTemplate, context: {id: row.columns[0].value}"
+      >
+      </ng-container>
+    </td>
+  </tr>
+</table>
