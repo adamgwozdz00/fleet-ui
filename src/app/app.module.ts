@@ -11,6 +11,8 @@ import {AppMaterialModule} from './material.module';
 import {NavbarComponent} from "./components/navbar/navbar.component";
 import {CommonModule} from "./common/common.module";
 import {VehiclesComponent} from "./components/vehicles/vehicles.component";
+import {DriversComponent} from "./components/drivers/drivers.component";
+import {UsersComponent} from "./components/users/users.component";
 
 
 @NgModule({
@@ -18,7 +20,9 @@ import {VehiclesComponent} from "./components/vehicles/vehicles.component";
     AppComponent,
     NavbarComponent,
     LoginComponent,
-    VehiclesComponent
+    VehiclesComponent,
+    DriversComponent,
+    UsersComponent
   ],
   imports: [
     BrowserModule,

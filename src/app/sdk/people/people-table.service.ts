@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
-import {Column} from 'src/app/common/table/column';
-import {Row} from 'src/app/common/table/row';
 import {PeopleMockService} from 'src/app/sdk/people/people-mock.service';
+import {HeaderRow, Row} from "../../common/fleet-table/row";
+import {Column} from "../../common/fleet-table/column";
 
 @Injectable({
   providedIn: 'root',
@@ -10,31 +10,23 @@ export class PeopleTableService {
   constructor(private readonly service: PeopleMockService) {
   }
 
-  async getRows(): Promise<PeopleTableRow[]> {
+  async getRows(): Promise<Row[]> {
     return this.service
     .getAll()
     .then((people) =>
       people.map(
-        (p) => new PeopleTableRow(p.id, p.surname, p.seniority)
+        (p) => new Row([new Column(p.id), new Column(p.surname), new Column(p.seniority)])
       )
     );
   }
 
-  async getColumns(): Promise<Column[]> {
-    return [
-      new Column('identity', 'id', true),
-      new Column('last name', 'surname'),
-      new Column('seniority', 'seniority'),
-    ];
+
+  getHeaderRow(): Promise<HeaderRow> {
+    return Promise.resolve(new HeaderRow([
+      new Column('identity'),
+      new Column('last name'),
+      new Column('seniority')
+    ]));
   }
 }
 
-export class PeopleTableRow extends Row {
-  constructor(
-    public id: string,
-    public surname: string,
-    public seniority: number
-  ) {
-    super();
-  }
-}

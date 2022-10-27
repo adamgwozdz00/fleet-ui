@@ -1,1 +1,55 @@
-<p>users works!</p>
+<div class="flex flex-col items-center">
+  <div>
+    <fleet-table [headerRow]="headerRow" [rows]="rows" [title]="title">
+      <ng-template #additionalColumnTemplate let-index="id">
+        <button
+          (click)="console(index)"
+          (click)="openSidebar()"
+          buttonStyle
+          class="mr-2"
+        >
+          Details
+        </button>
+        <button
+          (click)="console(index)"
+          (click)="openConfirmSidebar()"
+          buttonStyle="navy"
+          class="mr-2"
+        >
+          Remove
+        </button>
+        <button (click)="console(index)" [busy]="true" buttonStyle="navy">
+          Button {{index}}
+        </button>
+      </ng-template>
+    </fleet-table>
+  </div>
+</div>
+
+<sidebar (onClose)="onCloseSidebar()" [isOpen]="isOpenSidebar" title="Details">
+  <details-tab [tabs]="detailsTab">
+    <ng-template #tabTemplate let-index="index">
+      <ng-container [ngSwitch]="detailsTab[index]">
+        <div *ngSwitchCase="'Current Review'">
+          Data of next review: 14.05.2023
+        </div>
+        <div *ngSwitchCase="'Driver History'">
+          <fleet-table></fleet-table>
+        </div>
+        <div *ngSwitchDefault>{{detailsTab[index]}}</div>
+      </ng-container>
+    </ng-template>
+  </details-tab>
+
+  <p bottomBar>
+    Bottom bar
+  </p>
+</sidebar>
+
+<confirm-sidebar
+  (onClose)="onCloseConfirmSidebar()"
+  [isOpen]="isOpenConfirmSidebar"
+  buttonLabel="Delete"
+  message="Are you sure about delete?"
+  title="Confirm"
+></confirm-sidebar>
