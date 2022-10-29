@@ -2,18 +2,7 @@ import {FleetRoutes} from "../../common/routes/FleetRoutes";
 
 export class NavbarItem {
   constructor(private readonly _title: String,
-              private readonly _routerLinks: FleetRoutes,
-              private _isActive: boolean = false,
-              private _isEnabled: boolean = true) {
-  }
-
-
-  get isEnabled(): boolean {
-    return this._isEnabled;
-  }
-
-  get isActive(): boolean {
-    return this._isActive;
+              private readonly _routerLinks: FleetRoutes) {
   }
 
   get title(): String {
@@ -24,11 +13,10 @@ export class NavbarItem {
     return this._routerLinks;
   }
 
-  activateIfMatches(url: string): void {
-    if (this.routerLink.toString() == url.replace("/", "")) {
-      this._isActive = true;
-      return;
+  isRouterLinkMatches(url: string): boolean {
+    if (this.routerLink == url.replace("/", "")) {
+      return true;
     }
-    this._isActive = false;
+    return false;
   }
 }

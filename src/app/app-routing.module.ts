@@ -11,6 +11,11 @@ import {AuthGuard} from "./auth/auth-guard";
 
 const routes: Routes = [
   {
+    path: '',
+    pathMatch: "full",
+    redirectTo: FleetRoutes.VEHICLES,
+  },
+  {
     path: FleetRoutes.VEHICLES,
     component: VehiclesComponent,
     title: 'FleetUi | Vehicles',

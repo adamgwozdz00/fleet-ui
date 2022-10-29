@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot,} from '@angular/router';
 import {AuthService} from './auth.service';
+import {FleetRoutes} from "../common/routes/FleetRoutes";
 
 @Injectable({providedIn: 'root'})
 export class AuthGuard implements CanActivate {
@@ -16,7 +17,7 @@ export class AuthGuard implements CanActivate {
       return true;
     }
 
-    this.router.navigate(['/login']);
+    this.router.navigate([FleetRoutes.LOGIN]);
     return false;
   }
 }

@@ -68,7 +68,7 @@ export class AuthService {
   }
 
   private store(loginResult: LoginResultTokenDTO) {
-    this.authUserSessionStorageService.store(new AuthUserSessionRecord(AccountType.USER,
+    this.authUserSessionStorageService.store(new AuthUserSessionRecord(AccountType[loginResult.role.toUpperCase()],
       loginResult.token)
     );
   }

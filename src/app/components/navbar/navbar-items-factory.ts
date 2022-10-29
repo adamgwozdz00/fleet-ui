@@ -12,14 +12,12 @@ export class NavbarItemsFactory {
           new NavbarItem("Drivers", FleetRoutes.DRIVERS),
           new NavbarItem("Users", FleetRoutes.USERS),
           new NavbarItem("Account", FleetRoutes.ACCOUNT),
-          new NavbarItem("Login", FleetRoutes.LOGIN, false, false)
         ];
       case AccountType.USER:
         return [
           new NavbarItem("Vehicles", FleetRoutes.VEHICLES),
           new NavbarItem("Drivers", FleetRoutes.DRIVERS),
           new NavbarItem("Account", FleetRoutes.ACCOUNT),
-          new NavbarItem("Login", FleetRoutes.LOGIN, false, false)
         ];
     }
   }
