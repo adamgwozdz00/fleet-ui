@@ -13,6 +13,7 @@ import {CommonModule} from "./common/common.module";
 import {VehiclesComponent} from "./components/vehicles/vehicles.component";
 import {DriversComponent} from "./components/drivers/drivers.component";
 import {UsersComponent} from "./components/users/users.component";
+import {AccountComponent} from "./components/account/account.component";
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import {UsersComponent} from "./components/users/users.component";
     LoginComponent,
     VehiclesComponent,
     DriversComponent,
-    UsersComponent
+    UsersComponent,
+    AccountComponent
   ],
   imports: [
     BrowserModule,

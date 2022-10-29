@@ -18,9 +18,17 @@ export class NavbarComponent implements OnInit {
       new NavbarItem("Vehicles", FleetRoutes.VEHICLES),
       new NavbarItem("Drivers", FleetRoutes.DRIVERS),
       new NavbarItem("Users", FleetRoutes.USERS),
+      new NavbarItem("Account", FleetRoutes.ACCOUNT),
+      new NavbarItem("Login", FleetRoutes.LOGIN, false, false)
     ];
+  }
 
-
+  isLoginNavigated(): boolean {
+    const navigatedRoute = this.navbarItems.find(it => it.isActive);
+    if (!navigatedRoute) {
+      return false;
+    }
+    return navigatedRoute.routerLink === FleetRoutes.LOGIN;
   }
 
   ngOnInit(): void {
@@ -31,5 +39,7 @@ export class NavbarComponent implements OnInit {
     });
   }
 
-
+  toEnabledItems(): NavbarItem[] {
+    return this.navbarItems.filter(it => it.isEnabled);
+  }
 }

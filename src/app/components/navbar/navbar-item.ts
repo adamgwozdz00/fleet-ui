@@ -3,7 +3,13 @@ import {FleetRoutes} from "../../common/routes/FleetRoutes";
 export class NavbarItem {
   constructor(private readonly _title: String,
               private readonly _routerLinks: FleetRoutes,
-              private _isActive: boolean = false) {
+              private _isActive: boolean = false,
+              private _isEnabled: boolean = true) {
+  }
+
+
+  get isEnabled(): boolean {
+    return this._isEnabled;
   }
 
   get isActive(): boolean {

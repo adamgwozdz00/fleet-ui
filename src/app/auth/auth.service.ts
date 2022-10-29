@@ -4,6 +4,11 @@ import {Router} from '@angular/router';
 import {loginApiUrl} from '../http/api-url';
 import {AuthCredentials} from './auth-credentials';
 import {LoginResultTokenDTO} from './login-token.dto';
+import {FleetRoutes} from "../common/routes/FleetRoutes";
+import {
+  AuthUserSessionRecord,
+  AuthUserSessionStorageService
+} from "./auth-user-session-storage.service";
 
 @Injectable({
   providedIn: 'root',
@@ -11,7 +16,8 @@ import {LoginResultTokenDTO} from './login-token.dto';
 export class AuthService {
   constructor(
     private readonly http: HttpClient,
-    private readonly router: Router
+    private readonly router: Router,
+    private readonly authUserSessionStorageService: AuthUserSessionStorageService
   ) {
   }
 
@@ -19,36 +25,34 @@ export class AuthService {
     const loginResult = await this.sendCredentials(credentials);
 
     if (!loginResult.success) {
-      this.router.navigateByUrl('/login');
+      this.router.navigateByUrl(FleetRoutes.LOGIN);
     }
-    this.storeAccountType(credentials);
-    sessionStorage.setItem('apiToken', loginResult.token);
-    this.router.navigate(['/fleet']);
+
+    this.store(loginResult);
+
+    this.router.navigate([FleetRoutes.VEHICLES]);
   }
 
   logout() {
-    sessionStorage.setItem('apiToken', '');
-    sessionStorage.setItem('accountType', '');
-    this.router.navigate(['/login']);
+    this.authUserSessionStorageService.clear();
+    this.router.navigate([FleetRoutes.LOGIN]);
   }
 
   getAuthorizationToken(): string {
-    const token = sessionStorage.getItem('apiToken');
-    return `Bearer ${token}`;
+    const authUserData = this.authUserSessionStorageService.load();
+    return `Bearer ${authUserData.apiToken}`;
   }
 
   isAuthenticated() {
-    if (!sessionStorage.getItem('apiToken')) {
+    const authUserData = this.authUserSessionStorageService.load();
+    if (!authUserData) {
       return false;
     }
-    if (sessionStorage.getItem('apiToken') == '') {
-      return false;
-    }
-    return true;
+    return authUserData.isProper();
   }
 
   getAccountType(): string {
-    return sessionStorage.getItem('accountType');
+    return this.authUserSessionStorageService.load()?.accountType;
   }
 
   private sendCredentials(
@@ -62,11 +66,9 @@ export class AuthService {
     .toPromise();
   }
 
-  private storeAccountType(credentials: AuthCredentials) {
-    if (credentials.getUsername.includes('admin')) {
-      sessionStorage.setItem('accountType', 'admin');
-      return;
-    }
-    sessionStorage.setItem('accountType', 'user');
+  private store(loginResult: LoginResultTokenDTO) {
+    this.authUserSessionStorageService.store(new AuthUserSessionRecord('admin',
+      loginResult.token)
+    );
   }
 }

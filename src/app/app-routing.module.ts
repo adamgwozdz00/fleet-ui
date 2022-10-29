@@ -5,6 +5,8 @@ import {VehiclesComponent} from "./components/vehicles/vehicles.component";
 import {FleetRoutes} from "./common/routes/FleetRoutes";
 import {UsersComponent} from "./components/users/users.component";
 import {DriversComponent} from "./components/drivers/drivers.component";
+import {AccountComponent} from "./components/account/account.component";
+import {AuthGuard} from "./auth/auth-guard";
 
 
 const routes: Routes = [
@@ -12,19 +14,25 @@ const routes: Routes = [
     path: FleetRoutes.VEHICLES,
     component: VehiclesComponent,
     title: 'FleetUi | Vehicles',
-    // canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
   },
   {
     path: FleetRoutes.DRIVERS,
     component: DriversComponent,
     title: 'FleetUi | Drivers',
-    // canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
   },
   {
     path: FleetRoutes.USERS,
     component: UsersComponent,
     title: 'FleetUi | Users',
-    // canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
+  },
+  {
+    path: FleetRoutes.ACCOUNT,
+    component: AccountComponent,
+    title: 'FleetUi | Account',
+    canActivate: [AuthGuard],
   },
   {path: FleetRoutes.LOGIN, component: LoginComponent, title: 'login'},
 ];
