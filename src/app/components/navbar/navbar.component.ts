@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {NavbarItem} from "./navbar-item";
 import {FleetRoutes} from "../../common/routes/FleetRoutes";
 import {NavigationEnd, Router} from "@angular/router";
+import {NavbarItemsFactory} from "./navbar-items-factory";
+import {AuthUserSessionStorageService} from "../../auth/auth-user-session-storage.service";
 
 @Component({
   selector: 'navbar',
@@ -13,14 +15,9 @@ export class NavbarComponent implements OnInit {
   readonly navbarItems: NavbarItem[];
 
 
-  constructor(private readonly router: Router) {
-    this.navbarItems = [
-      new NavbarItem("Vehicles", FleetRoutes.VEHICLES),
-      new NavbarItem("Drivers", FleetRoutes.DRIVERS),
-      new NavbarItem("Users", FleetRoutes.USERS),
-      new NavbarItem("Account", FleetRoutes.ACCOUNT),
-      new NavbarItem("Login", FleetRoutes.LOGIN, false, false)
-    ];
+  constructor(private readonly router: Router,
+              private readonly authUserSessionStorageService: AuthUserSessionStorageService) {
+    this.navbarItems = new NavbarItemsFactory().create(this.authUserSessionStorageService.getAccountType());
   }
 
   isLoginNavigated(): boolean {

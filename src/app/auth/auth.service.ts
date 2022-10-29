@@ -9,6 +9,7 @@ import {
   AuthUserSessionRecord,
   AuthUserSessionStorageService
 } from "./auth-user-session-storage.service";
+import {AccountType} from "../common/account-type/account-type";
 
 @Injectable({
   providedIn: 'root',
@@ -67,7 +68,7 @@ export class AuthService {
   }
 
   private store(loginResult: LoginResultTokenDTO) {
-    this.authUserSessionStorageService.store(new AuthUserSessionRecord('admin',
+    this.authUserSessionStorageService.store(new AuthUserSessionRecord(AccountType.USER,
       loginResult.token)
     );
   }

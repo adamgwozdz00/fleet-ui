@@ -1,4 +1,5 @@
 import {Injectable} from "@angular/core";
+import {AccountType} from "../common/account-type/account-type";
 
 
 @Injectable({providedIn: 'root'})
@@ -10,9 +11,13 @@ export class AuthUserSessionStorageService {
 
   load(): AuthUserSessionRecord {
     return new AuthUserSessionRecord(
-      sessionStorage.getItem('accountType'),
+      AccountType[sessionStorage.getItem('accountType')?.toUpperCase()],
       sessionStorage.getItem('apiToken')
     );
+  }
+
+  getAccountType(): AccountType {
+    return this.load()?.accountType;
   }
 
   clear() {
@@ -22,11 +27,11 @@ export class AuthUserSessionStorageService {
 }
 
 export class AuthUserSessionRecord {
-  accountType: string;
+  accountType: AccountType;
   apiToken: string;
 
 
-  constructor(accountType: string, apiToken: string) {
+  constructor(accountType: AccountType, apiToken: string) {
     this.accountType = accountType;
     this.apiToken = apiToken;
   }
