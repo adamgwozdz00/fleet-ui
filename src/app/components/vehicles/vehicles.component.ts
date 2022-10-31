@@ -13,6 +13,7 @@ export class VehiclesComponent implements OnInit {
   detailsTab: string[] = ['Driver History', 'Insurance History', 'Review History', 'Current Review', 'Current Insurance']
   isOpenSidebar: boolean = false;
   isOpenConfirmSidebar: boolean = false;
+  isOpenAdditionSidebar: boolean = false;
 
   title: Title = new Title("Vehicle")
 
@@ -49,4 +50,11 @@ export class VehiclesComponent implements OnInit {
     this.isOpenConfirmSidebar = false;
   }
 
+  openAdditionSidebar() {
+    this.isOpenAdditionSidebar = true;
+  }
+
+  onCloseAdditionSidebar() {
+    this.isOpenAdditionSidebar = false;
+  }
 }

@@ -25,8 +25,11 @@ export class FleetTableComponent implements OnInit {
     new Row([new Column("3"), new Column("Krzys"), new Column("45")]),
     new Row([new Column("4"), new Column("Katarzyna"), new Column("33")])]
 
-  @ContentChild(TemplateRef)
+  @ContentChild('additionalColumnTemplate')
   additionalColumnTemplate: TemplateRef<any>
+
+  @ContentChild('additionalButtonTemplate')
+  additionalButtonTemplate: TemplateRef<any>
 
 
   constructor() {

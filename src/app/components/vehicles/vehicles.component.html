@@ -1,6 +1,14 @@
 <div class="flex flex-col items-center">
   <div>
     <fleet-table [headerRow]="headerRow" [rows]="rows" [title]="title">
+      <ng-template #additionalButtonTemplate>
+        <button (click)="openAdditionSidebar()"
+                buttonStyle
+                class="mr-2 align-middle">
+          Add
+        </button>
+      </ng-template>
+
       <ng-template #additionalColumnTemplate let-index="id">
         <button
           (click)="console(index)"
@@ -46,6 +54,35 @@
   </p>
 </sidebar>
 
+<sidebar (onClose)="onCloseAdditionSidebar()" [isOpen]="isOpenAdditionSidebar" title="Add vehicle">
+  <form class=" border-2 border-navy w-1/3 p-2 ">
+    <div class="flex flex-col">
+      <div class="flex flex-row">
+        <div class="flex flex-col mr-10">
+          <label class="m-2">Mark: </label>
+          <label class="m-2">Model: </label>
+          <label class="m-2">Production year: </label>
+          <label class="m-2">Type: </label>
+        </div>
+        <div class="flex flex-col">
+          <input class="border-2 border-orange m-1.5">
+          <input class="border-2 border-orange m-1.5">
+          <input class="border-2 border-orange m-1.5">
+          <input class="border-2 border-orange m-1.5">
+        </div>
+      </div>
+      <div class="flex justify-center">
+        <button buttonStyle="navy">
+          Submit
+        </button>
+      </div>
+
+    </div>
+
+
+  </form>
+</sidebar>
+
 <confirm-sidebar
   (onClose)="onCloseConfirmSidebar()"
   [isOpen]="isOpenConfirmSidebar"
@@ -53,3 +90,5 @@
   message="Are you sure about delete?"
   title="Confirm"
 ></confirm-sidebar>
+
+
