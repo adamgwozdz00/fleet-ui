@@ -30,7 +30,7 @@
       *ngFor="let col of row.columns"
       class="border-navy border-r-2 text-center p-2"
     >
-      {{col.value}}
+      {{col.displayValue()}}
     </td>
     <td *ngIf="additionalColumnTemplate" class="text-center p-2">
       <ng-container

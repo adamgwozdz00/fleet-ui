@@ -1,10 +1,11 @@
 import {Injectable} from '@angular/core';
 import {DriverDTO} from './driver.dto';
+import {DriverService} from "./driver.service.";
 
 @Injectable({
   providedIn: 'root',
 })
-export class DriversMockService {
+export class DriversMockService implements DriverService {
   private mockDriversData: DriverDTO[] = [
     {
       id: '1',

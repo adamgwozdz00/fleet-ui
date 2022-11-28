@@ -2,12 +2,17 @@ export class Column {
   constructor(private readonly _value: any) {
   }
 
+  get value(): any {
+    return this._value
+  }
 
-  get value(): string {
-    return String(this._value)
+  displayValue(): string {
+    return String(this._value);
   }
 }
 
-export interface ColumnData {
-  stringify(): string;
+export class IdColumn extends Column {
+  displayValue(): string {
+    return super.displayValue().slice(0, 6);
+  }
 }

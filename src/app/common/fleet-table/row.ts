@@ -6,6 +6,8 @@ export class Row {
 }
 
 export class HeaderRow extends Row {
-
+  static createForColumnTitles(columnTitles: string[]): HeaderRow {
+    return new HeaderRow(columnTitles.map(title => new Column(title)));
+  }
 }
 

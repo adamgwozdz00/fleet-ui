@@ -1,7 +1,9 @@
-import {Component, OnInit} from '@angular/core';
-import {FleetTableService} from "../../sdk/fleet/fleet-table.service";
+import {Component, Inject, OnInit} from '@angular/core';
 import {Title} from "../../common/fleet-table/title";
 import {HeaderRow, Row} from "../../common/fleet-table/row";
+import {VehiclesDTO} from "../../sdk/fleet/vehicle.dto";
+import {Column, IdColumn} from "../../common/fleet-table/column";
+import {VEHICLE_SERVICE, VehicleService} from "../../sdk/fleet/vehicle.service";
 
 @Component({
   selector: 'app-vehicles',
@@ -17,26 +19,29 @@ export class VehiclesComponent implements OnInit {
 
   title: Title = new Title("Vehicle")
 
-  headerRow: HeaderRow = new HeaderRow([]);
+  headerRow: HeaderRow = HeaderRow.createForColumnTitles(["id", "make", "model", "year", "vin", "kilometers", "fuel type"]);
 
   rows: Row[] = [];
+  actualVehicleId: string;
+  private rowMapper = new VehiclesRowMapper();
 
-  constructor(private readonly vehicleService: FleetTableService) {
+  constructor(@Inject(VEHICLE_SERVICE) private readonly service: VehicleService) {
 
   }
 
   ngOnInit(): void {
-    this.vehicleService.getHeaderRows().then(row => this.headerRow = row);
-    this.vehicleService.getRows().then(rows => this.rows = rows);
+    this.service.getAll().then(vehiclesDetails => this.rows = this.rowMapper.map(vehiclesDetails));
   }
 
   console(i: number) {
     console.log(i)
   }
 
-  openSidebar() {
+  openSidebar(vehicleId: string = "") {
     this.isOpenSidebar = true;
+    this.actualVehicleId = vehicleId;
   }
+
 
   onCloseSidebar() {
     this.isOpenSidebar = false;
@@ -56,5 +61,19 @@ export class VehiclesComponent implements OnInit {
 
   onCloseAdditionSidebar() {
     this.isOpenAdditionSidebar = false;
+  }
+}
+
+class VehiclesRowMapper {
+  map(vehiclesDTO: VehiclesDTO): Row[] {
+    return vehiclesDTO.vehicles.map(v => new Row([
+      new IdColumn(v.vehicleId),
+      new Column(v.make),
+      new Column(v.model),
+      new Column(v.productionYear),
+      new Column(v.vinNumber),
+      new Column(v.kilometers),
+      new Column(v.fuelType),
+    ]))
   }
 }
