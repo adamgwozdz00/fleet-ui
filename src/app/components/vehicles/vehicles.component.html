@@ -43,6 +43,9 @@
         <div *ngSwitchCase="'Driver History'">
           <vehicle-drivers-history [vehicleId]="actualVehicleId"></vehicle-drivers-history>
         </div>
+        <div *ngSwitchCase="'Review History'">
+          <overviews-history [vehicleId]="actualVehicleId"></overviews-history>
+        </div>
         <div *ngSwitchDefault>{{detailsTab[index]}}</div>
       </ng-container>
     </ng-template>

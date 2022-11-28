@@ -21,7 +21,10 @@ import {VEHICLE_SERVICE} from "./sdk/fleet/vehicle.service";
 import {AuthInterceptor} from "./auth/auth.interceptor";
 import {
   DriversHistoryComponent
-} from "./components/vehicles/driver-history/drivers-history.component";
+} from "./components/vehicles/drivers-history/drivers-history.component";
+import {
+  OverviewsHistoryComponent
+} from "./components/vehicles/overviews-history/overviews-history.component";
 
 
 @NgModule({
@@ -31,6 +34,7 @@ import {
     LoginComponent,
     VehiclesComponent,
     DriversHistoryComponent,
+    OverviewsHistoryComponent,
     DriversComponent,
     UsersComponent,
     AccountComponent
