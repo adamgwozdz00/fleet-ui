@@ -14,8 +14,7 @@ import {VehiclesComponent} from "./components/vehicles/vehicles.component";
 import {DriversComponent} from "./components/drivers/drivers.component";
 import {UsersComponent} from "./components/users/users.component";
 import {AccountComponent} from "./components/account/account.component";
-import {DRIVER_MOCK_SERVICE} from "./sdk/drivers/driver.service.";
-import {DriversMockService} from "./sdk/drivers/drivers-mock.service";
+import {DRIVERS_SERVICE} from "./sdk/drivers/drivers.service";
 import {VehicleHttpService} from "./sdk/fleet/vehicle-http.service";
 import {VEHICLE_SERVICE} from "./sdk/fleet/vehicle.service";
 import {AuthInterceptor} from "./auth/auth.interceptor";
@@ -28,6 +27,7 @@ import {
 import {
   InsurancesHistoryComponent
 } from "./components/vehicles/insurances-history/insurances-history.component";
+import {DriversHttpService} from "./sdk/drivers/drivers-http.service";
 
 
 @NgModule({
@@ -52,7 +52,7 @@ import {
     ReactiveFormsModule,
     CommonModule
   ],
-  providers: [{provide: DRIVER_MOCK_SERVICE, useClass: DriversMockService},
+  providers: [{provide: DRIVERS_SERVICE, useClass: DriversHttpService},
     {provide: VEHICLE_SERVICE, useClass: VehicleHttpService},
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
   bootstrap: [AppComponent],

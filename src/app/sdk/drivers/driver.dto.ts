@@ -1,6 +1,11 @@
+export interface DriversDTO {
+  readonly drivers: DriverDTO[]
+}
+
 export interface DriverDTO {
-  id: string;
-  surname: string;
-  mileage: number;
-  seniority: number;
+  readonly id: number;
+  readonly lastName: string;
+  readonly firstName: string;
+  readonly seniority: number;
+  readonly title: string;
 }

@@ -1,7 +1,9 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {Title} from "../../common/fleet-table/title";
 import {HeaderRow, Row} from "../../common/fleet-table/row";
-import {DriversTableService} from "../../sdk/drivers/drivers-table.service";
+import {DRIVERS_SERVICE, DriversService} from "../../sdk/drivers/drivers.service";
+import {DriversDTO} from "../../sdk/drivers/driver.dto";
+import {Column, IdColumn} from "../../common/fleet-table/column";
 
 @Component({
   selector: 'app-drivers',
@@ -16,17 +18,26 @@ export class DriversComponent implements OnInit {
 
   title: Title = new Title("Drivers")
 
-  headerRow: HeaderRow = new HeaderRow([]);
+  headerRow: HeaderRow = HeaderRow.createForColumnTitles(["id", "last name", "first name", "seniority", "title"])
 
   rows: Row[] = [];
 
-  constructor(private readonly driversService: DriversTableService) {
+  constructor(@Inject(DRIVERS_SERVICE) private readonly driversService: DriversService) {
 
   }
 
   ngOnInit(): void {
-    this.driversService.getHeaderRows().then(row => this.headerRow = row);
-    this.driversService.getRows().then(rows => this.rows = rows);
+    this.driversService.getAll().then(all => this.rows = this.mapToRow(all))
+  }
+
+  mapToRow(drivers: DriversDTO): Row[] {
+    return drivers.drivers.map(d => new Row([
+      new IdColumn(d.id),
+      new Column(d.lastName),
+      new Column(d.firstName),
+      new Column(d.seniority),
+      new Column(d.title)
+    ]));
   }
 
   console(i: number) {

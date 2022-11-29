@@ -1,13 +1,13 @@
 import {Inject, Injectable} from '@angular/core';
 import {HeaderRow, Row} from "../../common/fleet-table/row";
 import {Column} from "../../common/fleet-table/column";
-import {DRIVER_MOCK_SERVICE, DriverService} from "./driver.service.";
+import {DRIVER_MOCK_SERVICE, DriversService} from "./drivers.service";
 
 @Injectable({
   providedIn: 'root',
 })
 export class DriversTableService {
-  constructor(@Inject(DRIVER_MOCK_SERVICE) private readonly service: DriverService) {
+  constructor(@Inject(DRIVER_MOCK_SERVICE) private readonly service: DriversService) {
   }
 
   async getRows(): Promise<Row[]> {
