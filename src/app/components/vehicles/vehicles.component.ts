@@ -4,6 +4,7 @@ import {HeaderRow, Row} from "../../common/fleet-table/row";
 import {VehiclesDTO} from "../../sdk/fleet/vehicle.dto";
 import {Column, IdColumn} from "../../common/fleet-table/column";
 import {VEHICLE_SERVICE, VehicleService} from "../../sdk/fleet/vehicle.service";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-vehicles',
@@ -16,6 +17,13 @@ export class VehiclesComponent implements OnInit {
   isOpenSidebar: boolean = false;
   isOpenConfirmSidebar: boolean = false;
   isOpenAdditionSidebar: boolean = false;
+  vehicleForm = new FormGroup({
+    make: new FormControl("", Validators.required),
+    model: new FormControl("", Validators.required),
+    year: new FormControl(0, Validators.required),
+    fuelType: new FormControl("", Validators.required),
+    vinNumber: new FormControl("", Validators.required),
+  })
 
   title: Title = new Title("Vehicle")
 
@@ -35,6 +43,17 @@ export class VehiclesComponent implements OnInit {
 
   console(i: number) {
     console.log(i)
+  }
+
+  addVehicle() {
+    const values = this.vehicleForm.value;
+    this.service.create({
+      make: values.make,
+      vinNumber: values.vinNumber,
+      model: values.model,
+      fuelType: values.fuelType,
+      productionYear: values.year
+    })
   }
 
   openSidebar(vehicleId: string = "") {
