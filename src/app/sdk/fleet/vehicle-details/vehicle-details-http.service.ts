@@ -7,6 +7,7 @@ import {
   vehiclesOverviewsHistoryApiUrl
 } from "../../../http/api-url";
 import {OverviewsDetailsDTO} from "./overviews-details.dto";
+import {InsurancesDetailsDTO} from "./insurances-details.dto";
 
 @Injectable({providedIn: 'root'})
 export class VehicleDetailsHttpService {
@@ -21,7 +22,7 @@ export class VehicleDetailsHttpService {
     return this.http.get<OverviewsDetailsDTO>(vehiclesOverviewsHistoryApiUrl(vehicleId).url, {params: new HttpParams().append("onlyActual", onlyActual)}).toPromise();
   }
 
-  public getInsuranceHistory(vehicleId: string, onlyActual: boolean = false): Promise<OverviewsDetailsDTO> {
-    return this.http.get<OverviewsDetailsDTO>(vehiclesInsuranceHistoryApiUrl(vehicleId).url, {params: new HttpParams().append("onlyActual", onlyActual)}).toPromise();
+  public getInsuranceHistory(vehicleId: string, onlyActual: boolean = false): Promise<InsurancesDetailsDTO> {
+    return this.http.get<InsurancesDetailsDTO>(vehiclesInsuranceHistoryApiUrl(vehicleId).url, {params: new HttpParams().append("onlyActual", onlyActual)}).toPromise();
   }
 }

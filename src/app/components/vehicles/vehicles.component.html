@@ -38,13 +38,19 @@
     <ng-template #tabTemplate let-index="index">
       <ng-container [ngSwitch]="detailsTab[index]">
         <div *ngSwitchCase="'Current Review'">
-          Data of next review: 14.05.2023
+          <overviews-history [current]="true" [vehicleId]="actualVehicleId"></overviews-history>
         </div>
         <div *ngSwitchCase="'Driver History'">
           <vehicle-drivers-history [vehicleId]="actualVehicleId"></vehicle-drivers-history>
         </div>
         <div *ngSwitchCase="'Review History'">
           <overviews-history [vehicleId]="actualVehicleId"></overviews-history>
+        </div>
+        <div *ngSwitchCase="'Insurance History'">
+          <insurances-history [vehicleId]="actualVehicleId"></insurances-history>
+        </div>
+        <div *ngSwitchCase="'Current Insurance'">
+          <insurances-history [current]="true" [vehicleId]="actualVehicleId"></insurances-history>
         </div>
         <div *ngSwitchDefault>{{detailsTab[index]}}</div>
       </ng-container>

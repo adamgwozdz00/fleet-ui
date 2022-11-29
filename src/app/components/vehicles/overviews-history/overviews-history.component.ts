@@ -17,7 +17,8 @@ import {HistoryComponent} from "../history.component";
 export class OverviewsHistoryComponent extends HistoryComponent<OverviewsDetailsDTO> {
 
   @Input()
-  private onlyActual: boolean
+  current: boolean = false;
+
 
   constructor(private readonly vehicleDetailsService: VehicleDetailsHttpService) {
     super(new Title("Overviews"),
@@ -25,7 +26,7 @@ export class OverviewsHistoryComponent extends HistoryComponent<OverviewsDetails
   }
 
   load(vehicleId: string): Promise<OverviewsDetailsDTO> {
-    return this.vehicleDetailsService.getOverviewHistory(vehicleId);
+    return this.vehicleDetailsService.getOverviewHistory(vehicleId, this.current);
   }
 
   map(details: OverviewsDetailsDTO): Row[] {

@@ -25,6 +25,9 @@ import {
 import {
   OverviewsHistoryComponent
 } from "./components/vehicles/overviews-history/overviews-history.component";
+import {
+  InsurancesHistoryComponent
+} from "./components/vehicles/insurances-history/insurances-history.component";
 
 
 @NgModule({
@@ -35,6 +38,7 @@ import {
     VehiclesComponent,
     DriversHistoryComponent,
     OverviewsHistoryComponent,
+    InsurancesHistoryComponent,
     DriversComponent,
     UsersComponent,
     AccountComponent
