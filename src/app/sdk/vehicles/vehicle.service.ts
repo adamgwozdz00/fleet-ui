@@ -1,9 +1,9 @@
 import {CreateVehicleDTO, VehiclesDTO} from "./vehicle.dto";
 import {InjectionToken} from "@angular/core";
+import {Observable} from "rxjs";
 
 export interface VehicleService {
   getAll(): Promise<VehiclesDTO>
-
   create(body: CreateVehicleDTO): Promise<void>
 }
 

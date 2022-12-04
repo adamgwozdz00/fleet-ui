@@ -38,7 +38,7 @@ export class VehiclesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.service.getAll().then(vehiclesDetails => this.rows = this.rowMapper.map(vehiclesDetails));
+    this.updateVehicles();
   }
 
   console(i: number) {
@@ -53,7 +53,11 @@ export class VehiclesComponent implements OnInit {
       model: values.model,
       fuelType: values.fuelType,
       productionYear: values.year
-    })
+    }).then(() => this.updateVehicles())
+  }
+
+  updateVehicles(){
+    this.service.getAll().then(vehiclesDetails => this.rows = this.rowMapper.map(vehiclesDetails));
   }
 
   openSidebar(vehicleId: string = "") {
