@@ -1,15 +1,13 @@
-import {FleetRoutes} from "../../common/routes/FleetRoutes";
-
 export class NavbarItem {
   constructor(private readonly _title: String,
-              private readonly _routerLinks: FleetRoutes) {
+              private readonly _routerLinks: String) {
   }
 
   get title(): String {
     return this._title;
   }
 
-  get routerLink(): FleetRoutes {
+  get routerLink(): String {
     return this._routerLinks;
   }
 

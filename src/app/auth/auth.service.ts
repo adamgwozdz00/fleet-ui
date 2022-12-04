@@ -9,7 +9,6 @@ import {
   AuthUserSessionRecord,
   AuthUserSessionStorageService
 } from "./auth-user-session-storage.service";
-import {AccountType} from "../common/account-type/account-type";
 
 @Injectable({
   providedIn: 'root',
@@ -52,10 +51,6 @@ export class AuthService {
     return authUserData.isProper();
   }
 
-  getAccountType(): string {
-    return this.authUserSessionStorageService.load()?.accountType;
-  }
-
   private sendCredentials(
     credentials: AuthCredentials
   ): Promise<LoginResultTokenDTO> {
@@ -68,7 +63,7 @@ export class AuthService {
   }
 
   private store(loginResult: LoginResultTokenDTO) {
-    this.authUserSessionStorageService.store(new AuthUserSessionRecord(AccountType[loginResult.role.toUpperCase()],
+    this.authUserSessionStorageService.store(new AuthUserSessionRecord(
       loginResult.token)
     );
   }

@@ -15,8 +15,8 @@ import {DriversComponent} from "./components/drivers/drivers.component";
 import {UsersComponent} from "./components/users/users.component";
 import {AccountComponent} from "./components/account/account.component";
 import {DRIVERS_SERVICE} from "./sdk/drivers/drivers.service";
-import {VehicleHttpService} from "./sdk/fleet/vehicle-http.service";
-import {VEHICLE_SERVICE} from "./sdk/fleet/vehicle.service";
+import {VehicleHttpService} from "./sdk/vehicles/vehicle-http.service";
+import {VEHICLE_SERVICE} from "./sdk/vehicles/vehicle.service";
 import {AuthInterceptor} from "./auth/auth.interceptor";
 import {
   DriversHistoryComponent

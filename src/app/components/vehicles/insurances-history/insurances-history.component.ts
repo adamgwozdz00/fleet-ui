@@ -1,10 +1,10 @@
 import {Component, Input} from '@angular/core';
 import {HistoryComponent} from "../history.component";
-import {InsurancesDetailsDTO} from "../../../sdk/fleet/vehicle-details/insurances-details.dto";
+import {InsurancesDetailsDTO} from "../../../sdk/vehicles/vehicle-details/insurances-details.dto";
 import {HeaderRow, Row} from "../../../common/fleet-table/row";
 import {
   VehicleDetailsHttpService
-} from "../../../sdk/fleet/vehicle-details/vehicle-details-http.service";
+} from "../../../sdk/vehicles/vehicle-details/vehicle-details-http.service";
 import {Title} from 'src/app/common/fleet-table/title';
 import {Column, IdColumn} from "../../../common/fleet-table/column";
 

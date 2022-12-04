@@ -2,9 +2,9 @@ import {Component} from '@angular/core';
 import {HeaderRow, Row} from "../../../common/fleet-table/row";
 import {
   VehicleDetailsHttpService
-} from "../../../sdk/fleet/vehicle-details/vehicle-details-http.service";
+} from "../../../sdk/vehicles/vehicle-details/vehicle-details-http.service";
 import {Title} from "../../../common/fleet-table/title";
-import {DriversDetailsDTO} from "../../../sdk/fleet/vehicle-details/drivers-details.dto";
+import {DriversDetailsDTO} from "../../../sdk/vehicles/vehicle-details/drivers-details.dto";
 import {Column} from "../../../common/fleet-table/column";
 import {HistoryComponent} from "../history.component";
 

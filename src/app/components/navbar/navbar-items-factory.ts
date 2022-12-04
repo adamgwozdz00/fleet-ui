@@ -1,24 +1,18 @@
-import {AccountType} from "../../common/account-type/account-type";
 import {NavbarItem} from "./navbar-item";
-import {FleetRoutes} from "../../common/routes/FleetRoutes";
+import {UsersHttpService} from "../../sdk/users/users-http.service";
+import {Injectable} from "@angular/core";
 
+@Injectable({providedIn: 'root'})
 export class NavbarItemsFactory {
 
-  create(accountType: AccountType): NavbarItem[] {
-    switch (accountType) {
-      case AccountType.ADMIN:
-        return [
-          new NavbarItem("Vehicles", FleetRoutes.VEHICLES),
-          new NavbarItem("Drivers", FleetRoutes.DRIVERS),
-          new NavbarItem("Users", FleetRoutes.USERS),
-          new NavbarItem("Account", FleetRoutes.ACCOUNT),
-        ];
-      case AccountType.USER:
-        return [
-          new NavbarItem("Vehicles", FleetRoutes.VEHICLES),
-          new NavbarItem("Drivers", FleetRoutes.DRIVERS),
-          new NavbarItem("Account", FleetRoutes.ACCOUNT),
-        ];
-    }
+  constructor(private readonly usersService: UsersHttpService) {
+  }
+
+  create(): Promise<NavbarItem[]> {
+
+    return this.usersService.getUserData().then(data => data.routes.map(route => {
+      const title = route[0].toUpperCase() + route.slice(1)
+      return new NavbarItem(title, route)
+    }))
   }
 }

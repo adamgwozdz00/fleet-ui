@@ -1,9 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {NavbarItem} from "./navbar-item";
-import {FleetRoutes} from "../../common/routes/FleetRoutes";
 import {NavigationEnd, Router} from "@angular/router";
 import {NavbarItemsFactory} from "./navbar-items-factory";
-import {AuthUserSessionStorageService} from "../../auth/auth-user-session-storage.service";
 
 @Component({
   selector: 'navbar',
@@ -12,19 +10,35 @@ import {AuthUserSessionStorageService} from "../../auth/auth-user-session-storag
 })
 export class NavbarComponent implements OnInit {
   navbarItems: NavbarItem[];
-  activeTab: FleetRoutes;
+  activeTab: String;
+  visible: boolean = false;
 
   constructor(private readonly router: Router,
-              private readonly authUserSessionStorageService: AuthUserSessionStorageService) {
+              private readonly factory: NavbarItemsFactory) {
   }
 
   ngOnInit(): void {
     this.router.events.subscribe((event: NavigationEnd) => {
-      this.navbarItems = new NavbarItemsFactory().create(this.authUserSessionStorageService.getAccountType());
-      if (event.urlAfterRedirects) {
-        this.activeTab = this.navbarItems?.find((e => e.isRouterLinkMatches(event.urlAfterRedirects)))?.routerLink;
+      if (!event.urlAfterRedirects) {
+        return;
       }
+
+      if (event.urlAfterRedirects == "/login") {
+        this.visible = false;
+        return;
+      }
+
+      this.visible = true;
+
+      if (!this.navbarItems) {
+        this.factory.create().then(items => this.navbarItems = items);
+        return;
+      }
+
+      this.activeTab = this.navbarItems?.find((e => e.isRouterLinkMatches(event.urlAfterRedirects))).routerLink;
+
     });
+
   }
 
 }

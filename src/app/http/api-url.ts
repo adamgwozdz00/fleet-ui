@@ -9,3 +9,4 @@ export const vehiclesDriverHistoryApiUrl = (vehicleId: string) => new ApiUrl('ht
 export const vehiclesOverviewsHistoryApiUrl = (vehicleId: string) => new ApiUrl('http://localhost:8080/vehicles/detalis/overviews/' + vehicleId)
 export const vehiclesInsuranceHistoryApiUrl = (vehicleId: string) => new ApiUrl('http://localhost:8080/vehicles/detalis/insurances/' + vehicleId)
 export const driversApiUrl = new ApiUrl("http://localhost:8080/drivers");
+export const usersApiUrl = new ApiUrl("http://localhost:8080/users")

@@ -3,8 +3,8 @@ import {HeaderRow, Row} from "../../../common/fleet-table/row";
 import {Title} from "../../../common/fleet-table/title";
 import {
   VehicleDetailsHttpService
-} from "../../../sdk/fleet/vehicle-details/vehicle-details-http.service";
-import {OverviewsDetailsDTO} from "../../../sdk/fleet/vehicle-details/overviews-details.dto";
+} from "../../../sdk/vehicles/vehicle-details/vehicle-details-http.service";
+import {OverviewsDetailsDTO} from "../../../sdk/vehicles/vehicle-details/overviews-details.dto";
 import {Column, IdColumn} from "../../../common/fleet-table/column";
 import {HistoryComponent} from "../history.component";
 
