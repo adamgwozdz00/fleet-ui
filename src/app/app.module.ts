@@ -28,6 +28,12 @@ import {
   InsurancesHistoryComponent
 } from "./components/vehicles/insurances-history/insurances-history.component";
 import {DriversHttpService} from "./sdk/drivers/drivers-http.service";
+import {
+  VehicleCreationSidebarComponent
+} from "./components/vehicles/vehicle-creation-sidebar/vehicle-creation-sidebar.component";
+import {
+  VehicleDetailsSidebarComponent
+} from "./components/vehicles/vehicle-details-sidebar/vehicle-details-sidebar.component";
 
 
 @NgModule({
@@ -36,6 +42,8 @@ import {DriversHttpService} from "./sdk/drivers/drivers-http.service";
     NavbarComponent,
     LoginComponent,
     VehiclesComponent,
+    VehicleCreationSidebarComponent,
+    VehicleDetailsSidebarComponent,
     DriversHistoryComponent,
     OverviewsHistoryComponent,
     InsurancesHistoryComponent,

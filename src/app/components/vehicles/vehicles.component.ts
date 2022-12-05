@@ -4,7 +4,6 @@ import {HeaderRow, Row} from "../../common/fleet-table/row";
 import {VehiclesDTO} from "../../sdk/vehicles/vehicle.dto";
 import {Column, IdColumn} from "../../common/fleet-table/column";
 import {VEHICLE_SERVICE, VehicleService} from "../../sdk/vehicles/vehicle.service";
-import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {UserRoleStorage} from "../../auth/user-role.storage";
 
 @Component({
@@ -15,17 +14,10 @@ import {UserRoleStorage} from "../../auth/user-role.storage";
 export class VehiclesComponent implements OnInit {
 
   userRole: string = '';
-  detailsTab: string[] = ['Driver History', 'Insurance History', 'Review History', 'Current Review', 'Current Insurance']
   isOpenSidebar: boolean = false;
   isOpenConfirmSidebar: boolean = false;
   isOpenAdditionSidebar: boolean = false;
-  vehicleForm = new FormGroup({
-    make: new FormControl("", Validators.required),
-    model: new FormControl("", Validators.required),
-    year: new FormControl(0, Validators.required),
-    fuelType: new FormControl("", Validators.required),
-    vinNumber: new FormControl("", Validators.required),
-  })
+
 
   title: Title = new Title("Vehicle")
 
@@ -50,17 +42,6 @@ export class VehiclesComponent implements OnInit {
 
   console(i: number) {
     console.log(i)
-  }
-
-  addVehicle() {
-    const values = this.vehicleForm.value;
-    this.service.create({
-      make: values.make,
-      vinNumber: values.vinNumber,
-      model: values.model,
-      fuelType: values.fuelType,
-      productionYear: values.year
-    }).then(() => this.updateVehicles())
   }
 
   updateVehicles() {
