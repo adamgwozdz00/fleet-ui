@@ -9,6 +9,8 @@ import {
   AuthUserSessionRecord,
   AuthUserSessionStorageService
 } from "./auth-user-session-storage.service";
+import {UserRoleStorage} from "./user-role.storage";
+
 
 @Injectable({
   providedIn: 'root',
@@ -17,7 +19,8 @@ export class AuthService {
   constructor(
     private readonly http: HttpClient,
     private readonly router: Router,
-    private readonly authUserSessionStorageService: AuthUserSessionStorageService
+    private readonly authUserSessionStorageService: AuthUserSessionStorageService,
+    private readonly userRoleStorage: UserRoleStorage
   ) {
   }
 
@@ -28,13 +31,15 @@ export class AuthService {
       this.router.navigateByUrl(FleetRoutes.LOGIN);
     }
 
-    this.store(loginResult);
+    this.persist(loginResult);
+    this.userRoleStorage.getOrRequest();
 
     this.router.navigate([FleetRoutes.VEHICLES]);
   }
 
   logout() {
     this.authUserSessionStorageService.clear();
+    this.userRoleStorage.clear();
     this.router.navigate([FleetRoutes.LOGIN]);
   }
 
@@ -62,8 +67,8 @@ export class AuthService {
     .toPromise();
   }
 
-  private store(loginResult: LoginResultTokenDTO) {
-    this.authUserSessionStorageService.store(new AuthUserSessionRecord(
+  private persist(loginResult: LoginResultTokenDTO) {
+    this.authUserSessionStorageService.persist(new AuthUserSessionRecord(
       loginResult.token)
     );
   }

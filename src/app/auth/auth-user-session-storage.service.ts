@@ -3,8 +3,13 @@ import {Injectable} from "@angular/core";
 
 @Injectable({providedIn: 'root'})
 export class AuthUserSessionStorageService {
-  store(record: AuthUserSessionRecord): void {
+
+  constructor() {
+  }
+
+  persist(record: AuthUserSessionRecord): void {
     localStorage.setItem('apiToken', record.apiToken);
+
   }
 
   load(): AuthUserSessionRecord {

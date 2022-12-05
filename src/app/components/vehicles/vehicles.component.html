@@ -2,11 +2,14 @@
   <div>
     <fleet-table [headerRow]="headerRow" [rows]="rows" [title]="title">
       <ng-template #additionalButtonTemplate>
-        <button (click)="openAdditionSidebar()"
-                buttonStyle
-                class="mr-2 align-middle">
-          Add
-        </button>
+        <ng-container *ngIf="hasAddButton()">
+          <button (click)="openAdditionSidebar()"
+                  buttonStyle
+                  class="mr-2 align-middle">
+            Add
+          </button>
+
+        </ng-container>
       </ng-template>
 
       <ng-template #additionalColumnTemplate let-index="id">
@@ -74,15 +77,15 @@
           <label class="m-2">Vin number: </label>
         </div>
         <div class="flex flex-col">
-          <input formControlName="make" class="border-2 border-orange m-1.5">
-          <input formControlName="model" class="border-2 border-orange m-1.5">
-          <input formControlName="year" class="border-2 border-orange m-1.5">
-          <input formControlName="fuelType" class="border-2 border-orange m-1.5">
-          <input formControlName="vinNumber" class="border-2 border-orange m-1.5">
+          <input class="border-2 border-orange m-1.5" formControlName="make">
+          <input class="border-2 border-orange m-1.5" formControlName="model">
+          <input class="border-2 border-orange m-1.5" formControlName="year">
+          <input class="border-2 border-orange m-1.5" formControlName="fuelType">
+          <input class="border-2 border-orange m-1.5" formControlName="vinNumber">
         </div>
       </div>
       <div class="flex justify-center">
-        <button buttonStyle="navy" (click)="addVehicle()">
+        <button (click)="addVehicle()" buttonStyle="navy">
           Submit
         </button>
       </div>

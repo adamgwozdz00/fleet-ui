@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {NavbarItem} from "./navbar-item";
 import {NavigationEnd, Router} from "@angular/router";
 import {NavbarItemsFactory} from "./navbar-items-factory";
+import {AuthService} from "../../auth/auth.service";
 
 @Component({
   selector: 'navbar',
@@ -14,7 +15,8 @@ export class NavbarComponent implements OnInit {
   visible: boolean = false;
 
   constructor(private readonly router: Router,
-              private readonly factory: NavbarItemsFactory) {
+              private readonly factory: NavbarItemsFactory,
+              private readonly authenticationService: AuthService) {
   }
 
   ngOnInit(): void {
@@ -25,6 +27,10 @@ export class NavbarComponent implements OnInit {
 
       if (event.urlAfterRedirects == "/login") {
         this.visible = false;
+        return;
+      }
+
+      if (!this.authenticationService.isAuthenticated()) {
         return;
       }
 

@@ -50,7 +50,7 @@ import {DriversHttpService} from "./sdk/drivers/drivers-http.service";
     BrowserAnimationsModule,
     HttpClientModule,
     ReactiveFormsModule,
-    CommonModule
+    CommonModule,
   ],
   providers: [{provide: DRIVERS_SERVICE, useClass: DriversHttpService},
     {provide: VEHICLE_SERVICE, useClass: VehicleHttpService},

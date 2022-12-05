@@ -5,6 +5,7 @@ import {VehiclesDTO} from "../../sdk/vehicles/vehicle.dto";
 import {Column, IdColumn} from "../../common/fleet-table/column";
 import {VEHICLE_SERVICE, VehicleService} from "../../sdk/vehicles/vehicle.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {UserRoleStorage} from "../../auth/user-role.storage";
 
 @Component({
   selector: 'app-vehicles',
@@ -13,6 +14,7 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 })
 export class VehiclesComponent implements OnInit {
 
+  userRole: string = '';
   detailsTab: string[] = ['Driver History', 'Insurance History', 'Review History', 'Current Review', 'Current Insurance']
   isOpenSidebar: boolean = false;
   isOpenConfirmSidebar: boolean = false;
@@ -33,11 +35,16 @@ export class VehiclesComponent implements OnInit {
   actualVehicleId: string;
   private rowMapper = new VehiclesRowMapper();
 
-  constructor(@Inject(VEHICLE_SERVICE) private readonly service: VehicleService) {
+  constructor(@Inject(VEHICLE_SERVICE) private readonly service: VehicleService,
+              private readonly userRoleStorage: UserRoleStorage) {
+  }
 
+  hasAddButton(): boolean {
+    return this.userRole == 'ADMIN';
   }
 
   ngOnInit(): void {
+    this.userRoleStorage.getOrRequest().then(role => this.userRole = role);
     this.updateVehicles();
   }
 
@@ -56,7 +63,7 @@ export class VehiclesComponent implements OnInit {
     }).then(() => this.updateVehicles())
   }
 
-  updateVehicles(){
+  updateVehicles() {
     this.service.getAll().then(vehiclesDetails => this.rows = this.rowMapper.map(vehiclesDetails));
   }
 
