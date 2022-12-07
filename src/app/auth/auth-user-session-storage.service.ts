@@ -9,12 +9,13 @@ export class AuthUserSessionStorageService {
 
   persist(record: AuthUserSessionRecord): void {
     localStorage.setItem('apiToken', record.apiToken);
-
+    localStorage.setItem('expiresIn', record.apiToken);
   }
 
   load(): AuthUserSessionRecord {
     return new AuthUserSessionRecord(
-      localStorage.getItem('apiToken')
+      localStorage.getItem('apiToken'),
+    Number(localStorage.getItem('expiresIn'))
     );
   }
 
@@ -26,10 +27,11 @@ export class AuthUserSessionStorageService {
 
 export class AuthUserSessionRecord {
   apiToken: string;
+  expiresIn : number
 
-
-  constructor(apiToken: string) {
+  constructor(apiToken: string, expiresIn : number) {
     this.apiToken = apiToken;
+    this.expiresIn = expiresIn;
   }
 
   isProper() {
@@ -37,6 +39,10 @@ export class AuthUserSessionRecord {
   }
 
   private isUnproper(): boolean {
-    return this.apiToken == undefined
+    return this.apiToken == undefined || this.tokenExpired();
+  }
+
+  private tokenExpired(){
+    return new Date().getTime() >= this.expiresIn;
   }
 }

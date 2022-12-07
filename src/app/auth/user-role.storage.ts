@@ -1,7 +1,7 @@
 import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import {rolesApiUrl} from "../http/api-url";
-import {LoginResultTokenDTO} from "./login-token.dto";
+import {AuthResultDTO} from "./auth-result.dto";
 
 @Injectable({providedIn: 'root'})
 export class UserRoleStorage {
@@ -12,7 +12,7 @@ export class UserRoleStorage {
 
   getOrRequest(): Promise<string> {
     if (this.userRole == "") {
-      return this.http.get<LoginResultTokenDTO>(rolesApiUrl.url).toPromise()
+      return this.http.get<AuthResultDTO>(rolesApiUrl.url).toPromise()
       .then(result => result.role)
       .then(role => {
         this.userRole = role;

@@ -3,7 +3,7 @@ import {Injectable} from '@angular/core';
 import {Router} from '@angular/router';
 import {loginApiUrl} from '../http/api-url';
 import {AuthCredentials} from './auth-credentials';
-import {LoginResultTokenDTO} from './login-token.dto';
+import {AuthResultDTO} from './auth-result.dto';
 import {FleetRoutes} from "../common/routes/FleetRoutes";
 import {
   AuthUserSessionRecord,
@@ -27,9 +27,12 @@ export class AuthService {
   async login(credentials: AuthCredentials) {
     const loginResult = await this.sendCredentials(credentials);
 
-    if (!loginResult.success) {
+    if (!loginResult.token) {
+
       this.router.navigateByUrl(FleetRoutes.LOGIN);
+      return;
     }
+
 
     this.persist(loginResult);
     this.userRoleStorage.getOrRequest();
@@ -53,23 +56,31 @@ export class AuthService {
     if (!authUserData) {
       return false;
     }
+
+
+
     return authUserData.isProper();
   }
 
   private sendCredentials(
     credentials: AuthCredentials
-  ): Promise<LoginResultTokenDTO> {
+  ): Promise<AuthResultDTO> {
     return this.http
-    .post<LoginResultTokenDTO>(loginApiUrl.url, {
+    .post<AuthResultDTO>(loginApiUrl.url, {
       username: credentials.getUsername,
       password: credentials.getPassword,
     })
     .toPromise();
   }
 
-  private persist(loginResult: LoginResultTokenDTO) {
+  private persist(loginResult: AuthResultDTO) {
     this.authUserSessionStorageService.persist(new AuthUserSessionRecord(
-      loginResult.token)
+      loginResult.token, loginResult.expiresIn)
     );
+  }
+
+  private isResultValid(authResult: AuthResultDTO) {
+    return authResult.expiresIn > new Date().getTime();
+
   }
 }
