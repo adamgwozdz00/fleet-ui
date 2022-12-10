@@ -1,5 +1,5 @@
 import {DriversService} from "./drivers.service";
-import {DriversDTO} from "./driver.dto";
+import {DriverHistoryDTO, DriversDTO} from "./driver.dto";
 import {HttpClient} from "@angular/common/http";
 import {ApiUrl} from "../../http/api-url";
 import {Injectable} from "@angular/core";
@@ -17,6 +17,13 @@ export class DriversHttpService implements DriversService {
     .builder(DriversHttpService.API_URL)
     .build()
       .endpoint).toPromise();
+  }
+
+  getDriverHistory(driverId: number): Promise<DriverHistoryDTO> {
+    return this.http.get<DriverHistoryDTO>(ApiUrl
+    .builder(DriversHttpService.API_URL)
+    .withPathVariable(driverId)
+    .build().endpoint).toPromise();
   }
 
 }

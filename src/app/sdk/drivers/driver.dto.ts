@@ -9,3 +9,17 @@ export interface DriverDTO {
   readonly seniority: number;
   readonly title: string;
 }
+
+
+export interface DriverHistoryDTO {
+  history: HistoryDTO[]
+}
+
+export interface HistoryDTO {
+  kilometers: number,
+  liters: number,
+  time: Date,
+  vehicleId: string,
+  vehicleMake: string,
+  vehicleModel: string
+}
