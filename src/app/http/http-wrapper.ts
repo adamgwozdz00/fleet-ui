@@ -7,11 +7,11 @@ export class HttpWrapper {
   }
 
   public post(url: ApiUrl, body: {}) {
-    this.http.post(url.url, body, {headers: this.prepareHeaders()});
+    this.http.post(url.endpoint, body, {headers: this.prepareHeaders()});
   }
 
   public get(url: ApiUrl, params: HttpParams) {
-    return this.http.get(url.url, {
+    return this.http.get(url.endpoint, {
       headers: this.prepareHeaders(),
       params: params,
     });

@@ -1,7 +1,5 @@
 import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
-import {Router} from '@angular/router';
-import {loginApiUrl} from '../http/api-url';
 import {AuthCredentials} from './auth-credentials';
 import {AuthResultDTO} from './auth-result.dto';
 import {FleetRoutes} from "../common/routes/FleetRoutes";
@@ -10,6 +8,7 @@ import {
   AuthUserSessionStorageService
 } from "./auth-user-session-storage.service";
 import {UserRoleStorage} from "./user-role.storage";
+import {Router} from "@angular/router";
 
 
 @Injectable({
@@ -57,8 +56,6 @@ export class AuthService {
       return false;
     }
 
-
-
     return authUserData.isProper();
   }
 
@@ -66,7 +63,7 @@ export class AuthService {
     credentials: AuthCredentials
   ): Promise<AuthResultDTO> {
     return this.http
-    .post<AuthResultDTO>(loginApiUrl.url, {
+    .post<AuthResultDTO>("login", {
       username: credentials.getUsername,
       password: credentials.getPassword,
     })
@@ -79,7 +76,7 @@ export class AuthService {
     );
   }
 
-  private isResultValid(authResult: AuthResultDTO) {
+  private isResultValid(authResult: AuthUserSessionRecord) {
     return authResult.expiresIn > new Date().getTime();
 
   }

@@ -3,5 +3,7 @@ export enum FleetRoutes {
   DRIVERS = "drivers",
   USERS = "users",
   LOGIN = "login",
-  ACCOUNT = "account"
+  ACCOUNT = "account",
+
+  REPORTS = "reports"
 }

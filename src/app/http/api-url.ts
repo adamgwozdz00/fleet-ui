@@ -1,13 +1,52 @@
+import {environment} from "../../environments/environment";
+
 export class ApiUrl {
-  constructor(public url: string) {
+  public endpoint: string;
+  private additionalEndpointData: string;
+
+
+  constructor(endpoint: string) {
+    this.endpoint = environment.apiHost + endpoint;
   }
+
+  static builder(endpoint: string): ApiUrlBuilder {
+    return new ApiUrlBuilder(endpoint);
+  }
+
+
 }
 
-export const loginApiUrl = new ApiUrl('http://localhost:8080/login');
-export const rolesApiUrl = new ApiUrl('http://localhost:8080/roles')
-export const vehiclesApiUrl = new ApiUrl('http://localhost:8080/vehicles')
-export const vehiclesDriverHistoryApiUrl = (vehicleId: string) => new ApiUrl('http://localhost:8080/vehicles/detalis/drivers/' + vehicleId)
-export const vehiclesOverviewsHistoryApiUrl = (vehicleId: string) => new ApiUrl('http://localhost:8080/vehicles/detalis/overviews/' + vehicleId)
-export const vehiclesInsuranceHistoryApiUrl = (vehicleId: string) => new ApiUrl('http://localhost:8080/vehicles/detalis/insurances/' + vehicleId)
-export const driversApiUrl = new ApiUrl("http://localhost:8080/drivers");
-export const usersApiUrl = new ApiUrl("http://localhost:8080/users")
+export class ApiUrlBuilder {
+  private endpoint: string;
+  private additionalEndpointData: string;
+
+  constructor(endpoint: string) {
+    this.endpoint = this.cleanUpEndpoint(endpoint);
+    this.additionalEndpointData = ""
+  }
+
+  withPathVariable(variable: any): ApiUrlBuilder {
+    this.additionalEndpointData += ("/" + String(variable));
+    return this;
+  }
+
+  withAdditionalSegment(pathSegment: string): ApiUrlBuilder {
+    this.additionalEndpointData += ("/" + pathSegment);
+    return this;
+  }
+
+  public build(): ApiUrl {
+    return new ApiUrl(this.endpoint + this.additionalEndpointData);
+  }
+
+  private cleanUpEndpoint(endpoint) {
+    if (endpoint.startsWith("/")) {
+      endpoint = endpoint.substring(1);
+    }
+
+    if (endpoint.endsWith("/")) {
+      endpoint = endpoint.slice(0, -1)
+    }
+    return endpoint;
+  }
+}

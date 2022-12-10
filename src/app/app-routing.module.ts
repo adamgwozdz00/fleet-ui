@@ -7,6 +7,7 @@ import {UsersComponent} from "./components/users/users.component";
 import {DriversComponent} from "./components/drivers/drivers.component";
 import {AccountComponent} from "./components/account/account.component";
 import {AuthGuard} from "./auth/auth-guard";
+import {ReportsComponent} from "./components/reports/reports.component";
 
 
 const routes: Routes = [
@@ -37,6 +38,12 @@ const routes: Routes = [
     path: FleetRoutes.ACCOUNT,
     component: AccountComponent,
     title: 'FleetUi | Account',
+    canActivate: [AuthGuard],
+  },
+  {
+    path: FleetRoutes.REPORTS,
+    component: ReportsComponent,
+    title: 'FleetUi | Reports',
     canActivate: [AuthGuard],
   },
   {path: FleetRoutes.LOGIN, component: LoginComponent, title: 'login'},

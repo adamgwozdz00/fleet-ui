@@ -34,6 +34,7 @@ import {
 import {
   VehicleDetailsSidebarComponent
 } from "./components/vehicles/vehicle-details-sidebar/vehicle-details-sidebar.component";
+import {ReportsComponent} from "./components/reports/reports.component";
 
 
 @NgModule({
@@ -49,7 +50,8 @@ import {
     InsurancesHistoryComponent,
     DriversComponent,
     UsersComponent,
-    AccountComponent
+    AccountComponent,
+    ReportsComponent
   ],
   imports: [
     BrowserModule,

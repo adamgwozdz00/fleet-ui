@@ -6,6 +6,7 @@ import {ConfirmSidebarComponent} from "./confirm-sidebar/confirm-sidebar.compone
 import {SidebarComponent} from "./sidebar/sidebar.component";
 import {FleetTableComponent} from "./fleet-table/fleet-table.component";
 import {CommonModule as AngularCommonModule} from "@angular/common";
+import {ChartComponent} from './chart/chart.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import {CommonModule as AngularCommonModule} from "@angular/common";
     LoaderComponent,
     ConfirmSidebarComponent,
     SidebarComponent,
-    FleetTableComponent
+    FleetTableComponent,
+    ChartComponent
   ],
   imports: [
     AngularCommonModule
@@ -25,7 +27,8 @@ import {CommonModule as AngularCommonModule} from "@angular/common";
     LoaderComponent,
     ConfirmSidebarComponent,
     SidebarComponent,
-    FleetTableComponent
+    FleetTableComponent,
+    ChartComponent
   ]
 })
 export class CommonModule {

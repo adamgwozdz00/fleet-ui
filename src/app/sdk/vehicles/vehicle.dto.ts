@@ -20,3 +20,33 @@ export interface CreateVehicleDTO {
   productionYear: number,
   vinNumber: string
 }
+
+export interface UpdateInsuranceDTO {
+  vehicleId: number,
+  data: {
+    cost: number,
+    expirationDate: Date,
+    insuranceTitle: string
+  }
+}
+
+export interface UpdateOverviewDTO {
+  vehicleId: number,
+  data: {
+    cost: number,
+    description: string,
+    expirationDate: Date,
+    overviewTitle: string
+  }
+
+}
+
+export interface UpdateVehicleStateDTO {
+  vehicleId: number,
+  data: {
+    driverId: number,
+    kilometers: number,
+    liters: number,
+    time: Date
+  }
+}
