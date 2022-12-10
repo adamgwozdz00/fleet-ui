@@ -2,7 +2,7 @@
   position: fixed;
   top: 0;
   right: 0;
-  z-index: 5;
+  z-index: 7;
   width: fit-content;
   height: 100vh;
   transition: transform 0.5s, box-shadow 0.1s; //, 0.5s opacity 0s, 1ss opacity 0s;
@@ -37,7 +37,7 @@
   position: fixed;
   top: 0;
   right: 0;
-  z-index: 4;
+  z-index: 6;
   background-color: rgba(0, 0, 0, 0.15);
   transition: opacity 1s;
   opacity: 1;

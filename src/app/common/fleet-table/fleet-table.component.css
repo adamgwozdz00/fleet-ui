@@ -7,7 +7,7 @@
 .sticky {
     left: 0;
     top: 58px;
-        position: sticky;
-        background-color: white;
-        z-index: 3;
+    position: sticky;
+    background-color: white;
+    z-index: 3;
 }
