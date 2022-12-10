@@ -1,22 +1,22 @@
-<div [class.center-tray]="centerTray" [class.is-hide]="!isOpen"
+<div [class.center-tray]="centerTray"
+     [class.is-hide]="!isOpen"
      class="sidebar bg-col-w flex flex-col is-hide">
-  <div class="flex align-middle justify-between">
-    <h3 class="font-bold text-xl">{{title}}</h3>
-    <button (click)="close()" class="material-symbols-outlined">
-      close
-    </button>
-  </div>
-  <div class="flex-grow overflow-y-auto pt-4">
-    <ng-content></ng-content>
-  </div>
-  <div>
-    <ng-content select="[bottomBar]"></ng-content>
-  </div>
+    <div class="flex align-middle justify-between pt-4 pb-2 border-b-2 border-navy">
+        <h3 class="font-bold text-xl">{{title}}</h3>
+        <button (click)="close()"
+                class="material-symbols-outlined">
+            close
+        </button>
+    </div>
+    <div class="flex-grow overflow-y-auto pt-4">
+        <ng-content></ng-content>
+    </div>
+    <div>
+        <ng-content select="[bottomBar]"></ng-content>
+    </div>
 </div>
 
 <!-- overlay -->
-<div
-  (click)="close()"
-  [class.is-hide]="!isOpen"
-  class="overlay w-screen h-screen"
-></div>
+<div (click)="close()"
+     [class.is-hide]="!isOpen"
+     class="overlay w-screen h-screen"></div>

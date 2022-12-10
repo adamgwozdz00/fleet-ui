@@ -1,58 +1,49 @@
 <div class="flex flex-col items-center">
-  <div>
-    <fleet-table [headerRow]="headerRow" [rows]="rows" [title]="title">
-      <ng-template #additionalButtonTemplate>
-        <ng-container *ngIf="hasAddButton()">
-          <button (click)="openAdditionSidebar()"
-                  buttonStyle
-                  class="mr-2 align-middle">
-            Add
-          </button>
+    <div>
+        <fleet-table [headerRow]="headerRow"
+                     [rows]="rows"
+                     [title]="title">
+            <ng-template #additionalButtonTemplate>
+                <ng-container *ngIf="hasAddButton()">
+                    <button (click)="openAdditionSidebar()"
+                            buttonStyle
+                            class="mr-2 align-middle">
+                        Add
+                    </button>
 
-        </ng-container>
-      </ng-template>
+                </ng-container>
+            </ng-template>
 
-      <ng-template #additionalColumnTemplate let-index="id">
-        <button
-          (click)="openSidebar(index)"
-          buttonStyle
-          class="mr-2"
-        >
-          Details
-        </button>
-        <button
-          (click)="console(index)"
-          (click)="openConfirmSidebar()"
-          buttonStyle="navy"
-          class="mr-2"
-        >
-          Delete
-        </button>
-      </ng-template>
-    </fleet-table>
-  </div>
+            <ng-template #additionalColumnTemplate
+                         let-index="id">
+                <button (click)="openSidebar(index)"
+                        buttonStyle
+                        class="mr-2">
+                    Details
+                </button>
+                <button (click)="console(index)"
+                        (click)="openConfirmSidebar()"
+                        buttonStyle="navy">
+                    Delete
+                </button>
+            </ng-template>
+        </fleet-table>
+    </div>
 </div>
 
-<vehicle-details-sidebar
-  (closeEvent)="onCloseSidebar()"
-  [actualVehicleId]="actualVehicleId"
-  [isOpen]="isOpenSidebar"
->
+<vehicle-details-sidebar (closeEvent)="onCloseSidebar()"
+                         [actualVehicleId]="actualVehicleId"
+                         [isOpen]="isOpenSidebar">
 
 </vehicle-details-sidebar>
 
-<vehicle-creation-sidebar
-  (closeEvent)="onCloseAdditionSidebar()"
-  (reloadVehicles)="updateVehicles()"
-  [isOpen]="isOpenAdditionSidebar">
+<vehicle-creation-sidebar (closeEvent)="onCloseAdditionSidebar()"
+                          (reloadVehicles)="updateVehicles()"
+                          [isOpen]="isOpenAdditionSidebar">
 </vehicle-creation-sidebar>
 
-<confirm-sidebar
-  (onClose)="onCloseConfirmSidebar()"
-  [isOpen]="isOpenConfirmSidebar"
-  buttonLabel="Delete"
-  message="Are you sure about delete?"
-  title="Confirm"
-></confirm-sidebar>
-
-
+<confirm-sidebar (onClose)="onCloseConfirmSidebar()"
+                 [isOpen]="isOpenConfirmSidebar"
+                 buttonLabel="Delete"
+                 message="Are you sure about delete?"
+                 title="Confirm"></confirm-sidebar>

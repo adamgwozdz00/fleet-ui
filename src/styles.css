@@ -6,3 +6,9 @@
   src: url("https://fonts.googleapis.com/css2?family=K2D:ital,wght@0,100;1,100&display=swap");
 }
 
+body {
+    min-height: 100vh;
+    background-color: #f1eeec;
+    padding-bottom: 30px;
+    padding-top: 90px;
+}
