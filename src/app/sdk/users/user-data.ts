@@ -1,4 +1,4 @@
 export interface UserData {
   companyName: string,
-  routes: string[],
+  routes: { routeName : string,position : number}[],
 }

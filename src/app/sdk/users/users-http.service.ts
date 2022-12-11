@@ -12,7 +12,7 @@ export class UsersHttpService {
   constructor(private readonly http: HttpClient) {
   }
 
-  public getUserData(): Promise<UserData> {
+  public getUserRoutesAndCompanyName(): Promise<UserData> {
     return this.http.get<UserData>(
       ApiUrl.builder(UsersHttpService.API_URL)
       .withAdditionalSegment("self")
