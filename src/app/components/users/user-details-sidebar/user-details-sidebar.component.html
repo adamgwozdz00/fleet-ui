@@ -1,0 +1,9 @@
+<sidebar (onClose)="onClose()" [isOpen]="isOpen" title="Details">
+  <details-tab [tabs]="detailsTab">
+    <ng-template #tabTemplate let-index="index">
+      <div>
+        <user-vehicles [userId]="actualUserId"></user-vehicles>
+      </div>
+    </ng-template>
+  </details-tab>
+</sidebar>

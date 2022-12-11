@@ -6,7 +6,7 @@
             <ng-template #additionalColumnTemplate
                          let-index="id">
                 <button (click)="console(index)"
-                        (click)="openSidebar()"
+                        (click)="openSidebar(index)"
                         buttonStyle
                         class="mr-2">
                     Details
@@ -21,28 +21,9 @@
     </div>
 </div>
 
-<sidebar (onClose)="onCloseSidebar()"
-         [isOpen]="isOpenSidebar"
-         title="Details">
-    <details-tab [tabs]="detailsTab">
-        <ng-template #tabTemplate
-                     let-index="index">
-            <ng-container [ngSwitch]="detailsTab[index]">
-                <div *ngSwitchCase="'Current Review'">
-                    Data of next review: 14.05.2023
-                </div>
-                <div *ngSwitchCase="'Driver History'">
-                    <fleet-table></fleet-table>
-                </div>
-                <div *ngSwitchDefault>{{detailsTab[index]}}</div>
-            </ng-container>
-        </ng-template>
-    </details-tab>
-
-    <p bottomBar>
-        Bottom bar
-    </p>
-</sidebar>
+<user-details-sidebar (closeEvent)="onCloseSidebar()"
+                      [actualUserId]="actualUserId"
+                      [isOpen]="isOpenSidebar">></user-details-sidebar>
 
 <confirm-sidebar (onClose)="onCloseConfirmSidebar()"
                  [isOpen]="isOpenConfirmSidebar"

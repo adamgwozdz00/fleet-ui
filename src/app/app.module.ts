@@ -42,6 +42,10 @@ import {
   DriverDetailsSidebarComponent
 } from "./components/drivers/driver-details-sidebar/driver-details-sidebar.component";
 import {DriverHistoryComponent} from "./components/drivers/driver-history/driver-history.component";
+import {
+  UserDetailsSidebarComponent
+} from "./components/users/user-details-sidebar/user-details-sidebar.component";
+import {UserVehiclesComponent} from "./components/users/user-vehicles/user-vehicles.component";
 
 @NgModule({
   declarations: [
@@ -60,7 +64,9 @@ import {DriverHistoryComponent} from "./components/drivers/driver-history/driver
     AccountComponent,
     ReportsComponent,
     DriverDetailsSidebarComponent,
-    DriverHistoryComponent
+    DriverHistoryComponent,
+    UserDetailsSidebarComponent,
+    UserVehiclesComponent
   ],
   imports: [
     BrowserModule,
