@@ -1,13 +1,10 @@
-import { Component, Inject, OnInit } from "@angular/core";
-import { Title } from "../../common/fleet-table/title";
-import { HeaderRow, Row } from "../../common/fleet-table/row";
-import {
-  DRIVERS_SERVICE,
-  DriversService,
-} from "../../sdk/drivers/drivers.service";
-import { DriversDTO } from "../../sdk/drivers/driver.dto";
-import { Column, IdColumn } from "../../common/fleet-table/column";
-import { UserRoleStorage } from "src/app/auth/user-role.storage";
+import {Component, OnInit} from "@angular/core";
+import {Title} from "../../common/fleet-table/title";
+import {HeaderRow, Row} from "../../common/fleet-table/row";
+import {DriversDTO} from "../../sdk/drivers/driver.dto";
+import {Column, IdColumn} from "../../common/fleet-table/column";
+import {UserRoleStorage} from "src/app/auth/user-role.storage";
+import {DriversHttpService} from "../../sdk/drivers/drivers-http.service";
 
 @Component({
   selector: "app-drivers",
@@ -33,9 +30,10 @@ export class DriversComponent implements OnInit {
   rows: Row[] = [];
 
   constructor(
-    @Inject(DRIVERS_SERVICE) private readonly driversService: DriversService,
+    private readonly driversService: DriversHttpService,
     private readonly userRoleStorage: UserRoleStorage
-  ) {}
+  ) {
+  }
 
   get hasAddButton(): boolean {
     return this.userRole == "ADMIN";
@@ -43,9 +41,7 @@ export class DriversComponent implements OnInit {
 
   ngOnInit(): void {
     this.userRoleStorage.getOrRequest().then((role) => (this.userRole = role));
-    this.driversService
-      .getAll()
-      .then((all) => (this.rows = this.mapToRow(all)));
+    this.updateDrivers();
   }
 
   mapToRow(drivers: DriversDTO): Row[] {
@@ -90,6 +86,6 @@ export class DriversComponent implements OnInit {
   }
 
   updateDrivers() {
-    //  this.service.getAll().then(vehiclesDetails => this.rows = this.rowMapper.map(vehiclesDetails));
+    this.driversService.getAll().then(vehiclesDetails => this.rows = this.mapToRow(vehiclesDetails));
   }
 }

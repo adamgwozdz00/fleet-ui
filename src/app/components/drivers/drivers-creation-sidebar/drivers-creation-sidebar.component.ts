@@ -1,16 +1,6 @@
-import {
-  Component,
-  EventEmitter,
-  Inject,
-  Input,
-  OnInit,
-  Output,
-} from "@angular/core";
-import { FormControl, FormGroup, Validators } from "@angular/forms";
-import {
-  DRIVERS_SERVICE,
-  DriversService,
-} from "./../../../sdk/drivers/drivers.service";
+import {Component, EventEmitter, Input, OnInit, Output,} from "@angular/core";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {DriversHttpService} from "../../../sdk/drivers/drivers-http.service";
 
 @Component({
   selector: "drivers-creation-sidebar",
@@ -25,20 +15,21 @@ export class DriversCreationSidebarComponent implements OnInit {
   closeEvent = new EventEmitter<boolean>();
 
   @Output()
-  reloadDriverss = new EventEmitter<boolean>();
+  reloadDrivers = new EventEmitter<boolean>();
 
   titleOptions = ["JUNIOR", "SENIOR"];
 
   driversForm = new FormGroup({
-    last_name: new FormControl("", Validators.required),
-    first_name: new FormControl("", Validators.required),
+    lastName: new FormControl("", Validators.required),
+    firstName: new FormControl("", Validators.required),
     seniority: new FormControl(undefined, Validators.required),
     title: new FormControl("", Validators.required),
   });
 
   constructor(
-    @Inject(DRIVERS_SERVICE) private readonly service: DriversService
-  ) {}
+    private readonly service: DriversHttpService
+  ) {
+  }
 
   onClose() {
     this.closeEvent.emit(true);
@@ -46,14 +37,13 @@ export class DriversCreationSidebarComponent implements OnInit {
 
   createDriver() {
     const values = this.driversForm.value;
-    // this.service
-    //   .create({
-    //     last_name: values.last_name,
-    //     first_name: values.first_name,
-    //     seniority: values.seniority,
-    //     title: values.title
-    //   })
-    //   .then(() => this.reloadDriverss.emit(true));
+    this.service
+    .createDriver({
+      lastName: values.lastName,
+      firstName: values.firstName,
+      seniorityInYears: values.seniority,
+    })
+    .then(() => this.reloadDrivers.emit(true));
   }
 
   ngOnInit(): void {

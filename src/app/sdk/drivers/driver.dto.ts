@@ -23,3 +23,14 @@ export interface HistoryDTO {
   vehicleMake: string,
   vehicleModel: string
 }
+
+export interface CreateDriverDTO{
+  firstName : string,
+  lastName : string,
+  seniorityInYears : number
+}
+
+export interface DriverResponse{
+  failureReason : string,
+  success : boolean
+}
