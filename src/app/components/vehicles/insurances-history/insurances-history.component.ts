@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {HistoryComponent} from "../history.component";
+import {HistoryComponent} from "../../../common/details/history.component";
 import {InsurancesDetailsDTO} from "../../../sdk/vehicles/vehicle-details/insurances-details.dto";
 import {HeaderRow, Row} from "../../../common/fleet-table/row";
 import {

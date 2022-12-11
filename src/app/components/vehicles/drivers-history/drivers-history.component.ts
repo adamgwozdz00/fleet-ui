@@ -6,7 +6,7 @@ import {
 import {Title} from "../../../common/fleet-table/title";
 import {DriversDetailsDTO} from "../../../sdk/vehicles/vehicle-details/drivers-details.dto";
 import {Column} from "../../../common/fleet-table/column";
-import {HistoryComponent} from "../history.component";
+import {HistoryComponent} from "../../../common/details/history.component";
 
 @Component({
   selector: 'vehicle-drivers-history',

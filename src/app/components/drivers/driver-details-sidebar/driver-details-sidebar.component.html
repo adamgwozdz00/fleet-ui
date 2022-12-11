@@ -1,0 +1,9 @@
+<sidebar (onClose)="onClose()" [isOpen]="isOpen" title="Details">
+  <details-tab [tabs]="detailsTab">
+    <ng-template #tabTemplate let-index="index">
+      <div>
+        <driver-history [objectId]="actualDriverId"></driver-history>
+      </div>
+    </ng-template>
+  </details-tab>
+</sidebar>

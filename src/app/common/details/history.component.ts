@@ -5,7 +5,7 @@ import {Title} from "../../common/fleet-table/title";
 @Directive({})
 export abstract class HistoryComponent<T> implements OnChanges {
   @Input()
-  vehicleId: string = "";
+  objectId: string = "";
   rows: Row[] = [];
 
   protected constructor(public title: Title,
@@ -13,11 +13,11 @@ export abstract class HistoryComponent<T> implements OnChanges {
   }
 
   ngOnChanges(): void {
-    this.load(this.vehicleId)
+    this.load(this.objectId)
     .then(overviewsHistory => this.rows = this.map(overviewsHistory))
   }
 
-  abstract load(vehicleId: string): Promise<T>;
+  abstract load(objectId: any): Promise<T>;
 
   abstract map(details: T): Row[]
 

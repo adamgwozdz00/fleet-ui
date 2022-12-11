@@ -12,13 +12,11 @@ import {DriversHttpService} from "../../sdk/drivers/drivers-http.service";
   styleUrls: ["./drivers.component.css"],
 })
 export class DriversComponent implements OnInit {
-  private userRole: string = "";
   detailsTab: string[] = ["Driver History"];
   isOpenSidebar: boolean = false;
   isOpenConfirmSidebar: boolean = false;
   isOpenAdditionSidebar: boolean = false;
   title: Title = new Title("Drivers");
-
   headerRow: HeaderRow = HeaderRow.createForColumnTitles([
     "id",
     "last name",
@@ -26,8 +24,9 @@ export class DriversComponent implements OnInit {
     "seniority",
     "title",
   ]);
-
   rows: Row[] = [];
+  driverId: number;
+  private userRole: string = "";
 
   constructor(
     private readonly driversService: DriversHttpService,
@@ -61,8 +60,9 @@ export class DriversComponent implements OnInit {
     console.log(i);
   }
 
-  openSidebar() {
+  openSidebar(driverId: number) {
     this.isOpenSidebar = true;
+    this.driverId = driverId;
   }
 
   onCloseSidebar() {

@@ -6,7 +6,7 @@ import {
 } from "../../../sdk/vehicles/vehicle-details/vehicle-details-http.service";
 import {OverviewsDetailsDTO} from "../../../sdk/vehicles/vehicle-details/overviews-details.dto";
 import {Column, IdColumn} from "../../../common/fleet-table/column";
-import {HistoryComponent} from "../history.component";
+import {HistoryComponent} from "../../../common/details/history.component";
 
 
 @Component({
