@@ -25,6 +25,11 @@ export class VehicleHttpService implements VehicleService {
     .build().endpoint).toPromise();
   }
 
+  getAllAvailableVehicles(): Promise<VehiclesDTO> {
+    return this.http.get<VehiclesDTO>(ApiUrl.builder(VehicleHttpService.API_URL)
+    .build().endpoint).toPromise();
+  }
+
   create(body: CreateVehicleDTO): Promise<void> {
     return this.http.post<void>(ApiUrl.builder(VehicleHttpService.API_URL)
     .build().endpoint, body).toPromise();
