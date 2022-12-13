@@ -1,30 +1,28 @@
-<fleet-table [headerRow]="headerRow" [rows]="rows" [title]="title">
-  <ng-template #additionalButtonTemplate>
-  <button (click)="openAdditionSidebar()"
-          buttonStyle
-          class="mr-2 align-middle">
-    Add
-  </button>
+<form [formGroup]="vehicleForm">
+    <p class="text-navy text-lg font-semibold mt-2">Add vehicle</p>
+    <div class="flex flex-row mt-2">
+        <select formControlName="vehicle"
+                class="border-2 border-orange p-1.5 flex-grow mr-4">
+            <option *ngFor="let vehicle of vehiclesInDropDown"
+                    [ngValue]="vehicle.id"
+                    class="border-2 border-orange m-1.5">{{vehicle.id}} , {{vehicle.make}}, {{vehicle.model}},
+                {{vehicle.productionYear}}</option>
+        </select>
+        <button (click)="assignVehicleToUser()"
+                [disabled]="!vehicleForm.valid"
+                buttonStyle="navy"
+                class="mr-2 align-middle w-fit">
+            Add
+        </button>
+    </div>
+</form>
+
+
+<fleet-table *ngIf="rows.length > 0"
+             [headerRow]="headerRow"
+             [rows]="rows"
+             [title]="title">
+    <ng-template #additionalButtonTemplate>
+
     </ng-template>
 </fleet-table>
-
-<sidebar (onClose)="onClose()"
-         [isOpen]="isOpen"
-         title="Choose vehicle">
-  <form [formGroup]="vehicleForm">
-    <select formControlName="vehicle"
-            class="border-2 border-orange m-1.5">
-         <option *ngFor="let vehicle of vehiclesInDropDown"
-          [ngValue]="vehicle.id"
-          class="border-2 border-orange m-1.5">{{vehicle.id}} , {{vehicle.make}}, {{vehicle.model}}, {{vehicle.productionYear}}</option>
-  </select>
-    <div class="flex justify-center mt-6">
-      <button (click)="assignVehicleToUser()"
-              [disabled]="!vehicleForm.valid"
-              buttonStyle="navy">
-        Submit
-      </button>
-    </div>
-  </form>
-
-</sidebar>

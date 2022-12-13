@@ -12,34 +12,44 @@
 
 </div>
 
-<table class="_table k2d bg-white w-fit mt-4 border-navy b-r-2">
-    <thead>
-        <tr class="sticky border-navy border-b-2 shadow-md">
-            <th *ngFor="let headerColumn of headerRow.columns; let index = index"
-                class="border-navy border-r-2 text-center p-2 capitalize cursor-pointer"
-                [class.bg-orange-100]="index === sortedColumnIndex"
-                (click)="sortBy(index)">
-                {{headerColumn.value}}
-            </th>
-            <th class="border-navy border-b-2 text-center p-2">
-                Actions
-            </th>
-        </tr>
-    </thead>
-    <tbody class="bg-slate-50">
-        <tr *ngFor="let row of displayRows; let i = index; let last = last"
-            [class.border-b-2]="!last"
-            class="border-navy-50">
-            <td *ngFor="let col of row.columns; let index = index"
-                [class.bg-orange-50]="index === sortedColumnIndex"
-                class="border-navy border-r-2 text-center p-2">
-                {{col.displayValue()}}
-            </td>
-            <td *ngIf="additionalColumnTemplate"
-                class="text-center p-2">
-                <ng-container *ngTemplateOutlet="additionalColumnTemplate, context: {id: row.columns[0].value}">
-                </ng-container>
-            </td>
-        </tr>
-    </tbody>
-</table>
+<ng-container [ngSwitch]="rows?.length > 0">
+    <div *ngSwitchDefault
+         class="text-orange-400 text-base mt-4">Nothing to display in table</div>
+
+
+    <table *ngSwitchCase="true"
+           class="_table k2d bg-white w-fit mt-4 m-1 border-navy b-r-2">
+        <thead>
+            <tr class="sticky border-navy border-b-2 shadow-md">
+                <th *ngFor="let headerColumn of headerRow.columns; let index = index; let isLast = last"
+                    class="border-navy text-center p-2 capitalize cursor-pointer"
+                    [class.border-r-2]="!isLast && !additionalColumnTemplate"
+                    [class.bg-orange-100]="index === sortedColumnIndex"
+                    (click)="sortBy(index)">
+                    {{headerColumn.value}}
+                </th>
+                <th class="border-navy border-b-2 text-center p-2"
+                    *ngIf="additionalColumnTemplate">
+                    Actions
+                </th>
+            </tr>
+        </thead>
+        <tbody class="bg-slate-50">
+            <tr *ngFor="let row of displayRows; let i = index; let last = last"
+                [class.border-b-2]="!last"
+                class="border-navy-50">
+                <td *ngFor="let col of row.columns; let index = index; let isLast = last"
+                    [class.border-r-2]="!isLast && !additionalColumnTemplate"
+                    [class.bg-orange-50]="index === sortedColumnIndex"
+                    class="border-navy text-center p-2">
+                    {{col.displayValue()}}
+                </td>
+                <td *ngIf="additionalColumnTemplate"
+                    class="text-center p-2">
+                    <ng-container *ngTemplateOutlet="additionalColumnTemplate, context: {id: row.columns[0].value}">
+                    </ng-container>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</ng-container>

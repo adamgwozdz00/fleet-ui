@@ -19,20 +19,10 @@ export class FleetTableComponent implements OnInit {
   @Input()
   title: Title = new Title("Example");
   @Input()
-  headerRow: HeaderRow = new HeaderRow([
-    new Column("id"),
-    new Column("name"),
-    new Column("age"),
-    new Column("Button"),
-  ]);
+  headerRow: HeaderRow = new HeaderRow([]);
 
   @Input()
-  rows: Row[] = [
-    new Row([new Column("1"), new Column("Adam"), new Column("22")]),
-    new Row([new Column("2"), new Column("Werka"), new Column("21")]),
-    new Row([new Column("3"), new Column("Krzys"), new Column("45")]),
-    new Row([new Column("4"), new Column("Katarzyna"), new Column("33")]),
-  ];
+  rows: Row[] = [];
 
   sortedRows: Row[];
   sortedColumnIndex: number;
