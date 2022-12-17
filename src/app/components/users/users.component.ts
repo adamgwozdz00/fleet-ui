@@ -15,8 +15,6 @@ export class UsersComponent implements OnInit {
   isOpenSidebar: boolean = false;
   isOpenConfirmSidebar: boolean = false;
 
-  isOpenAdditionSidebar: boolean = false;
-
   title: Title = new Title("Users")
 
   headerRow: HeaderRow = HeaderRow.createForColumnTitles(["id", "first name", "last name", "title"]);
@@ -38,7 +36,6 @@ export class UsersComponent implements OnInit {
   }
 
   console(i: number) {
-    console.log(i)
   }
 
   openSidebar(userId: number) {

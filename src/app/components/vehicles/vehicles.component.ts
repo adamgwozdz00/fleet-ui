@@ -1,10 +1,10 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Title} from "../../common/fleet-table/title";
 import {HeaderRow, Row} from "../../common/fleet-table/row";
 import {VehiclesDTO} from "../../sdk/vehicles/vehicle.dto";
 import {Column, IdColumn} from "../../common/fleet-table/column";
-import {VEHICLE_SERVICE, VehicleService} from "../../sdk/vehicles/vehicle.service";
 import {UserRoleStorage} from "../../auth/user-role.storage";
+import {VehicleHttpService} from "../../sdk/vehicles/vehicle-http.service";
 
 @Component({
   selector: 'app-vehicles',
@@ -27,7 +27,7 @@ export class VehiclesComponent implements OnInit {
   actualVehicleId: string;
   private rowMapper = new VehiclesRowMapper();
 
-  constructor(@Inject(VEHICLE_SERVICE) private readonly service: VehicleService,
+  constructor(private readonly service: VehicleHttpService,
               private readonly userRoleStorage: UserRoleStorage) {
   }
 

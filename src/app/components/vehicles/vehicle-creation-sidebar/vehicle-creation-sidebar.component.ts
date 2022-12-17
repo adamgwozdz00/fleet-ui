@@ -1,17 +1,7 @@
-import {
-  Component,
-  EventEmitter,
-  Inject,
-  Input,
-  OnInit,
-  Output,
-} from "@angular/core";
-import { FormControl, FormGroup, Validators } from "@angular/forms";
-import {
-  VEHICLE_SERVICE,
-  VehicleService,
-} from "../../../sdk/vehicles/vehicle.service";
-import { FuelTypes } from "../../../sdk/vehicles/fuel-types";
+import {Component, EventEmitter, Input, OnInit, Output,} from "@angular/core";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {FuelTypes} from "../../../sdk/vehicles/fuel-types";
+import {VehicleHttpService} from "../../../sdk/vehicles/vehicle-http.service";
 
 @Component({
   selector: "vehicle-creation-sidebar",
@@ -28,7 +18,7 @@ export class VehicleCreationSidebarComponent implements OnInit {
   @Output()
   reloadVehicles = new EventEmitter<boolean>();
 
-  fuelTypesOptions: FuelTypes = { fuelTypes: [] };
+  fuelTypesOptions: FuelTypes = {fuelTypes: []};
 
   vehicleForm = new FormGroup({
     make: new FormControl("", Validators.required),
@@ -39,8 +29,9 @@ export class VehicleCreationSidebarComponent implements OnInit {
   });
 
   constructor(
-    @Inject(VEHICLE_SERVICE) private readonly service: VehicleService
-  ) {}
+    private readonly service: VehicleHttpService
+  ) {
+  }
 
   onClose() {
     this.closeEvent.emit(true);
@@ -49,19 +40,19 @@ export class VehicleCreationSidebarComponent implements OnInit {
   createVehicle() {
     const values = this.vehicleForm.value;
     this.service
-      .create({
-        make: values.make,
-        vinNumber: values.vinNumber,
-        model: values.model,
-        fuelType: values.fuelType,
-        productionYear: values.year,
-      })
-      .then(() => this.reloadVehicles.emit(true));
+    .create({
+      make: values.make,
+      vinNumber: values.vinNumber,
+      model: values.model,
+      fuelType: values.fuelType,
+      productionYear: values.year,
+    })
+    .then(() => this.reloadVehicles.emit(true));
   }
 
   ngOnInit(): void {
     this.service
-      .getFuelTypes()
-      .then((result) => (this.fuelTypesOptions = result));
+    .getFuelTypes()
+    .then((result) => (this.fuelTypesOptions = result));
   }
 }

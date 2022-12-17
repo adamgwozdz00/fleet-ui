@@ -1,5 +1,4 @@
 import {CreateVehicleDTO, VehiclesDTO} from "./vehicle.dto";
-import {InjectionToken} from "@angular/core";
 import {FuelTypes} from "./fuel-types";
 
 export interface VehicleService {
@@ -9,5 +8,3 @@ export interface VehicleService {
 
   getFuelTypes(): Promise<FuelTypes>
 }
-
-export const VEHICLE_SERVICE = new InjectionToken<VehicleService>("mock data service");

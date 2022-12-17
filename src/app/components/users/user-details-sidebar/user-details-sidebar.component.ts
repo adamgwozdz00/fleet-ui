@@ -1,17 +1,17 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, Output} from '@angular/core';
 
 @Component({
   selector: 'user-details-sidebar',
   templateUrl: './user-details-sidebar.component.html',
   styleUrls: ['./user-details-sidebar.component.css']
 })
-export class UserDetailsSidebarComponent implements OnInit {
+export class UserDetailsSidebarComponent implements OnChanges {
 
   @Input()
   isOpen: boolean = false;
 
   @Input()
-  actualUserId: any;
+  actualUserId: number;
 
   @Output()
   closeEvent = new EventEmitter<boolean>();
@@ -26,6 +26,9 @@ export class UserDetailsSidebarComponent implements OnInit {
 
 
   ngOnInit(): void {
+  }
+
+  ngOnChanges(): void {
   }
 
 }

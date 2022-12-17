@@ -1,20 +1,21 @@
 <form [formGroup]="vehicleForm">
-    <p class="text-navy text-lg font-semibold mt-2">Add vehicle</p>
-    <div class="flex flex-row mt-2">
-        <select formControlName="vehicle"
-                class="border-2 border-orange p-1.5 flex-grow mr-4">
-            <option *ngFor="let vehicle of vehiclesInDropDown"
-                    [ngValue]="vehicle.id"
-                    class="border-2 border-orange m-1.5">{{vehicle.id}} , {{vehicle.make}}, {{vehicle.model}},
-                {{vehicle.productionYear}}</option>
-        </select>
-        <button (click)="assignVehicleToUser()"
-                [disabled]="!vehicleForm.valid"
-                buttonStyle="navy"
-                class="mr-2 align-middle w-fit">
-            Add
-        </button>
-    </div>
+  <p class="text-navy text-lg font-semibold mt-2">Add vehicle</p>
+  <div class="flex flex-row mt-2">
+    <select class="border-2 border-orange p-1.5 flex-grow mr-4"
+            formControlName="vehicle">
+      <option *ngFor="let vehicle of vehiclesInDropDown"
+              [ngValue]="vehicle.id"
+              class="border-2 border-orange m-1.5">{{vehicle.id}} , {{vehicle.make}}
+        , {{vehicle.model}},
+        {{vehicle.productionYear}}</option>
+    </select>
+    <button (click)="assignVehicleToUser()"
+            [disabled]="!vehicleForm.valid"
+            buttonStyle="navy"
+            class="mr-2 align-middle w-fit">
+      Add
+    </button>
+  </div>
 </form>
 
 
@@ -22,7 +23,10 @@
              [headerRow]="headerRow"
              [rows]="rows"
              [title]="title">
-    <ng-template #additionalButtonTemplate>
-
-    </ng-template>
+  <ng-template #additionalColumnTemplate let-index="id">
+    <button (click)="removeVehicleAssigment(index)"
+            buttonStyle="navy">
+      Remove
+    </button>
+  </ng-template>
 </fleet-table>

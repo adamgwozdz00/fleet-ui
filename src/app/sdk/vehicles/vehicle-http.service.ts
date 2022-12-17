@@ -7,7 +7,7 @@ import {
   VehiclesDTO
 } from "./vehicle.dto";
 import {VehicleService} from "./vehicle.service";
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpParams} from "@angular/common/http";
 import {ApiUrl} from "../../http/api-url";
 import {FuelTypes} from "./fuel-types";
 
@@ -20,9 +20,20 @@ export class VehicleHttpService implements VehicleService {
   constructor(private readonly http: HttpClient) {
   }
 
-  getAll(): Promise<VehiclesDTO> {
+  getAll(userId: number = undefined, onlyAvailable: boolean = false): Promise<VehiclesDTO> {
+    let params = new HttpParams();
+
+    if (userId) {
+      params = params.append('userId', userId);
+    }
+
+    if (onlyAvailable) {
+      params = params.append('withoutAssigment', onlyAvailable);
+    }
+
+
     return this.http.get<VehiclesDTO>(ApiUrl.builder(VehicleHttpService.API_URL)
-    .build().endpoint).toPromise();
+    .build().endpoint, {params: params}).toPromise();
   }
 
   getAllAvailableVehicles(): Promise<VehiclesDTO> {

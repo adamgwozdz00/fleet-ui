@@ -1,11 +1,12 @@
-import { Component, Input, OnChanges, OnInit } from "@angular/core";
-import { HeaderRow, Row } from "../../../common/fleet-table/row";
-import { Title } from "../../../common/fleet-table/title";
-import { UsersHttpService } from "../../../sdk/users/users-http.service";
-import { AvailableVehicle } from "./available-vehicle";
-import { VehicleHttpService } from "../../../sdk/vehicles/vehicle-http.service";
-import { VehiclesDTO } from "../../../sdk/vehicles/vehicle.dto";
-import { FormControl, FormGroup, Validators } from "@angular/forms";
+import {Component, Input, OnChanges, OnInit} from "@angular/core";
+import {HeaderRow, Row} from "../../../common/fleet-table/row";
+import {Title} from "../../../common/fleet-table/title";
+import {UsersHttpService} from "../../../sdk/users/users-http.service";
+import {AvailableVehicle} from "./available-vehicle";
+import {VehicleHttpService} from "../../../sdk/vehicles/vehicle-http.service";
+import {VehiclesDTO} from "../../../sdk/vehicles/vehicle.dto";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {Column, IdColumn} from "../../../common/fleet-table/column";
 
 @Component({
   selector: "user-vehicles",
@@ -14,7 +15,7 @@ import { FormControl, FormGroup, Validators } from "@angular/forms";
 })
 export class UserVehiclesComponent implements OnChanges, OnInit {
   @Input()
-  userId: string = "";
+  userId: number;
 
   title = new Title("Vehicles");
   headerRow: HeaderRow = HeaderRow.createForColumnTitles([
@@ -35,22 +36,39 @@ export class UserVehiclesComponent implements OnChanges, OnInit {
   constructor(
     private userService: UsersHttpService,
     private vehicleService: VehicleHttpService
-  ) {}
+  ) {
+  }
 
   ngOnInit(): void {
     this.updateVehicles();
   }
 
   updateVehicles() {
-    this.vehicleService
-      .getAllAvailableVehicles()
-      .then(
-        (result) =>
-          (this.vehiclesInDropDown = this.mapToAvailableVehicles(result))
-      );
+    this.updateAvailableVehicles();
+    this.updateUserVehicles();
   }
 
-  ngOnChanges(): void {}
+  ngOnChanges(): void {
+    this.updateVehicles();
+  }
+
+  assignVehicleToUser() {
+    this.userService.addVehicleToUser({
+      userId: this.userId,
+      vehicleId: this.vehicleForm.value.vehicle
+    }).then(
+      () => this.updateVehicles()
+    );
+  }
+
+  removeVehicleAssigment(vehicleId: string) {
+    this.userService.deleteVehicleFromUser({
+      userId: this.userId,
+      vehicleId: vehicleId
+    }).then(
+      () => this.updateVehicles()
+    );
+  }
 
   private mapToAvailableVehicles(result: VehiclesDTO) {
     return result.vehicles.map(
@@ -59,7 +77,30 @@ export class UserVehiclesComponent implements OnChanges, OnInit {
     );
   }
 
-  assignVehicleToUser() {
-    this.updateVehicles();
+  private updateAvailableVehicles() {
+    this.vehicleService
+    .getAll(undefined, true)
+    .then(
+      (result) =>
+        (this.vehiclesInDropDown = this.mapToAvailableVehicles(result))
+    );
+  }
+
+  private updateUserVehicles() {
+    this.vehicleService.getAll(this.userId)
+    .then(vehicles => this.rows = this.mapToRows(vehicles));
+  }
+
+  private mapToRows(vehicles: VehiclesDTO): Row[] {
+    return vehicles.vehicles.map(vehicle =>
+      new Row(
+        [
+          new IdColumn(vehicle.vehicleId),
+          new Column(vehicle.make),
+          new Column(vehicle.model),
+          new Column(vehicle.productionYear)
+        ]
+      ))
+      ;
   }
 }

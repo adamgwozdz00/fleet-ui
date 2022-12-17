@@ -14,9 +14,7 @@ import {VehiclesComponent} from "./components/vehicles/vehicles.component";
 import {DriversComponent} from "./components/drivers/drivers.component";
 import {UsersComponent} from "./components/users/users.component";
 import {AccountComponent} from "./components/account/account.component";
-import {DRIVERS_SERVICE} from "./sdk/drivers/drivers.service";
-import {VehicleHttpService} from "./sdk/vehicles/vehicle-http.service";
-import {VEHICLE_SERVICE} from "./sdk/vehicles/vehicle.service";
+
 import {AuthInterceptor} from "./auth/auth.interceptor";
 import {
   DriversHistoryComponent
@@ -27,7 +25,6 @@ import {
 import {
   InsurancesHistoryComponent
 } from "./components/vehicles/insurances-history/insurances-history.component";
-import {DriversHttpService} from "./sdk/drivers/drivers-http.service";
 import {
   VehicleCreationSidebarComponent
 } from "./components/vehicles/vehicle-creation-sidebar/vehicle-creation-sidebar.component";
@@ -78,8 +75,6 @@ import {UserVehiclesComponent} from "./components/users/user-vehicles/user-vehic
     CommonModule,
   ],
   providers: [
-    {provide: DRIVERS_SERVICE, useClass: DriversHttpService},
-    {provide: VEHICLE_SERVICE, useClass: VehicleHttpService},
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
   ],
   bootstrap: [AppComponent],
