@@ -37,7 +37,8 @@ export class DriversHttpService implements DriversService {
     .builder(DriversHttpService.API_URL)
     .withAdditionalSegment('promotions')
     .build().endpoint, {}, {
-      params: new HttpParams().append("driverId", driverId)})
+      params: new HttpParams().append("driverId", driverId)
+    })
     .toPromise();
   }
 
@@ -46,8 +47,15 @@ export class DriversHttpService implements DriversService {
     .builder(DriversHttpService.API_URL)
     .withAdditionalSegment('promotions')
     .build().endpoint, {}, {
-      params: new HttpParams().append("driverId", driverId)})
+      params: new HttpParams().append("driverId", driverId)
+    })
     .toPromise();
   }
 
+  async delete(driverId: number): Promise<void> {
+    await this.http.delete<DriverHistoryDTO>(ApiUrl
+    .builder(DriversHttpService.API_URL)
+    .withPathVariable(driverId)
+    .build().endpoint).toPromise();
+  }
 }

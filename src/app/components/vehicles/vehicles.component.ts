@@ -18,7 +18,6 @@ export class VehiclesComponent implements OnInit {
   isOpenDeleteConfirmationSidebar: boolean = false;
   isOpenAdditionSidebar: boolean = false;
 
-
   title: Title = new Title("Vehicle")
 
   headerRow: HeaderRow = HeaderRow.createForColumnTitles(["id", "make", "model", "year", "vin", "kilometers", "fuel type"]);
@@ -76,7 +75,8 @@ export class VehiclesComponent implements OnInit {
   }
 
   deleteVehicle() {
-    if (this.userRole == "USER"){}
+    if (this.userRole == "USER") {
+    }
   }
 }
 

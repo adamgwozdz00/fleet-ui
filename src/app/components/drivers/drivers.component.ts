@@ -12,9 +12,8 @@ import {DriversHttpService} from "../../sdk/drivers/drivers-http.service";
   styleUrls: ["./drivers.component.css"],
 })
 export class DriversComponent implements OnInit {
-  detailsTab: string[] = ["Driver History"];
   isOpenSidebar: boolean = false;
-  isOpenConfirmSidebar: boolean = false;
+  isOpenDeleteConfirmationSidebar: boolean = false;
   isOpenAdditionSidebar: boolean = false;
   title: Title = new Title("Drivers");
   headerRow: HeaderRow = HeaderRow.createForColumnTitles([
@@ -69,12 +68,13 @@ export class DriversComponent implements OnInit {
     this.isOpenSidebar = false;
   }
 
-  openConfirmSidebar() {
-    this.isOpenConfirmSidebar = true;
+  openDeleteConfirmationSidebar(driverId: number) {
+    this.driverId = driverId;
+    this.isOpenDeleteConfirmationSidebar = true;
   }
 
-  onCloseConfirmSidebar() {
-    this.isOpenConfirmSidebar = false;
+  onCloseDeleteConfirmationSidebar() {
+    this.isOpenDeleteConfirmationSidebar = false;
   }
 
   openAdditionSidebar() {
@@ -87,5 +87,9 @@ export class DriversComponent implements OnInit {
 
   updateDrivers() {
     this.driversService.getAll().then(vehiclesDetails => this.rows = this.mapToRow(vehiclesDetails));
+  }
+
+  isAdmin(): boolean {
+    return this.userRole == "ADMIN";
   }
 }

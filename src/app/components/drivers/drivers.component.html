@@ -21,11 +21,13 @@
           class="mr-2">
           Details
         </button>
-        <button (click)="console(index)"
-                (click)="openConfirmSidebar()"
-                buttonStyle="navy">
-          Remove
-        </button>
+        <ng-container *ngIf="isAdmin()">
+          <button (click)="console(index)"
+                  (click)="openDeleteConfirmationSidebar(index)"
+                  buttonStyle="navy">
+            Remove
+          </button>
+        </ng-container>
       </ng-template>
     </fleet-table>
   </div>
@@ -37,13 +39,16 @@
 
 </driver-details-sidebar>
 
-<confirm-sidebar (onClose)="onCloseConfirmSidebar()"
-                 [isOpen]="isOpenConfirmSidebar"
-                 buttonLabel="Delete"
-                 message="Are you sure about delete?"
-                 title="Confirm"></confirm-sidebar>
+
+<driver-delete-sidebar
+  (closeEvent)="onCloseDeleteConfirmationSidebar()"
+  (reloadDrivers)="updateDrivers()"
+  [actualDriverId]="driverId"
+  [isOpen]="isOpenDeleteConfirmationSidebar"
+></driver-delete-sidebar>
 
 <drivers-creation-sidebar (closeEvent)="onCloseAdditionSidebar()"
                           (reloadDrivers)="updateDrivers()"
                           [isOpen]="isOpenAdditionSidebar">
 </drivers-creation-sidebar>
+
