@@ -10,6 +10,7 @@ import {VehicleService} from "./vehicle.service";
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {ApiUrl} from "../../http/api-url";
 import {FuelTypes} from "./fuel-types";
+import {Availability} from "./availability";
 
 
 @Injectable({providedIn: 'root'})
@@ -20,25 +21,20 @@ export class VehicleHttpService implements VehicleService {
   constructor(private readonly http: HttpClient) {
   }
 
-  getAll(userId: number = undefined, onlyAvailable: boolean = false): Promise<VehiclesDTO> {
+  getAll(vehicleFilters : VehicleFilters = {}): Promise<VehiclesDTO> {
     let params = new HttpParams();
 
-    if (userId) {
-      params = params.append('userId', userId);
+    if (vehicleFilters.userId) {
+      params = params.append('userId', vehicleFilters.userId);
     }
 
-    if (onlyAvailable) {
-      params = params.append('withoutAssigment', onlyAvailable);
+    if (vehicleFilters.availability) {
+      params = params.append('availability', vehicleFilters.availability);
     }
 
 
     return this.http.get<VehiclesDTO>(ApiUrl.builder(VehicleHttpService.API_URL)
     .build().endpoint, {params: params}).toPromise();
-  }
-
-  getAllAvailableVehicles(): Promise<VehiclesDTO> {
-    return this.http.get<VehiclesDTO>(ApiUrl.builder(VehicleHttpService.API_URL)
-    .build().endpoint).toPromise();
   }
 
   create(body: CreateVehicleDTO): Promise<void> {
@@ -82,4 +78,9 @@ export class VehicleHttpService implements VehicleService {
     ).toPromise();
   }
 
+}
+
+export interface VehicleFilters{
+  userId?: number,
+  availability?: Availability
 }

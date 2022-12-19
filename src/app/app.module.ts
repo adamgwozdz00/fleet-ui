@@ -43,6 +43,9 @@ import {
   UserDetailsSidebarComponent
 } from "./components/users/user-details-sidebar/user-details-sidebar.component";
 import {UserVehiclesComponent} from "./components/users/user-vehicles/user-vehicles.component";
+import {
+  UserCreationSidebarComponent
+} from "./components/users/user-creation-sidebar/user-creation-sidebar.component";
 
 @NgModule({
   declarations: [
@@ -63,7 +66,8 @@ import {UserVehiclesComponent} from "./components/users/user-vehicles/user-vehic
     DriverDetailsSidebarComponent,
     DriverHistoryComponent,
     UserDetailsSidebarComponent,
-    UserVehiclesComponent
+    UserVehiclesComponent,
+    UserCreationSidebarComponent
   ],
   imports: [
     BrowserModule,
