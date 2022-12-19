@@ -33,7 +33,7 @@ export class InsurancesHistoryComponent extends HistoryComponent<InsurancesDetai
         new IdColumn(it.id),
         new Column(it.insuranceName),
         new Column(it.insuranceCost),
-        new Column(it.expirationDate)
+        new Column(it.insuranceExpirationDate)
       ])
     );
   }

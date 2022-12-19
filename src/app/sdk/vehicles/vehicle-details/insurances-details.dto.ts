@@ -5,6 +5,6 @@ export interface InsurancesDetailsDTO {
 export interface InsuranceDetailsDTO {
   readonly  id: number,
   readonly insuranceCost: number,
-  readonly expirationDate: string,
+  readonly insuranceExpirationDate: string,
   readonly insuranceName: string
 }
