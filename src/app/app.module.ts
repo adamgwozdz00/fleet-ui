@@ -46,28 +46,20 @@ import {UserVehiclesComponent} from "./components/users/user-vehicles/user-vehic
 import {
   UserCreationSidebarComponent
 } from "./components/users/user-creation-sidebar/user-creation-sidebar.component";
+import {
+  VehicleDeleteSidebarComponent
+} from "./components/vehicles/vehicle-delete-sidebar/vehicle-delete-sidebar.component";
+import {VehiclesModule} from "./components/vehicles/vehicles.module";
+import {UsersModule} from "./components/users/users.module";
+import {DriversModule} from "./components/drivers/drivers.module";
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     LoginComponent,
-    VehiclesComponent,
-    VehicleCreationSidebarComponent,
-    VehicleDetailsSidebarComponent,
-    DriversHistoryComponent,
-    DriversCreationSidebarComponent,
-    OverviewsHistoryComponent,
-    InsurancesHistoryComponent,
-    DriversComponent,
-    UsersComponent,
     AccountComponent,
     ReportsComponent,
-    DriverDetailsSidebarComponent,
-    DriverHistoryComponent,
-    UserDetailsSidebarComponent,
-    UserVehiclesComponent,
-    UserCreationSidebarComponent
   ],
   imports: [
     BrowserModule,
@@ -77,6 +69,9 @@ import {
     HttpClientModule,
     ReactiveFormsModule,
     CommonModule,
+    VehiclesModule,
+    UsersModule,
+    DriversModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},

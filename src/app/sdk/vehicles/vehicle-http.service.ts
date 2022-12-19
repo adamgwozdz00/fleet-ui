@@ -21,7 +21,13 @@ export class VehicleHttpService implements VehicleService {
   constructor(private readonly http: HttpClient) {
   }
 
-  getAll(vehicleFilters : VehicleFilters = {}): Promise<VehiclesDTO> {
+  async delete(vehicleId: string): Promise<void> {
+    await this.http.delete<VehiclesDTO>(ApiUrl.builder(VehicleHttpService.API_URL)
+    .withPathVariable(vehicleId)
+    .build().endpoint, ).toPromise();
+  }
+
+  getAll(vehicleFilters: VehicleFilters = {}): Promise<VehiclesDTO> {
     let params = new HttpParams();
 
     if (vehicleFilters.userId) {
@@ -80,7 +86,7 @@ export class VehicleHttpService implements VehicleService {
 
 }
 
-export interface VehicleFilters{
+export interface VehicleFilters {
   userId?: number,
   availability?: Availability
 }

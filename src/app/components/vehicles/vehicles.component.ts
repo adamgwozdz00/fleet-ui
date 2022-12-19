@@ -15,7 +15,7 @@ export class VehiclesComponent implements OnInit {
 
   userRole: string = '';
   isOpenSidebar: boolean = false;
-  isOpenConfirmSidebar: boolean = false;
+  isOpenDeleteConfirmationSidebar: boolean = false;
   isOpenAdditionSidebar: boolean = false;
 
 
@@ -58,12 +58,13 @@ export class VehiclesComponent implements OnInit {
     this.isOpenSidebar = false;
   }
 
-  openConfirmSidebar() {
-    this.isOpenConfirmSidebar = true;
+  openDeletionConfirmSidebar(vehicleId: string = "") {
+    this.isOpenDeleteConfirmationSidebar = true;
+    this.actualVehicleId = vehicleId;
   }
 
-  onCloseConfirmSidebar() {
-    this.isOpenConfirmSidebar = false;
+  onCloseDeleteConfirmationSidebar() {
+    this.isOpenDeleteConfirmationSidebar = false;
   }
 
   openAdditionSidebar() {
@@ -72,6 +73,10 @@ export class VehiclesComponent implements OnInit {
 
   onCloseAdditionSidebar() {
     this.isOpenAdditionSidebar = false;
+  }
+
+  deleteVehicle() {
+    if (this.userRole == "USER"){}
   }
 }
 

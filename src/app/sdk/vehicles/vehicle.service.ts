@@ -7,4 +7,6 @@ export interface VehicleService {
   create(body: CreateVehicleDTO): Promise<void>
 
   getFuelTypes(): Promise<FuelTypes>
+
+  delete(vehicleId : string) : Promise<void>
 }

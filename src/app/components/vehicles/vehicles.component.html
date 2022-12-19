@@ -22,7 +22,7 @@
                     Details
                 </button>
                 <button (click)="console(index)"
-                        (click)="openConfirmSidebar()"
+                        (click)="openDeletionConfirmSidebar(index)"
                         buttonStyle="navy">
                     Delete
                 </button>
@@ -42,8 +42,18 @@
                           [isOpen]="isOpenAdditionSidebar">
 </vehicle-creation-sidebar>
 
-<confirm-sidebar (onClose)="onCloseConfirmSidebar()"
-                 [isOpen]="isOpenConfirmSidebar"
-                 buttonLabel="Delete"
-                 message="Are you sure about delete?"
-                 title="Confirm"></confirm-sidebar>
+<vehicle-delete-sidebar (closeEvent)="onCloseDeleteConfirmationSidebar()"
+(reloadVehicles)="updateVehicles()"
+[isOpen]="isOpenDeleteConfirmationSidebar"
+[actualVehicleId]="actualVehicleId"
+[userRole]="userRole">
+
+</vehicle-delete-sidebar>
+
+<!--<confirm-sidebar (onClose)="onCloseConfirmSidebar()"-->
+<!--                 (onButtonClick)="deleteVehicle()"-->
+<!--                 [isOpen]="isOpenConfirmSidebar"-->
+<!--                 buttonLabel="Delete"-->
+<!--                 message="Are you sure about delete?"-->
+<!--                 title="Confirm"></confirm-sidebar>-->
+<

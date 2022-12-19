@@ -1,5 +1,5 @@
 import {Injectable} from "@angular/core";
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpParams} from "@angular/common/http";
 import {UserData} from "./user-data";
 import {ApiUrl} from "../../http/api-url";
 import {UsersDataDTO} from "./users-data.dto";
@@ -32,20 +32,28 @@ export class UsersHttpService {
   }
 
   public async addVehicleToUser(userVehicle: UserVehicleDTO): Promise<void> {
+    let params = new HttpParams().append("vehicleId", userVehicle.vehicleId);
+
+    if (userVehicle.userId) {
+      params = params.append("userId", userVehicle.userId);
+    }
+
     await this.http.patch<void>(
       ApiUrl.builder(UsersHttpService.API_URL)
-      .withPathVariable(userVehicle.userId)
       .withAdditionalSegment("vehicles")
-      .withPathVariable(userVehicle.vehicleId)
-      .build().endpoint, {}).toPromise()
+      .build().endpoint, {},{params: params}).toPromise()
   }
 
   public async deleteVehicleFromUser(userVehicle: UserVehicleDTO): Promise<void> {
+    let params = new HttpParams().append("vehicleId", userVehicle.vehicleId);
+
+    if (userVehicle.userId) {
+      params = params.append("userId", userVehicle.userId);
+    }
+
     await this.http.delete<void>(
       ApiUrl.builder(UsersHttpService.API_URL)
-      .withPathVariable(userVehicle.userId)
       .withAdditionalSegment("vehicles")
-      .withPathVariable(userVehicle.vehicleId)
-      .build().endpoint, {}).toPromise()
+      .build().endpoint, {params: params}).toPromise()
   }
 }
