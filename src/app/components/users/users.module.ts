@@ -8,6 +8,7 @@ import {UserVehiclesComponent} from "./user-vehicles/user-vehicles.component";
 import {
   UserCreationSidebarComponent
 } from "./user-creation-sidebar/user-creation-sidebar.component";
+import { UserDeleteSidebarComponent } from './user-delete-sidebar/user-delete-sidebar.component';
 
 @NgModule({
   declarations:[
@@ -15,6 +16,7 @@ import {
     UserDetailsSidebarComponent,
     UserVehiclesComponent,
     UserCreationSidebarComponent,
+    UserDeleteSidebarComponent,
   ],
   imports:[
     CommonModule,

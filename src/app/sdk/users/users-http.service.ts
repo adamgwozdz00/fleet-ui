@@ -56,4 +56,16 @@ export class UsersHttpService {
       .withAdditionalSegment("vehicles")
       .build().endpoint, {params: params}).toPromise()
   }
+
+  public async deleteUser(userId : number) : Promise<void>{
+    await this.http.delete<void>(
+      ApiUrl.builder("remove")
+      .withPathVariable(userId)
+      .build().endpoint).toPromise()
+
+    await this.http.delete<void>(
+      ApiUrl.builder(UsersHttpService.API_URL)
+      .withPathVariable(userId)
+      .build().endpoint).toPromise()
+  }
 }

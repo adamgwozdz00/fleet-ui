@@ -13,7 +13,7 @@ import {Column, IdColumn} from "../../common/fleet-table/column";
 export class UsersComponent implements OnInit {
 
   isOpenSidebar: boolean = false;
-  isOpenConfirmSidebar: boolean = false;
+  isOpenDeleteConfirmationSidebar: boolean = false;
 
   title: Title = new Title("Users")
 
@@ -47,12 +47,13 @@ export class UsersComponent implements OnInit {
     this.isOpenSidebar = false;
   }
 
-  openConfirmSidebar() {
-    this.isOpenConfirmSidebar = true;
+  openDeleteConfirmationSidebar(userId: number) {
+    this.actualUserId = userId;
+    this.isOpenDeleteConfirmationSidebar = true;
   }
 
-  onCloseConfirmSidebar() {
-    this.isOpenConfirmSidebar = false;
+  onCloseDeleteConfirmationSidebar() {
+    this.isOpenDeleteConfirmationSidebar = false;
   }
 
   private mapToRow(users: UsersDataDTO) {

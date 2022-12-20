@@ -11,7 +11,7 @@
           Details
         </button>
         <button (click)="console(index)"
-                (click)="openConfirmSidebar()"
+                (click)="openDeleteConfirmationSidebar(index)"
                 buttonStyle="navy">
           Remove
         </button>
@@ -25,8 +25,10 @@
                       [isOpen]="isOpenSidebar">>
 </user-details-sidebar>
 
-<confirm-sidebar (onClose)="onCloseConfirmSidebar()"
-                 [isOpen]="isOpenConfirmSidebar"
-                 buttonLabel="Delete"
-                 message="Are you sure about delete?"
-                 title="Confirm"></confirm-sidebar>
+<user-delete-sidebar
+(closeEvent)="onCloseDeleteConfirmationSidebar()"
+(reloadUsers)="updateUsers()"
+[actualUserId]="actualUserId"
+[isOpen]="isOpenDeleteConfirmationSidebar">
+
+</user-delete-sidebar>
