@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output,} from "@angular/core";
+import {Component, EventEmitter, Input, Output,} from "@angular/core";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {DriversHttpService} from "../../../sdk/drivers/drivers-http.service";
 
@@ -7,7 +7,7 @@ import {DriversHttpService} from "../../../sdk/drivers/drivers-http.service";
   templateUrl: "./drivers-creation-sidebar.component.html",
   styleUrls: ["./drivers-creation-sidebar.component.css"],
 })
-export class DriversCreationSidebarComponent implements OnInit {
+export class DriversCreationSidebarComponent {
   @Input()
   isOpen: boolean = false;
 
@@ -46,9 +46,5 @@ export class DriversCreationSidebarComponent implements OnInit {
     .then(() => this.reloadDrivers.emit(true));
   }
 
-  ngOnInit(): void {
-    // this.service
-    //   .getFuelTypes()
-    //   .then((result) => (this.fuelTypesOptions = result));
-  }
+
 }

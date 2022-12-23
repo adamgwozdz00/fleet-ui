@@ -7,6 +7,8 @@ import {SidebarComponent} from "./sidebar/sidebar.component";
 import {FleetTableComponent} from "./fleet-table/fleet-table.component";
 import {CommonModule as AngularCommonModule} from "@angular/common";
 import {ChartComponent} from './chart/chart.component';
+import {CreationSidebarComponent} from "./creation-sidebar/creation-sidebar.component";
+import {ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -16,10 +18,12 @@ import {ChartComponent} from './chart/chart.component';
     ConfirmSidebarComponent,
     SidebarComponent,
     FleetTableComponent,
-    ChartComponent
+    ChartComponent,
+    CreationSidebarComponent
   ],
   imports: [
-    AngularCommonModule
+    AngularCommonModule,
+    ReactiveFormsModule
   ],
   exports: [
     ButtonComponent,
@@ -28,7 +32,8 @@ import {ChartComponent} from './chart/chart.component';
     ConfirmSidebarComponent,
     SidebarComponent,
     FleetTableComponent,
-    ChartComponent
+    ChartComponent,
+    CreationSidebarComponent
   ]
 })
 export class CommonModule {

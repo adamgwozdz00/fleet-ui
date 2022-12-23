@@ -4,6 +4,8 @@ import {HeaderRow, Row} from "../../common/fleet-table/row";
 import {UsersHttpService} from "../../sdk/users/users-http.service";
 import {UsersDataDTO} from "../../sdk/users/users-data.dto";
 import {Column, IdColumn} from "../../common/fleet-table/column";
+import {CreateUserCommand} from "../../sdk/users/create-user.command";
+import {UserCreationService} from "../../sdk/users/user-creation.service";
 
 @Component({
   selector: 'app-users',
@@ -22,9 +24,13 @@ export class UsersComponent implements OnInit {
   rows: Row[] = [];
 
   actualUserId: number;
+  isOpenAdditionSidebar: boolean = false;
 
-  constructor(private readonly usersService: UsersHttpService) {
+  createUserCommand: CreateUserCommand;
 
+  constructor(private readonly usersService: UsersHttpService,
+              public readonly userCreationService: UserCreationService) {
+    this.createUserCommand = new CreateUserCommand(userCreationService);
   }
 
   ngOnInit(): void {
@@ -54,6 +60,14 @@ export class UsersComponent implements OnInit {
 
   onCloseDeleteConfirmationSidebar() {
     this.isOpenDeleteConfirmationSidebar = false;
+  }
+
+  openAdditionSidebar() {
+    this.isOpenAdditionSidebar = true;
+  }
+
+  onCloseAdditionSidebar() {
+    this.isOpenAdditionSidebar = false;
   }
 
   private mapToRow(users: UsersDataDTO) {

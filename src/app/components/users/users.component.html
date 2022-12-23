@@ -3,6 +3,16 @@
     <fleet-table [headerRow]="headerRow"
                  [rows]="rows"
                  [title]="title">
+      <ng-template #additionalButtonTemplate>
+
+        <button (click)="openAdditionSidebar()"
+                buttonStyle
+                class="mr-2 align-middle">
+          Add
+        </button>
+
+
+      </ng-template>
       <ng-template #additionalColumnTemplate
                    let-index="id">
         <button (click)="openSidebar(index)"
@@ -26,9 +36,17 @@
 </user-details-sidebar>
 
 <user-delete-sidebar
-(closeEvent)="onCloseDeleteConfirmationSidebar()"
-(reloadUsers)="updateUsers()"
-[actualUserId]="actualUserId"
-[isOpen]="isOpenDeleteConfirmationSidebar">
-
+  (closeEvent)="onCloseDeleteConfirmationSidebar()"
+  (reloadUsers)="updateUsers()"
+  [actualUserId]="actualUserId"
+  [isOpen]="isOpenDeleteConfirmationSidebar">
 </user-delete-sidebar>
+
+<creation-sidebar
+  (closeEvent)="onCloseAdditionSidebar()"
+  (reloadEvent)="updateUsers()"
+  [creationCommand]="createUserCommand"
+  [isOpen]="isOpenAdditionSidebar"
+  [title]="'Register User'"
+>
+</creation-sidebar>
