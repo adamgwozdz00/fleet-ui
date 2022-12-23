@@ -2,11 +2,10 @@ import {Injectable} from "@angular/core";
 import {UsersHttpService} from "./users-http.service";
 import {RegistrationDTO} from "../register/registration.dto";
 import {RegistrationService} from "../register/registration.service";
-import {CreationService} from "../../common/creation-sidebar/creation.service";
 
 
 @Injectable({providedIn: 'root'})
-export class UserCreationService implements CreationService<RegistrationDTO> {
+export class UserCreationService  {
   constructor(private userService: UsersHttpService,
               private registrationService: RegistrationService) {
   }

@@ -1,9 +1,6 @@
 import {NgModule} from "@angular/core";
 import {VehiclesComponent} from "./vehicles.component";
 import {
-  VehicleCreationSidebarComponent
-} from "./vehicle-creation-sidebar/vehicle-creation-sidebar.component";
-import {
   VehicleDetailsSidebarComponent
 } from "./vehicle-details-sidebar/vehicle-details-sidebar.component";
 import {
@@ -17,21 +14,20 @@ import {BrowserModule} from "@angular/platform-browser";
 import {ReactiveFormsModule} from "@angular/forms";
 
 @NgModule(({
-  declarations:[
+  declarations: [
     VehiclesComponent,
-    VehicleCreationSidebarComponent,
     VehicleDetailsSidebarComponent,
     VehicleDeleteSidebarComponent,
     InsurancesHistoryComponent,
     DriversHistoryComponent,
     OverviewsHistoryComponent,
   ],
-  imports : [
+  imports: [
     CommonModule,
     BrowserModule,
     ReactiveFormsModule
   ]
 }))
-export class VehiclesModule{
+export class VehiclesModule {
 
 }

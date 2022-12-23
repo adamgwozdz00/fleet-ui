@@ -1,12 +1,22 @@
 import {FormGroup} from "@angular/forms";
-import {CreationFormControl} from "./creation-form";
+import {CreationForm, CreationFormControl} from "./creation-form";
 
-export interface CreationCommand {
-  create();
+export abstract class CreationCommand {
 
-  form(): FormGroup
+  constructor(protected creationForm : CreationForm) {
+  }
 
-  controls(): CreationFormControl[]
+  abstract create();
 
-  isCommandValid(): Boolean;
+  form(): FormGroup{
+    return this.creationForm.formGroup;
+  }
+
+  controls(): CreationFormControl[]{
+    return this.creationForm.controls;
+  }
+
+  isCommandValid(): Boolean{
+    return this.creationForm.formGroup.valid;
+  }
 }

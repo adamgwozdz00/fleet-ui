@@ -5,9 +5,6 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {UsersComponent} from "./users.component";
 import {UserDetailsSidebarComponent} from "./user-details-sidebar/user-details-sidebar.component";
 import {UserVehiclesComponent} from "./user-vehicles/user-vehicles.component";
-import {
-  UserCreationSidebarComponent
-} from "./user-creation-sidebar/user-creation-sidebar.component";
 import { UserDeleteSidebarComponent } from './user-delete-sidebar/user-delete-sidebar.component';
 
 @NgModule({
@@ -15,7 +12,6 @@ import { UserDeleteSidebarComponent } from './user-delete-sidebar/user-delete-si
     UsersComponent,
     UserDetailsSidebarComponent,
     UserVehiclesComponent,
-    UserCreationSidebarComponent,
     UserDeleteSidebarComponent,
   ],
   imports:[

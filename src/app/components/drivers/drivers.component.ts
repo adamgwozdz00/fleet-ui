@@ -5,6 +5,7 @@ import {DriversDTO} from "../../sdk/drivers/driver.dto";
 import {Column, IdColumn} from "../../common/fleet-table/column";
 import {UserRoleStorage} from "src/app/auth/user-role.storage";
 import {DriversHttpService} from "../../sdk/drivers/drivers-http.service";
+import {CreateDriverCommand} from "../../sdk/drivers/create-driver.command";
 
 @Component({
   selector: "app-drivers",
@@ -24,13 +25,17 @@ export class DriversComponent implements OnInit {
     "title",
   ]);
   rows: Row[] = [];
+
+  createDriverCommand : CreateDriverCommand
   driverId: number;
   private userRole: string = "";
+
 
   constructor(
     private readonly driversService: DriversHttpService,
     private readonly userRoleStorage: UserRoleStorage
   ) {
+    this.createDriverCommand = new CreateDriverCommand(driversService);
   }
 
   get hasAddButton(): boolean {

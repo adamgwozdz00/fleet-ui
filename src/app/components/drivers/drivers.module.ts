@@ -1,9 +1,6 @@
 import {NgModule} from "@angular/core";
 import {DriversComponent} from "./drivers.component";
 import {
-  DriversCreationSidebarComponent
-} from "./drivers-creation-sidebar/drivers-creation-sidebar.component";
-import {
   DriverDetailsSidebarComponent
 } from "./driver-details-sidebar/driver-details-sidebar.component";
 import {DriverHistoryComponent} from "./driver-history/driver-history.component";
@@ -17,7 +14,6 @@ import {
 @NgModule({
   declarations: [
     DriversComponent,
-    DriversCreationSidebarComponent,
     DriverDetailsSidebarComponent,
     DriverHistoryComponent,
     DriverDeleteSidebarComponent

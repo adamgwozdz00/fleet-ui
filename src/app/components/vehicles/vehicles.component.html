@@ -37,10 +37,15 @@
 
 </vehicle-details-sidebar>
 
-<vehicle-creation-sidebar (closeEvent)="onCloseAdditionSidebar()"
-                          (reloadVehicles)="updateVehicles()"
-                          [isOpen]="isOpenAdditionSidebar">
-</vehicle-creation-sidebar>
+
+<creation-sidebar
+  (closeEvent)="onCloseAdditionSidebar()"
+  (reloadEvent)="updateVehicles()"
+  [isOpen]="isOpenAdditionSidebar"
+  [creationCommand]="createVehicleCommand"
+  [title]="'Add vehicle'">
+
+</creation-sidebar>
 
 <vehicle-delete-sidebar (closeEvent)="onCloseDeleteConfirmationSidebar()"
                         (reloadVehicles)="updateVehicles()"

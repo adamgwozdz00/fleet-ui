@@ -5,6 +5,7 @@ import {VehiclesDTO} from "../../sdk/vehicles/vehicle.dto";
 import {Column, IdColumn} from "../../common/fleet-table/column";
 import {UserRoleStorage} from "../../auth/user-role.storage";
 import {VehicleHttpService} from "../../sdk/vehicles/vehicle-http.service";
+import {CreateVehicleCommand} from "../../sdk/vehicles/create-vehicle.command";
 
 @Component({
   selector: 'app-vehicles',
@@ -23,11 +24,15 @@ export class VehiclesComponent implements OnInit {
   headerRow: HeaderRow = HeaderRow.createForColumnTitles(["id", "make", "model", "year", "vin", "kilometers", "fuel type"]);
 
   rows: Row[] = [];
+
+  createVehicleCommand : CreateVehicleCommand
+
   actualVehicleId: string;
   private rowMapper = new VehiclesRowMapper();
 
   constructor(private readonly service: VehicleHttpService,
               private readonly userRoleStorage: UserRoleStorage) {
+    this.createVehicleCommand = new CreateVehicleCommand(service);
   }
 
   hasAddButton(): boolean {

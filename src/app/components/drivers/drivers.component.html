@@ -47,8 +47,11 @@
   [isOpen]="isOpenDeleteConfirmationSidebar"
 ></driver-delete-sidebar>
 
-<drivers-creation-sidebar (closeEvent)="onCloseAdditionSidebar()"
-                          (reloadDrivers)="updateDrivers()"
-                          [isOpen]="isOpenAdditionSidebar">
-</drivers-creation-sidebar>
+<creation-sidebar
+  (closeEvent)="onCloseAdditionSidebar()"
+  (reloadEvent)="updateDrivers()"
+  [isOpen]="isOpenAdditionSidebar"
+  [title]="'Add driver'"
+  [creationCommand]="createDriverCommand">
 
+</creation-sidebar>
