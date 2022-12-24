@@ -37,22 +37,21 @@
 
 </vehicle-details-sidebar>
 
+<deletion-sidebar
+  (closeEvent)="onCloseDeleteConfirmationSidebar()"
+  (reloadEvent)="updateVehicles()"
+  [deletionCommand]="deleteVehicleCommand"
+  [isOpen]="isOpenDeleteConfirmationSidebar">
+</deletion-sidebar>
 
 <creation-sidebar
   (closeEvent)="onCloseAdditionSidebar()"
   (reloadEvent)="updateVehicles()"
-  [isOpen]="isOpenAdditionSidebar"
   [creationCommand]="createVehicleCommand"
+  [isOpen]="isOpenAdditionSidebar"
   [title]="'Add vehicle'">
 
 </creation-sidebar>
 
-<vehicle-delete-sidebar (closeEvent)="onCloseDeleteConfirmationSidebar()"
-                        (reloadVehicles)="updateVehicles()"
-                        [isOpen]="isOpenDeleteConfirmationSidebar"
-                        [actualVehicleId]="actualVehicleId"
-                        [userRole]="userRole">
-
-</vehicle-delete-sidebar>
 
 

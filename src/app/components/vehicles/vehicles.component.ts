@@ -6,6 +6,7 @@ import {Column, IdColumn} from "../../common/fleet-table/column";
 import {UserRoleStorage} from "../../auth/user-role.storage";
 import {VehicleHttpService} from "../../sdk/vehicles/vehicle-http.service";
 import {CreateVehicleCommand} from "../../sdk/vehicles/create-vehicle.command";
+import {DeleteVehicleCommand} from "../../sdk/vehicles/delete-vehicle.command";
 
 @Component({
   selector: 'app-vehicles',
@@ -25,7 +26,8 @@ export class VehiclesComponent implements OnInit {
 
   rows: Row[] = [];
 
-  createVehicleCommand : CreateVehicleCommand
+  createVehicleCommand: CreateVehicleCommand
+  deleteVehicleCommand: DeleteVehicleCommand
 
   actualVehicleId: string;
   private rowMapper = new VehiclesRowMapper();
@@ -33,6 +35,7 @@ export class VehiclesComponent implements OnInit {
   constructor(private readonly service: VehicleHttpService,
               private readonly userRoleStorage: UserRoleStorage) {
     this.createVehicleCommand = new CreateVehicleCommand(service);
+    this.deleteVehicleCommand = new DeleteVehicleCommand(service, undefined);
   }
 
   hasAddButton(): boolean {
@@ -63,8 +66,8 @@ export class VehiclesComponent implements OnInit {
   }
 
   openDeletionConfirmSidebar(vehicleId: string = "") {
+    this.deleteVehicleCommand = new DeleteVehicleCommand(this.service, vehicleId);
     this.isOpenDeleteConfirmationSidebar = true;
-    this.actualVehicleId = vehicleId;
   }
 
   onCloseDeleteConfirmationSidebar() {
@@ -72,6 +75,7 @@ export class VehiclesComponent implements OnInit {
   }
 
   openAdditionSidebar() {
+    this.createVehicleCommand = new CreateVehicleCommand(this.service);
     this.isOpenAdditionSidebar = true;
   }
 

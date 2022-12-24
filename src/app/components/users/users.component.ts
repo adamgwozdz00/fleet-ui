@@ -6,6 +6,8 @@ import {UsersDataDTO} from "../../sdk/users/users-data.dto";
 import {Column, IdColumn} from "../../common/fleet-table/column";
 import {CreateUserCommand} from "../../sdk/users/create-user.command";
 import {UserCreationService} from "../../sdk/users/user-creation.service";
+import {DeleteUserCommand} from "../../sdk/users/delete-user.command";
+import {UserDeletionService} from "../../sdk/users/user-deletion.service";
 
 @Component({
   selector: 'app-users',
@@ -28,9 +30,13 @@ export class UsersComponent implements OnInit {
 
   createUserCommand: CreateUserCommand;
 
+  deleteUserCommand: DeleteUserCommand;
+
   constructor(private readonly usersService: UsersHttpService,
-              public readonly userCreationService: UserCreationService) {
-    this.createUserCommand = new CreateUserCommand(userCreationService);
+              public readonly userCreationService: UserCreationService,
+              private readonly userDeletionService: UserDeletionService) {
+    this.createUserCommand = new CreateUserCommand(this.userCreationService);
+    this.deleteUserCommand = new DeleteUserCommand(this.userDeletionService, undefined)
   }
 
   ngOnInit(): void {
@@ -54,7 +60,7 @@ export class UsersComponent implements OnInit {
   }
 
   openDeleteConfirmationSidebar(userId: number) {
-    this.actualUserId = userId;
+    this.deleteUserCommand = new DeleteUserCommand(this.userDeletionService, userId)
     this.isOpenDeleteConfirmationSidebar = true;
   }
 
@@ -63,6 +69,7 @@ export class UsersComponent implements OnInit {
   }
 
   openAdditionSidebar() {
+    this.createUserCommand = new CreateUserCommand(this.userCreationService);
     this.isOpenAdditionSidebar = true;
   }
 

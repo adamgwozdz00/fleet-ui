@@ -9,6 +9,7 @@ import {CommonModule as AngularCommonModule} from "@angular/common";
 import {ChartComponent} from './chart/chart.component';
 import {CreationSidebarComponent} from "./creation-sidebar/creation-sidebar.component";
 import {ReactiveFormsModule} from "@angular/forms";
+import {DeletionSidebarComponent} from "./deletion-sidebar/deletion-sidebar.component";
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import {ReactiveFormsModule} from "@angular/forms";
     SidebarComponent,
     FleetTableComponent,
     ChartComponent,
-    CreationSidebarComponent
+    CreationSidebarComponent,
+    DeletionSidebarComponent
   ],
   imports: [
     AngularCommonModule,
@@ -33,7 +35,8 @@ import {ReactiveFormsModule} from "@angular/forms";
     SidebarComponent,
     FleetTableComponent,
     ChartComponent,
-    CreationSidebarComponent
+    CreationSidebarComponent,
+    DeletionSidebarComponent
   ]
 })
 export class CommonModule {

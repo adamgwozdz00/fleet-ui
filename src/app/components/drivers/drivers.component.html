@@ -40,18 +40,19 @@
 </driver-details-sidebar>
 
 
-<driver-delete-sidebar
+<deletion-sidebar
   (closeEvent)="onCloseDeleteConfirmationSidebar()"
-  (reloadDrivers)="updateDrivers()"
-  [actualDriverId]="driverId"
-  [isOpen]="isOpenDeleteConfirmationSidebar"
-></driver-delete-sidebar>
+  (reloadEvent)="updateDrivers()"
+  [deletionCommand]="deleteDriverCommand"
+  [isOpen]="isOpenDeleteConfirmationSidebar">
+
+</deletion-sidebar>
 
 <creation-sidebar
   (closeEvent)="onCloseAdditionSidebar()"
   (reloadEvent)="updateDrivers()"
+  [creationCommand]="createDriverCommand"
   [isOpen]="isOpenAdditionSidebar"
-  [title]="'Add driver'"
-  [creationCommand]="createDriverCommand">
+  [title]="'Add driver'">
 
 </creation-sidebar>

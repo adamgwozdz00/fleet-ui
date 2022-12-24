@@ -6,6 +6,7 @@ import {Column, IdColumn} from "../../common/fleet-table/column";
 import {UserRoleStorage} from "src/app/auth/user-role.storage";
 import {DriversHttpService} from "../../sdk/drivers/drivers-http.service";
 import {CreateDriverCommand} from "../../sdk/drivers/create-driver.command";
+import {DeleteDriverCommand} from "../../sdk/drivers/delete-driver.command";
 
 @Component({
   selector: "app-drivers",
@@ -26,7 +27,8 @@ export class DriversComponent implements OnInit {
   ]);
   rows: Row[] = [];
 
-  createDriverCommand : CreateDriverCommand
+  createDriverCommand: CreateDriverCommand
+  deleteDriverCommand: DeleteDriverCommand
   driverId: number;
   private userRole: string = "";
 
@@ -36,6 +38,7 @@ export class DriversComponent implements OnInit {
     private readonly userRoleStorage: UserRoleStorage
   ) {
     this.createDriverCommand = new CreateDriverCommand(driversService);
+    this.deleteDriverCommand = new DeleteDriverCommand(driversService, undefined);
   }
 
   get hasAddButton(): boolean {
@@ -74,7 +77,7 @@ export class DriversComponent implements OnInit {
   }
 
   openDeleteConfirmationSidebar(driverId: number) {
-    this.driverId = driverId;
+    this.deleteDriverCommand = new DeleteDriverCommand(this.driversService, driverId);
     this.isOpenDeleteConfirmationSidebar = true;
   }
 
@@ -83,6 +86,7 @@ export class DriversComponent implements OnInit {
   }
 
   openAdditionSidebar() {
+    this.createDriverCommand = new CreateDriverCommand(this.driversService);
     this.isOpenAdditionSidebar = true;
   }
 

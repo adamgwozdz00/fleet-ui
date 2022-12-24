@@ -3,9 +3,6 @@ import {VehiclesComponent} from "./vehicles.component";
 import {
   VehicleDetailsSidebarComponent
 } from "./vehicle-details-sidebar/vehicle-details-sidebar.component";
-import {
-  VehicleDeleteSidebarComponent
-} from "./vehicle-delete-sidebar/vehicle-delete-sidebar.component";
 import {InsurancesHistoryComponent} from "./insurances-history/insurances-history.component";
 import {DriversHistoryComponent} from "./drivers-history/drivers-history.component";
 import {OverviewsHistoryComponent} from "./overviews-history/overviews-history.component";
@@ -17,7 +14,6 @@ import {ReactiveFormsModule} from "@angular/forms";
   declarations: [
     VehiclesComponent,
     VehicleDetailsSidebarComponent,
-    VehicleDeleteSidebarComponent,
     InsurancesHistoryComponent,
     DriversHistoryComponent,
     OverviewsHistoryComponent,

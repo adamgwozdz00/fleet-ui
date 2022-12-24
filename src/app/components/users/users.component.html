@@ -35,12 +35,19 @@
                       [isOpen]="isOpenSidebar">>
 </user-details-sidebar>
 
-<user-delete-sidebar
+<!--<user-delete-sidebar-->
+<!--  (closeEvent)="onCloseDeleteConfirmationSidebar()"-->
+<!--  (reloadUsers)="updateUsers()"-->
+<!--  [actualUserId]="actualUserId"-->
+<!--  [isOpen]="isOpenDeleteConfirmationSidebar">-->
+<!--</user-delete-sidebar>-->
+
+<deletion-sidebar
   (closeEvent)="onCloseDeleteConfirmationSidebar()"
-  (reloadUsers)="updateUsers()"
-  [actualUserId]="actualUserId"
+  (reloadEvent)="updateUsers()"
+  [deletionCommand]="deleteUserCommand"
   [isOpen]="isOpenDeleteConfirmationSidebar">
-</user-delete-sidebar>
+</deletion-sidebar>
 
 <creation-sidebar
   (closeEvent)="onCloseAdditionSidebar()"
