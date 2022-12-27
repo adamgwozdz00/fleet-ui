@@ -1,4 +1,27 @@
 <sidebar (onClose)="onClose()" [isOpen]="isOpen" title="Details">
+  <div class="flex flex-row mt-2">
+    <p class="text-navy text-lg font-medium mr-6">Change seniority:</p>
+    <button (click)="incrementSeniority()"
+            buttonStyle="orange"
+            class="mr-4 align-middle">
+      &nbsp;+&nbsp;
+    </button>
+    <button (click)="decrementSeniority()"
+            buttonStyle="orange"
+            class="mr-2 align-middle">
+      &nbsp;-&nbsp;
+    </button>
+  </div>
+
+  <div class="flex flex-row mt-4">
+    <p class="text-navy text-lg font-medium mr-6">Promote driver:</p>
+    <button (click)="promote()"
+            buttonStyle="navy"
+            class="mr-2 align-middle">
+      Promote
+    </button>
+  </div>
+
   <details-tab [tabs]="detailsTab">
     <ng-template #tabTemplate let-index="index">
       <div>

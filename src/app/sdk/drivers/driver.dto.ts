@@ -24,13 +24,25 @@ export interface HistoryDTO {
   vehicleModel: string
 }
 
-export interface CreateDriverDTO{
-  firstName : string,
-  lastName : string,
-  seniorityInYears : number
+export interface CreateDriverDTO {
+  firstName: string,
+  lastName: string,
+  seniorityInYears: number
 }
 
-export interface DriverResponse{
-  failureReason : string,
-  success : boolean
+export interface DriverResponse {
+  failureReason: string,
+  success: boolean
+}
+
+export enum SeniorityOperation {
+  INCREMENT = "INCREMENT", DECREMENT = "DECREMENT", PROMOTION = "PROMOTION"
+}
+
+export interface UpdateDriverDTO {
+  readonly driverId: number,
+  readonly operation: SeniorityOperation
+
+  readonly seniority?: number
+
 }

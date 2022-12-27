@@ -1,30 +1,4 @@
-<!--TODO: 1. zaimplementować updejty seniority i tytułów 2. Jak się da przenieść to wyżej-->
-
-<div class="flex flex-row mt-2">
-    <p class="text-navy text-lg font-medium mr-6">Change seniority:</p>
-    <button buttonStyle="orange"
-            class="mr-4 align-middle">
-        &nbsp;+&nbsp;
-    </button>
-    <button buttonStyle="orange"
-            class="mr-2 align-middle">
-        &nbsp;-&nbsp;
-    </button>
-</div>
-
-<div class="flex flex-row mt-4">
-    <p class="text-navy text-lg font-medium mr-6">Change title:</p>
-    <button buttonStyle="navy"
-            class="mr-4 align-middle">
-        Junior
-    </button>
-    <button buttonStyle="navy"
-            class="mr-2 align-middle">
-        Senior
-    </button>
-</div>
-
-<fleet-table class="mt-6 block"
-             [headerRow]="headerRow"
+<fleet-table [headerRow]="headerRow"
              [rows]="rows"
-             [title]="title"></fleet-table>
+             [title]="title"
+             class="mt-6 block"></fleet-table>

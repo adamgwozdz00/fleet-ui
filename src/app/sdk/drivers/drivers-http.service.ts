@@ -1,5 +1,11 @@
 import {DriversService} from "./drivers.service";
-import {CreateDriverDTO, DriverHistoryDTO, DriverResponse, DriversDTO} from "./driver.dto";
+import {
+  CreateDriverDTO,
+  DriverHistoryDTO,
+  DriverResponse,
+  DriversDTO,
+  UpdateDriverDTO
+} from "./driver.dto";
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {ApiUrl} from "../../http/api-url";
 import {Injectable} from "@angular/core";
@@ -32,22 +38,13 @@ export class DriversHttpService implements DriversService {
     .toPromise();
   }
 
-  promoteDriver(driverId: number): Promise<DriverResponse> {
+  updateDriver(updateDriverDTO: UpdateDriverDTO): Promise<DriverResponse> {
     return this.http.patch<DriverResponse>(ApiUrl
     .builder(DriversHttpService.API_URL)
-    .withAdditionalSegment('promotions')
     .build().endpoint, {}, {
-      params: new HttpParams().append("driverId", driverId)
-    })
-    .toPromise();
-  }
-
-  updateSeniority(driverId: number): Promise<DriverResponse> {
-    return this.http.patch<DriverResponse>(ApiUrl
-    .builder(DriversHttpService.API_URL)
-    .withAdditionalSegment('promotions')
-    .build().endpoint, {}, {
-      params: new HttpParams().append("driverId", driverId)
+      params: new HttpParams()
+      .append("driverId", updateDriverDTO.driverId)
+      .append("operation", updateDriverDTO.operation)
     })
     .toPromise();
   }
