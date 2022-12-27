@@ -83,10 +83,6 @@ export class VehiclesComponent implements OnInit {
     this.isOpenAdditionSidebar = false;
   }
 
-  deleteVehicle() {
-    if (this.userRole == "USER") {
-    }
-  }
 }
 
 class VehiclesRowMapper {

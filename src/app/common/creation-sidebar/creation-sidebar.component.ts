@@ -2,6 +2,8 @@ import {Component, EventEmitter, Input, Output} from "@angular/core";
 import {CreationCommand} from "./creation.command";
 import {
   CreationFormControl,
+  DateCreationFormControl,
+  DateTimeCreationFormControl,
   InputCreationFormControl,
   SelectCreationFormControl
 } from "./creation-form";
@@ -44,6 +46,14 @@ export class CreationSidebarComponent {
 
   isInput(control: CreationFormControl): boolean {
     return control instanceof InputCreationFormControl;
+  }
+
+  isDate(control: CreationFormControl): boolean {
+    return control instanceof DateCreationFormControl;
+  }
+
+  isDateTime(control: CreationFormControl): boolean {
+    return control instanceof DateTimeCreationFormControl;
   }
 
   getOptions(control: CreationFormControl): string[] {

@@ -7,6 +7,8 @@ import {
 } from "../../../sdk/vehicles/vehicle-details/vehicle-details-http.service";
 import {Title} from 'src/app/common/fleet-table/title';
 import {Column, IdColumn} from "../../../common/fleet-table/column";
+import {CreateInsuranceCommand} from "../../../sdk/vehicles/create-insurance.command";
+import {VehicleHttpService} from "../../../sdk/vehicles/vehicle-http.service";
 
 @Component({
   selector: 'insurances-history',
@@ -18,8 +20,13 @@ export class InsurancesHistoryComponent extends HistoryComponent<InsurancesDetai
   @Input()
   current: boolean = false;
 
-  constructor(private readonly vehicleDetailsService: VehicleDetailsHttpService) {
+  createCommand: CreateInsuranceCommand
+  isOpenAdditionSidebar: boolean = false;
+
+  constructor(private readonly vehicleDetailsService: VehicleDetailsHttpService,
+              private readonly vehicleHttpService: VehicleHttpService) {
     super(new Title("Insurance"), HeaderRow.createForColumnTitles(["id", "name", "cost", "expires at"]));
+    this.createCommand = new CreateInsuranceCommand(this.vehicleHttpService, undefined);
   }
 
 
@@ -36,6 +43,15 @@ export class InsurancesHistoryComponent extends HistoryComponent<InsurancesDetai
         new Column(it.insuranceExpirationDate)
       ])
     );
+  }
+
+  openAdditionSidebar() {
+    this.createCommand = new CreateInsuranceCommand(this.vehicleHttpService, this.objectId);
+    this.isOpenAdditionSidebar = true;
+  }
+
+  onCloseAdditionSidebar() {
+    this.isOpenAdditionSidebar = false;
   }
 
 }

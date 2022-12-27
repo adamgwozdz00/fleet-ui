@@ -36,9 +36,24 @@ export class VehicleDetailsSidebarComponent implements OnInit, OnChanges {
   protected overviewVehicle: OverviewsDetailsDTO;
   protected insuranceVehicle: InsurancesDetailsDTO;
 
+
   constructor(
-    private readonly vehicleDetailsService: VehicleDetailsHttpService
+    private readonly vehicleDetailsService: VehicleDetailsHttpService,
   ) {
+  }
+
+  get overviewWarning(): OverviewDetailsDTO | undefined {
+    return this.overviewVehicle?.overviewDetails.find(
+      (e) =>
+        this.isCloseToExpire(e.expirationDate)
+    );
+  }
+
+  get insuranceWarning(): InsuranceDetailsDTO | undefined {
+    return this.insuranceVehicle?.insuranceDetails.find(
+      (e) =>
+        this.isCloseToExpire(e.insuranceExpirationDate)
+    );
   }
 
   onClose() {
@@ -55,20 +70,6 @@ export class VehicleDetailsSidebarComponent implements OnInit, OnChanges {
     this.vehicleDetailsService
     .getInsuranceHistory(this.actualVehicleId, true)
     .then((e) => (this.insuranceVehicle = e));
-  }
-
-  get overviewWarning(): OverviewDetailsDTO | undefined {
-    return this.overviewVehicle?.overviewDetails.find(
-      (e) =>
-        this.isCloseToExpire(e.expirationDate)
-    );
-  }
-
-  get insuranceWarning(): InsuranceDetailsDTO | undefined {
-    return this.insuranceVehicle?.insuranceDetails.find(
-      (e) =>
-        this.isCloseToExpire(e.insuranceExpirationDate)
-    );
   }
 
   isCloseToExpire(date: string) {

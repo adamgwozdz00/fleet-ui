@@ -50,7 +50,7 @@ export class InputCreationFormControl extends CreationFormControl {
 }
 
 export class SelectCreationFormControl extends CreationFormControl {
-  constructor(creationFormControl: { title?: string, key: string, control: FormControl }, private _selectOptions: string[]) {
+  constructor(creationFormControl: { title?: string, key: string, control: FormControl }, private _selectOptions: any[]) {
 
     super(creationFormControl);
   }
@@ -59,6 +59,22 @@ export class SelectCreationFormControl extends CreationFormControl {
   get selectOptions(): string[] {
     return this._selectOptions;
   }
+}
+
+export class DateCreationFormControl extends CreationFormControl {
+  constructor(creationFormControl: { title?: string, key: string, control: FormControl }) {
+
+    super(creationFormControl);
+  }
+
+}
+
+export class DateTimeCreationFormControl extends CreationFormControl {
+  constructor(creationFormControl: { title?: string, key: string, control: FormControl }) {
+
+    super(creationFormControl);
+  }
+
 }
 
 

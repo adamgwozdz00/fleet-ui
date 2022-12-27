@@ -22,7 +22,7 @@ export interface CreateVehicleDTO {
 }
 
 export interface UpdateInsuranceDTO {
-  vehicleId: number,
+  vehicleId: string,
   data: {
     cost: number,
     expirationDate: Date,
@@ -31,7 +31,7 @@ export interface UpdateInsuranceDTO {
 }
 
 export interface UpdateOverviewDTO {
-  vehicleId: number,
+  vehicleId: string,
   data: {
     cost: number,
     description: string,
@@ -42,7 +42,7 @@ export interface UpdateOverviewDTO {
 }
 
 export interface UpdateVehicleStateDTO {
-  vehicleId: number,
+  vehicleId: string,
   data: {
     driverId: number,
     kilometers: number,

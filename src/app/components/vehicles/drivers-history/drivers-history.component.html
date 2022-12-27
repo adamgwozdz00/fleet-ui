@@ -1,1 +1,17 @@
-<fleet-table [headerRow]="headerRow" [rows]="rows" [title]="title"></fleet-table>
+<fleet-table [headerRow]="headerRow" [rows]="rows" [title]="title">
+  <ng-template #additionalButtonTemplate>
+    <button (click)="openAdditionSidebar()"
+            buttonStyle
+            class="mr-2 align-middle">
+      Add
+    </button>
+  </ng-template>
+</fleet-table>
+
+<creation-sidebar
+  (closeEvent)="onCloseAdditionSidebar()"
+  (reloadEvent)="updateRows()"
+  [creationCommand]="createCommand"
+  [isOpen]="isOpenAdditionSidebar"
+  [title]="'Update vehicle state'">
+</creation-sidebar>

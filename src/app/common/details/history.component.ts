@@ -13,6 +13,10 @@ export abstract class HistoryComponent<T> implements OnChanges {
   }
 
   ngOnChanges(): void {
+    this.updateRows();
+  }
+
+  updateRows() {
     this.load(this.objectId)
     .then(overviewsHistory => this.rows = this.map(overviewsHistory))
   }

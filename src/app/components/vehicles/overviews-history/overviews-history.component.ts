@@ -7,6 +7,8 @@ import {
 import {OverviewsDetailsDTO} from "../../../sdk/vehicles/vehicle-details/overviews-details.dto";
 import {Column, IdColumn} from "../../../common/fleet-table/column";
 import {HistoryComponent} from "../../../common/details/history.component";
+import {CreateOverviewCommand} from "../../../sdk/vehicles/create-overview.command";
+import {VehicleHttpService} from "../../../sdk/vehicles/vehicle-http.service";
 
 
 @Component({
@@ -19,10 +21,15 @@ export class OverviewsHistoryComponent extends HistoryComponent<OverviewsDetails
   @Input()
   current: boolean = false;
 
+  createCommand: CreateOverviewCommand
+  isOpenAdditionSidebar: boolean = false;
 
-  constructor(private readonly vehicleDetailsService: VehicleDetailsHttpService) {
+
+  constructor(private readonly vehicleDetailsService: VehicleDetailsHttpService,
+              private readonly vehicleHttpService: VehicleHttpService) {
     super(new Title("Overviews"),
       HeaderRow.createForColumnTitles(["id", "name", "cost", "expires at"]))
+    this.createCommand = new CreateOverviewCommand(this.vehicleHttpService, this.objectId);
   }
 
   load(vehicleId: string): Promise<OverviewsDetailsDTO> {
@@ -37,6 +44,16 @@ export class OverviewsHistoryComponent extends HistoryComponent<OverviewsDetails
           new Column(details.overviewCost),
           new Column(details.expirationDate)]));
   }
+
+  openAdditionSidebar() {
+    this.createCommand = new CreateOverviewCommand(this.vehicleHttpService, this.objectId);
+    this.isOpenAdditionSidebar = true;
+  }
+
+  onCloseAdditionSidebar() {
+    this.isOpenAdditionSidebar = false;
+  }
+
 }
 
 

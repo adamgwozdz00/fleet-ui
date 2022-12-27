@@ -1,39 +1,44 @@
 <sidebar (onClose)="onClose()"
          [isOpen]="isOpen"
          title="Details">
-    <details-tab [tabs]="detailsTab">
-        <ng-template #tabTemplate
-                     let-index="index">
-            <ng-container [ngSwitch]="detailsTab[index]">
-                <div *ngSwitchCase="'Current Review'">
-                    <overviews-history [current]="true"
-                                       [objectId]="actualVehicleId"></overviews-history>
-                </div>
-                <div *ngSwitchCase="'Driver History'">
-                    <vehicle-drivers-history [objectId]="actualVehicleId"></vehicle-drivers-history>
-                </div>
-                <div *ngSwitchCase="'Review History'">
-                    <overviews-history [objectId]="actualVehicleId"></overviews-history>
-                </div>
-                <div *ngSwitchCase="'Insurance History'">
-                    <insurances-history [objectId]="actualVehicleId"></insurances-history>
-                </div>
-                <div *ngSwitchCase="'Current Insurance'">
-                    <insurances-history [current]="true"
-                                        [objectId]="actualVehicleId"></insurances-history>
-                </div>
-                <div *ngSwitchDefault>{{detailsTab[index]}}</div>
-            </ng-container>
-        </ng-template>
-    </details-tab>
+  <details-tab [tabs]="detailsTab">
+    <ng-template #tabTemplate
+                 let-index="index">
+      <ng-container [ngSwitch]="detailsTab[index]">
+        <div *ngSwitchCase="'Current Review'">
+          <overviews-history [current]="true"
+                             [objectId]="actualVehicleId"></overviews-history>
+        </div>
+        <div *ngSwitchCase="'Driver History'">
+          <vehicle-drivers-history [objectId]="actualVehicleId"></vehicle-drivers-history>
+        </div>
+        <div *ngSwitchCase="'Review History'">
+          <overviews-history [objectId]="actualVehicleId"
+          ></overviews-history>
+        </div>
+        <div *ngSwitchCase="'Insurance History'">
+          <insurances-history [objectId]="actualVehicleId"></insurances-history>
+        </div>
+        <div *ngSwitchCase="'Current Insurance'">
+          <insurances-history [current]="true"
+                              [objectId]="actualVehicleId"></insurances-history>
+        </div>
+        <div *ngSwitchDefault>{{detailsTab[index]}}</div>
+      </ng-container>
+    </ng-template>
+  </details-tab>
 
-    <div bottomBar>
-        <div *ngIf="overviewWarning"
-             class="p-3 mb-2 shadow-md rounded-r-lg font-semibold text-white bg-red-400 border-l-4 border-red-600">
-            Review "{{overviewWarning.overviewName}}" {{overviewWarning.expirationDate}} is almost expired!</div>
-        <div *ngIf="insuranceWarning"
-             class="p-3 mb-2 shadow-md  rounded-r-lg font-semibold text-white bg-red-400 border-l-4 border-red-600">
-            Insurance "{{insuranceWarning.insuranceName}}" {{insuranceWarning.insuranceExpirationDate}} is almost
-            expired!</div>
+  <div bottomBar>
+    <div *ngIf="overviewWarning"
+         class="p-3 mb-2 shadow-md rounded-r-lg font-semibold text-white bg-red-400 border-l-4 border-red-600">
+      Review "{{overviewWarning.overviewName}}" {{overviewWarning.expirationDate}} is almost
+      expired!
     </div>
+    <div *ngIf="insuranceWarning"
+         class="p-3 mb-2 shadow-md  rounded-r-lg font-semibold text-white bg-red-400 border-l-4 border-red-600">
+      Insurance "{{insuranceWarning.insuranceName}}" {{insuranceWarning.insuranceExpirationDate}} is
+      almost
+      expired!
+    </div>
+  </div>
 </sidebar>

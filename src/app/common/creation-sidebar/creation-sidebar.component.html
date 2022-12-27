@@ -20,6 +20,20 @@
                  class="border-2 border-orange m-1.5">
         </ng-container>
 
+        <ng-container *ngIf="isDate(control)">
+          <input
+            [formControlName]="control.key"
+            class="border-2 border-orange m-1.5"
+            type="date">
+        </ng-container>
+
+        <ng-container *ngIf="isDateTime(control)">
+          <input
+            [formControlName]="control.key"
+            class="border-2 border-orange m-1.5"
+            type="datetime-local">
+        </ng-container>
+
       </ng-container>
     </div>
     <div class="flex justify-center mt-6">
