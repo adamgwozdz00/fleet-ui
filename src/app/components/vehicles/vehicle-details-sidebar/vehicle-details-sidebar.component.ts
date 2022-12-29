@@ -32,6 +32,7 @@ export class VehicleDetailsSidebarComponent implements OnInit, OnChanges {
     "Review History",
     "Current Review",
     "Current Insurance",
+    "Fuel History"
   ];
   protected overviewVehicle: OverviewsDetailsDTO;
   protected insuranceVehicle: InsurancesDetailsDTO;

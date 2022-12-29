@@ -1,6 +1,7 @@
 import {Injectable} from "@angular/core";
 import {
   CreateVehicleDTO,
+  RefuelDTO,
   UpdateInsuranceDTO,
   UpdateOverviewDTO,
   UpdateVehicleStateDTO,
@@ -24,7 +25,7 @@ export class VehicleHttpService implements VehicleService {
   async delete(vehicleId: string): Promise<void> {
     await this.http.delete<VehiclesDTO>(ApiUrl.builder(VehicleHttpService.API_URL)
     .withPathVariable(vehicleId)
-    .build().endpoint, ).toPromise();
+    .build().endpoint,).toPromise();
   }
 
   getAll(vehicleFilters: VehicleFilters = {}): Promise<VehiclesDTO> {
@@ -81,6 +82,16 @@ export class VehicleHttpService implements VehicleService {
       .withAdditionalSegment("states")
       .build().endpoint,
       state.data
+    ).toPromise();
+  }
+
+  async refuel(refuel: RefuelDTO): Promise<void> {
+    await this.http.put<void>(
+      ApiUrl.builder(VehicleHttpService.API_URL)
+      .withPathVariable(refuel.vehicleId)
+      .withAdditionalSegment("fuels")
+      .build().endpoint,
+      refuel.data
     ).toPromise();
   }
 

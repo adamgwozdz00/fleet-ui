@@ -23,6 +23,9 @@
           <insurances-history [current]="true"
                               [objectId]="actualVehicleId"></insurances-history>
         </div>
+        <div *ngSwitchCase="'Fuel History'">
+          <refuel-history [objectId]="actualVehicleId"></refuel-history>
+        </div>
         <div *ngSwitchDefault>{{detailsTab[index]}}</div>
       </ng-container>
     </ng-template>

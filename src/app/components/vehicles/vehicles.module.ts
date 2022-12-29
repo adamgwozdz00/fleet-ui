@@ -9,6 +9,7 @@ import {OverviewsHistoryComponent} from "./overviews-history/overviews-history.c
 import {CommonModule} from "../../common/common.module";
 import {BrowserModule} from "@angular/platform-browser";
 import {ReactiveFormsModule} from "@angular/forms";
+import {RefuelHistoryComponent} from "./refuel-history/refuel-history.component";
 
 @NgModule(({
   declarations: [
@@ -17,6 +18,7 @@ import {ReactiveFormsModule} from "@angular/forms";
     InsurancesHistoryComponent,
     DriversHistoryComponent,
     OverviewsHistoryComponent,
+    RefuelHistoryComponent
   ],
   imports: [
     CommonModule,

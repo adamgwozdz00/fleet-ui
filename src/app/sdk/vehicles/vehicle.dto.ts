@@ -50,3 +50,11 @@ export interface UpdateVehicleStateDTO {
     time: Date
   }
 }
+
+export interface RefuelDTO {
+  vehicleId: string,
+  data: {
+    cost: number,
+    liters: number,
+  }
+}
