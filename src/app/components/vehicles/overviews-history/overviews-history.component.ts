@@ -5,10 +5,11 @@ import {
   VehicleDetailsHttpService
 } from "../../../sdk/vehicles/vehicle-details/vehicle-details-http.service";
 import {OverviewsDetailsDTO} from "../../../sdk/vehicles/vehicle-details/overviews-details.dto";
-import {Column, IdColumn} from "../../../common/fleet-table/column";
+import {Column} from "../../../common/fleet-table/column";
 import {HistoryComponent} from "../../../common/details/history.component";
 import {CreateOverviewCommand} from "../../../sdk/vehicles/create-overview.command";
 import {VehicleHttpService} from "../../../sdk/vehicles/vehicle-http.service";
+import {DateFormatter} from "../../../common/fleet-table/column-formatter";
 
 
 @Component({
@@ -39,10 +40,10 @@ export class OverviewsHistoryComponent extends HistoryComponent<OverviewsDetails
   map(details: OverviewsDetailsDTO): Row[] {
     return details.overviewDetails.map(details =>
       new Row(
-        [new IdColumn(details.id),
+        [new Column(details.id),
           new Column(details.overviewName),
           new Column(details.overviewCost),
-          new Column(details.expirationDate)]));
+          new Column(details.expirationDate, new DateFormatter())]));
   }
 
   openAdditionSidebar() {

@@ -2,7 +2,7 @@ import {Component, OnInit} from "@angular/core";
 import {Title} from "../../common/fleet-table/title";
 import {HeaderRow, Row} from "../../common/fleet-table/row";
 import {DriversDTO} from "../../sdk/drivers/driver.dto";
-import {Column, IdColumn} from "../../common/fleet-table/column";
+import {Column} from "../../common/fleet-table/column";
 import {UserRoleStorage} from "src/app/auth/user-role.storage";
 import {DriversHttpService} from "../../sdk/drivers/drivers-http.service";
 import {CreateDriverCommand} from "../../sdk/drivers/create-driver.command";
@@ -54,7 +54,7 @@ export class DriversComponent implements OnInit {
     return drivers.drivers.map(
       (d) =>
         new Row([
-          new IdColumn(d.id),
+          new Column(d.id),
           new Column(d.lastName),
           new Column(d.firstName),
           new Column(d.seniority),

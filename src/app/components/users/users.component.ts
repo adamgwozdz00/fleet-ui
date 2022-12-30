@@ -3,7 +3,7 @@ import {Title} from "../../common/fleet-table/title";
 import {HeaderRow, Row} from "../../common/fleet-table/row";
 import {UsersHttpService} from "../../sdk/users/users-http.service";
 import {UsersDataDTO} from "../../sdk/users/users-data.dto";
-import {Column, IdColumn} from "../../common/fleet-table/column";
+import {Column} from "../../common/fleet-table/column";
 import {CreateUserCommand} from "../../sdk/users/create-user.command";
 import {UserCreationService} from "../../sdk/users/user-creation.service";
 import {DeleteUserCommand} from "../../sdk/users/delete-user.command";
@@ -80,7 +80,7 @@ export class UsersComponent implements OnInit {
   private mapToRow(users: UsersDataDTO) {
     return users.users.map(
       user => new Row([
-        new IdColumn(user.id),
+        new Column(user.id),
         new Column(user.firstName),
         new Column(user.lastName),
         new Column(user.title)]

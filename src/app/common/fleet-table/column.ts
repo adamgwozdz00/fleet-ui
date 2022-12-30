@@ -2,7 +2,7 @@ import {ColumnFormatter} from "./column-formatter";
 
 export class Column {
   constructor(private readonly _value: any,
-              private _formatter : ColumnFormatter = undefined) {
+              private _formatter: ColumnFormatter = undefined) {
   }
 
 
@@ -15,18 +15,13 @@ export class Column {
   }
 
   displayValue(): string {
-   let displayValue = this._value;
-    if(this._formatter){
+    let displayValue = this._value;
+    if (this._formatter) {
       displayValue = this._formatter.format(displayValue);
     }
     return displayValue;
   }
 }
 
-export class IdColumn extends Column {
-  displayValue(): string {
-    return super.displayValue().slice(0, 6);
-  }
-}
 
 

@@ -16,12 +16,12 @@ export interface DriverHistoryDTO {
 }
 
 export interface HistoryDTO {
+  vehicleId: string,
+  vehicleModel: string
+  vehicleMake: string,
   kilometers: number,
   liters: number,
   time: Date,
-  vehicleId: string,
-  vehicleMake: string,
-  vehicleModel: string
 }
 
 export interface CreateDriverDTO {

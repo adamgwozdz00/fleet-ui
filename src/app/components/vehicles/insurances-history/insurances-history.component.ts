@@ -6,9 +6,10 @@ import {
   VehicleDetailsHttpService
 } from "../../../sdk/vehicles/vehicle-details/vehicle-details-http.service";
 import {Title} from 'src/app/common/fleet-table/title';
-import {Column, IdColumn} from "../../../common/fleet-table/column";
+import {Column} from "../../../common/fleet-table/column";
 import {CreateInsuranceCommand} from "../../../sdk/vehicles/create-insurance.command";
 import {VehicleHttpService} from "../../../sdk/vehicles/vehicle-http.service";
+import {DateFormatter} from "../../../common/fleet-table/column-formatter";
 
 @Component({
   selector: 'insurances-history',
@@ -37,10 +38,10 @@ export class InsurancesHistoryComponent extends HistoryComponent<InsurancesDetai
   map(details: InsurancesDetailsDTO): Row[] {
     return details.insuranceDetails.map(
       it => new Row([
-        new IdColumn(it.id),
+        new Column(it.id),
         new Column(it.insuranceName),
         new Column(it.insuranceCost),
-        new Column(it.insuranceExpirationDate)
+        new Column(it.insuranceExpirationDate, new DateFormatter())
       ])
     );
   }

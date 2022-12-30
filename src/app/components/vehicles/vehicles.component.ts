@@ -2,11 +2,12 @@ import {Component, OnInit} from '@angular/core';
 import {Title} from "../../common/fleet-table/title";
 import {HeaderRow, Row} from "../../common/fleet-table/row";
 import {VehiclesDTO} from "../../sdk/vehicles/vehicle.dto";
-import {Column, IdColumn} from "../../common/fleet-table/column";
+import {Column} from "../../common/fleet-table/column";
 import {UserRoleStorage} from "../../auth/user-role.storage";
 import {VehicleHttpService} from "../../sdk/vehicles/vehicle-http.service";
 import {CreateVehicleCommand} from "../../sdk/vehicles/create-vehicle.command";
 import {DeleteVehicleCommand} from "../../sdk/vehicles/delete-vehicle.command";
+import {IdFormatter} from "../../common/fleet-table/column-formatter";
 
 @Component({
   selector: 'app-vehicles',
@@ -88,7 +89,7 @@ export class VehiclesComponent implements OnInit {
 class VehiclesRowMapper {
   map(vehiclesDTO: VehiclesDTO): Row[] {
     return vehiclesDTO.vehicles.map(v => new Row([
-      new IdColumn(v.vehicleId),
+      new Column(v.vehicleId, new IdFormatter()),
       new Column(v.make),
       new Column(v.model),
       new Column(v.productionYear),

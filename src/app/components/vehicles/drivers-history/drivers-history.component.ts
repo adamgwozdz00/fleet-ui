@@ -10,6 +10,7 @@ import {HistoryComponent} from "../../../common/details/history.component";
 import {CreateVehicleStateCommand} from "../../../sdk/vehicles/create-vehicle-state.command";
 import {VehicleHttpService} from "../../../sdk/vehicles/vehicle-http.service";
 import {DriversHttpService} from "../../../sdk/drivers/drivers-http.service";
+import {DateFormatter} from "../../../common/fleet-table/column-formatter";
 
 @Component({
   selector: 'vehicle-drivers-history',
@@ -40,7 +41,7 @@ export class DriversHistoryComponent extends HistoryComponent<DriversDetailsDTO>
       [new Column(details.id),
         new Column(details.kilometers),
         new Column(details.lastName),
-        new Column(details.time)]));
+        new Column(details.time, new DateFormatter())]));
   }
 
   openAdditionSidebar() {

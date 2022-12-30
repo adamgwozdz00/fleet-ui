@@ -6,8 +6,9 @@ import {AvailableVehicle} from "./available-vehicle";
 import {VehicleHttpService} from "../../../sdk/vehicles/vehicle-http.service";
 import {VehiclesDTO} from "../../../sdk/vehicles/vehicle.dto";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {Column, IdColumn} from "../../../common/fleet-table/column";
+import {Column} from "../../../common/fleet-table/column";
 import {Availability} from "../../../sdk/vehicles/availability";
+import {IdFormatter} from "../../../common/fleet-table/column-formatter";
 
 @Component({
   selector: "user-vehicles",
@@ -80,7 +81,7 @@ export class UserVehiclesComponent implements OnChanges, OnInit {
 
   private updateAvailableVehicles() {
     this.vehicleService
-    .getAll({availability:Availability.AVAILABLE})
+    .getAll({availability: Availability.AVAILABLE})
     .then(
       (result) =>
         (this.vehiclesInDropDown = this.mapToAvailableVehicles(result))
@@ -88,7 +89,7 @@ export class UserVehiclesComponent implements OnChanges, OnInit {
   }
 
   private updateUserVehicles() {
-    this.vehicleService.getAll({userId:this.userId})
+    this.vehicleService.getAll({userId: this.userId})
     .then(vehicles => this.rows = this.mapToRows(vehicles));
   }
 
@@ -96,7 +97,7 @@ export class UserVehiclesComponent implements OnChanges, OnInit {
     return vehicles.vehicles.map(vehicle =>
       new Row(
         [
-          new IdColumn(vehicle.vehicleId),
+          new Column(vehicle.vehicleId, new IdFormatter()),
           new Column(vehicle.make),
           new Column(vehicle.model),
           new Column(vehicle.productionYear)
