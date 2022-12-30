@@ -56,5 +56,6 @@ export interface RefuelDTO {
   data: {
     cost: number,
     liters: number,
+    time: Date
   }
 }

@@ -5,4 +5,5 @@ export interface RefuelsDetailsDTO {
 export interface RefuelDetailsDTO {
   readonly cost: number,
   readonly liters: number,
+  readonly time: Date;
 }

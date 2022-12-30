@@ -5,6 +5,7 @@ import { HeaderRow, Row } from "../../../common/fleet-table/row";
 import { Title } from "../../../common/fleet-table/title";
 import { Column, IdColumn } from "../../../common/fleet-table/column";
 import { DriversHttpService } from "../../../sdk/drivers/drivers-http.service";
+import {DateFormatter, IdFormatter} from "../../../common/fleet-table/column-formatter";
 
 @Component({
   selector: "driver-history",
@@ -37,12 +38,12 @@ export class DriverHistoryComponent extends HistoryComponent<DriverHistoryDTO> {
     return details.history.map((h) => {
       console.log(h.time);
       return new Row([
-        new IdColumn(h.vehicleId),
+        new Column(h.vehicleId,new IdFormatter()),
         new Column(h.vehicleMake),
         new Column(h.vehicleModel),
         new Column(h.kilometers),
         new Column(h.liters),
-        new Column(h.time),
+        new Column(h.time, new DateFormatter()),
       ]);
     });
   }

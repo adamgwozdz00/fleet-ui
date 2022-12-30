@@ -9,6 +9,7 @@ import {
 import {Column} from "../../../common/fleet-table/column";
 import {CreateRefuelCommand} from "../../../sdk/vehicles/create-refuel.command";
 import {VehicleHttpService} from "../../../sdk/vehicles/vehicle-http.service";
+import {DateFormatter, DollarFormatter} from "../../../common/fleet-table/column-formatter";
 
 @Component({
   selector: 'refuel-history',
@@ -22,7 +23,7 @@ export class RefuelHistoryComponent extends HistoryComponent<RefuelsDetailsDTO> 
 
   constructor(private readonly vehicleDetailsHttpService: VehicleDetailsHttpService,
               private readonly vehicleService: VehicleHttpService) {
-    super(new Title("Refuel History"), HeaderRow.createForColumnTitles(["cost", "liters"]));
+    super(new Title("Refuel History"), HeaderRow.createForColumnTitles(["cost", "liters","time"]));
     this.createCommand = new CreateRefuelCommand(vehicleService, undefined);
   }
 
@@ -36,8 +37,9 @@ export class RefuelHistoryComponent extends HistoryComponent<RefuelsDetailsDTO> 
   map(details: RefuelsDetailsDTO): Row[] {
     return details.refuelDetails.map(details =>
       new Row([
-        new Column(details.cost),
-        new Column(details.liters)
+        new Column(details.cost, new DollarFormatter()),
+        new Column(details.liters),
+        new Column(details.time, new DateFormatter())
       ]));
   }
 

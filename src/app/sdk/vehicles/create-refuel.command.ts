@@ -1,6 +1,10 @@
 import {CreationCommand} from "../../common/creation-sidebar/creation.command";
 import {VehicleHttpService} from "./vehicle-http.service";
-import {CreationForm, InputCreationFormControl} from "../../common/creation-sidebar/creation-form";
+import {
+  CreationForm,
+  DateTimeCreationFormControl,
+  InputCreationFormControl
+} from "../../common/creation-sidebar/creation-form";
 import {FormControl, Validators} from "@angular/forms";
 
 export class CreateRefuelCommand extends CreationCommand {
@@ -18,6 +22,10 @@ export class CreateRefuelCommand extends CreationCommand {
         key: "liters",
         control: new FormControl(0, Validators.required)
       }),
+      new DateTimeCreationFormControl({
+        key:"time",
+        control : new FormControl(new Date(),Validators.required)
+      })
     ]));
   }
 
@@ -28,7 +36,8 @@ export class CreateRefuelCommand extends CreationCommand {
       vehicleId: this.vehicleId,
       data: {
         cost: values.cost as number,
-        liters: values.liters as number
+        liters: values.liters as number,
+        time : values.time
       }
     });
   }
