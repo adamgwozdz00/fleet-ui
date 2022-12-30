@@ -9,7 +9,7 @@ import {Title} from 'src/app/common/fleet-table/title';
 import {Column} from "../../../common/fleet-table/column";
 import {CreateInsuranceCommand} from "../../../sdk/vehicles/create-insurance.command";
 import {VehicleHttpService} from "../../../sdk/vehicles/vehicle-http.service";
-import {DateFormatter} from "../../../common/fleet-table/column-formatter";
+import {DateFormatter, EuroFormatter} from "../../../common/fleet-table/column-formatter";
 
 @Component({
   selector: 'insurances-history',
@@ -40,7 +40,7 @@ export class InsurancesHistoryComponent extends HistoryComponent<InsurancesDetai
       it => new Row([
         new Column(it.id),
         new Column(it.insuranceName),
-        new Column(it.insuranceCost),
+        new Column(it.insuranceCost, new EuroFormatter()),
         new Column(it.insuranceExpirationDate, new DateFormatter())
       ])
     );

@@ -5,7 +5,7 @@ import {HeaderRow, Row} from "../../../common/fleet-table/row";
 import {Title} from "../../../common/fleet-table/title";
 import {Column} from "../../../common/fleet-table/column";
 import {DriversHttpService} from "../../../sdk/drivers/drivers-http.service";
-import {DateFormatter, IdFormatter} from "../../../common/fleet-table/column-formatter";
+import {DateTimeFormatter, IdFormatter} from "../../../common/fleet-table/column-formatter";
 
 @Component({
   selector: "driver-history",
@@ -42,7 +42,7 @@ export class DriverHistoryComponent extends HistoryComponent<DriverHistoryDTO> {
         new Column(h.vehicleMake),
         new Column(h.kilometers),
         new Column(h.liters),
-        new Column(h.time, new DateFormatter()),
+        new Column(h.time, new DateTimeFormatter()),
       ]);
     });
   }

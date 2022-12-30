@@ -29,8 +29,8 @@ export class VehicleDetailsSidebarComponent implements OnInit, OnChanges {
   detailsTab: string[] = [
     "Driver History",
     "Insurance History",
-    "Review History",
-    "Current Review",
+    "Overview History",
+    "Current Overview",
     "Current Insurance",
     "Fuel History"
   ];

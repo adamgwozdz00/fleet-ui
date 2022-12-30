@@ -12,7 +12,7 @@ export class CreateInsuranceCommand extends CreationCommand {
               private readonly vehicleId: string) {
     super(new CreationForm([
       new InputCreationFormControl({
-        title: "price",
+        title: "price (€)",
         key: "cost",
         control: new FormControl(0, [Validators.required, Validators.min(0)])
       }),

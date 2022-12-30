@@ -5,14 +5,14 @@
     <ng-template #tabTemplate
                  let-index="index">
       <ng-container [ngSwitch]="detailsTab[index]">
-        <div *ngSwitchCase="'Current Review'">
+        <div *ngSwitchCase="'Current Overview'">
           <overviews-history [current]="true"
                              [objectId]="actualVehicleId"></overviews-history>
         </div>
         <div *ngSwitchCase="'Driver History'">
           <vehicle-drivers-history [objectId]="actualVehicleId"></vehicle-drivers-history>
         </div>
-        <div *ngSwitchCase="'Review History'">
+        <div *ngSwitchCase="'Overview History'">
           <overviews-history [objectId]="actualVehicleId"
           ></overviews-history>
         </div>

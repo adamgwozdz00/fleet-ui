@@ -9,7 +9,7 @@ import {Column} from "../../../common/fleet-table/column";
 import {HistoryComponent} from "../../../common/details/history.component";
 import {CreateOverviewCommand} from "../../../sdk/vehicles/create-overview.command";
 import {VehicleHttpService} from "../../../sdk/vehicles/vehicle-http.service";
-import {DateFormatter} from "../../../common/fleet-table/column-formatter";
+import {DateFormatter, EuroFormatter} from "../../../common/fleet-table/column-formatter";
 
 
 @Component({
@@ -42,7 +42,7 @@ export class OverviewsHistoryComponent extends HistoryComponent<OverviewsDetails
       new Row(
         [new Column(details.id),
           new Column(details.overviewName),
-          new Column(details.overviewCost),
+          new Column(details.overviewCost, new EuroFormatter()),
           new Column(details.expirationDate, new DateFormatter())]));
   }
 

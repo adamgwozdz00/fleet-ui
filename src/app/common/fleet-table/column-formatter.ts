@@ -9,6 +9,13 @@ export class DollarFormatter implements ColumnFormatter {
 
 }
 
+export class EuroFormatter implements ColumnFormatter {
+  format(value: any): string {
+    return value + "€";
+  }
+
+}
+
 export class IdFormatter implements ColumnFormatter {
   format(value: any): string {
     return value.slice(0, 6);
@@ -18,6 +25,17 @@ export class IdFormatter implements ColumnFormatter {
 
 export class DateFormatter implements ColumnFormatter {
   format(value: any): string {
+    return new Date(value).toLocaleDateString()
+  }
+
+}
+
+export class DateTimeFormatter implements ColumnFormatter {
+  format(value: any): string {
+    const result = new Date(value).toLocaleString()
+    if (result != "Invalid Date") {
+      return result;
+    }
     return String(this.fixDate(value));
   }
 

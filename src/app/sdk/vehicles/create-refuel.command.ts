@@ -13,7 +13,7 @@ export class CreateRefuelCommand extends CreationCommand {
               private readonly vehicleId: string) {
     super(new CreationForm([
       new InputCreationFormControl({
-        title: "cost",
+        title: "cost (€)",
         key: "cost",
         control: new FormControl(0, Validators.required)
       }),
@@ -23,8 +23,8 @@ export class CreateRefuelCommand extends CreationCommand {
         control: new FormControl(0, Validators.required)
       }),
       new DateTimeCreationFormControl({
-        key:"time",
-        control : new FormControl(new Date(),Validators.required)
+        key: "time",
+        control: new FormControl(new Date(), Validators.required)
       })
     ]));
   }
@@ -37,7 +37,7 @@ export class CreateRefuelCommand extends CreationCommand {
       data: {
         cost: values.cost as number,
         liters: values.liters as number,
-        time : values.time
+        time: values.time
       }
     });
   }
