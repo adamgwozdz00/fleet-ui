@@ -3,3 +3,7 @@
   flex-direction: column;
 }
 
+:host {
+  display: block;
+  margin-top: -90px;
+}
