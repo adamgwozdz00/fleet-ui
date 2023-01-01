@@ -1,10 +1,13 @@
-import {Component, Input} from '@angular/core';
+import {Component} from '@angular/core';
 import {HeaderRow, Row} from "../../../common/fleet-table/row";
 import {Title} from "../../../common/fleet-table/title";
 import {
   VehicleDetailsHttpService
 } from "../../../sdk/vehicles/vehicle-details/vehicle-details-http.service";
-import {OverviewsDetailsDTO} from "../../../sdk/vehicles/vehicle-details/overviews-details.dto";
+import {
+  OverviewDetailsDTO,
+  OverviewsDetailsDTO
+} from "../../../sdk/vehicles/vehicle-details/overviews-details.dto";
 import {Column} from "../../../common/fleet-table/column";
 import {HistoryComponent} from "../../../common/details/history.component";
 import {CreateOverviewCommand} from "../../../sdk/vehicles/create-overview.command";
@@ -19,12 +22,9 @@ import {DateFormatter, EuroFormatter} from "../../../common/fleet-table/column-f
 })
 export class OverviewsHistoryComponent extends HistoryComponent<OverviewsDetailsDTO> {
 
-  @Input()
-  current: boolean = false;
-
   createCommand: CreateOverviewCommand
   isOpenAdditionSidebar: boolean = false;
-
+  currentOverview: OverviewDetailsDTO;
 
   constructor(private readonly vehicleDetailsService: VehicleDetailsHttpService,
               private readonly vehicleHttpService: VehicleHttpService) {
@@ -33,8 +33,18 @@ export class OverviewsHistoryComponent extends HistoryComponent<OverviewsDetails
     this.createCommand = new CreateOverviewCommand(this.vehicleHttpService, this.objectId);
   }
 
+  updateRows() {
+    super.updateRows()
+    this.loadCurrent(this.objectId)
+    .then((currentOverview) => this.currentOverview = currentOverview?.overviewDetails[0])
+  }
+
   load(vehicleId: string): Promise<OverviewsDetailsDTO> {
-    return this.vehicleDetailsService.getOverviewHistory(vehicleId, this.current);
+    return this.vehicleDetailsService.getOverviewHistory(vehicleId);
+  }
+
+  loadCurrent(vehicleId: string): Promise<OverviewsDetailsDTO> {
+    return this.vehicleDetailsService.getOverviewHistory(vehicleId, true);
   }
 
   map(details: OverviewsDetailsDTO): Row[] {

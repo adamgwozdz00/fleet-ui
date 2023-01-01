@@ -1,4 +1,25 @@
-<fleet-table [headerRow]="headerRow" [rows]="rows" [title]="title">
+<ng-container *ngIf="currentOverview">
+  <p class="text-navy text-xl font-semibold mt-2">Current Overview</p>
+  <div class="flex flex-row mt-2">
+    <p class="text-navy text-lg mr-2">ID:</p>
+    <p class="text-navy text-lg font-semibold mr-2">{{currentOverview.id}}</p>
+  </div>
+  <div class="flex flex-row mt-2">
+    <p class="text-navy text-lg mr-2">Name:</p>
+    <p class="text-navy text-lg font-semibold mr-2">{{currentOverview.overviewName}}</p>
+  </div>
+  <div class="flex flex-row mt-2">
+    <p class="text-navy text-lg mr-2">Cost:</p>
+    <p class="text-navy text-lg font-semibold mr-2">{{currentOverview.overviewCost}}</p>
+  </div>
+  <div class="flex flex-row mt-2">
+    <p class="text-navy text-lg mr-2">Expiration Date:</p>
+    <p class="text-navy text-lg font-semibold mr-2">{{currentOverview.expirationDate}}</p>
+  </div>
+</ng-container>
+
+<fleet-table [class.mt-6]="currentOverview" [headerRow]="headerRow" [rows]="rows" [title]="title"
+             class="block">
   <ng-template #additionalButtonTemplate>
     <button (click)="openAdditionSidebar()"
             buttonStyle

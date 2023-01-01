@@ -1,6 +1,9 @@
-import {Component, Input} from '@angular/core';
+import {Component} from '@angular/core';
 import {HistoryComponent} from "../../../common/details/history.component";
-import {InsurancesDetailsDTO} from "../../../sdk/vehicles/vehicle-details/insurances-details.dto";
+import {
+  InsuranceDetailsDTO,
+  InsurancesDetailsDTO
+} from "../../../sdk/vehicles/vehicle-details/insurances-details.dto";
 import {HeaderRow, Row} from "../../../common/fleet-table/row";
 import {
   VehicleDetailsHttpService
@@ -17,12 +20,9 @@ import {DateFormatter, EuroFormatter} from "../../../common/fleet-table/column-f
   styleUrls: ['./insurances-history.component.css']
 })
 export class InsurancesHistoryComponent extends HistoryComponent<InsurancesDetailsDTO> {
-
-  @Input()
-  current: boolean = false;
-
   createCommand: CreateInsuranceCommand
   isOpenAdditionSidebar: boolean = false;
+  currentInsurance: InsuranceDetailsDTO;
 
   constructor(private readonly vehicleDetailsService: VehicleDetailsHttpService,
               private readonly vehicleHttpService: VehicleHttpService) {
@@ -30,9 +30,18 @@ export class InsurancesHistoryComponent extends HistoryComponent<InsurancesDetai
     this.createCommand = new CreateInsuranceCommand(this.vehicleHttpService, undefined);
   }
 
+  updateRows() {
+    super.updateRows()
+    this.loadCurrent(this.objectId)
+    .then((currentInsurance: InsurancesDetailsDTO) => this.currentInsurance = currentInsurance?.insuranceDetails[0])
+  }
 
   load(vehicleId: string): Promise<InsurancesDetailsDTO> {
-    return this.vehicleDetailsService.getInsuranceHistory(vehicleId, this.current);
+    return this.vehicleDetailsService.getInsuranceHistory(vehicleId)
+  }
+
+  loadCurrent(vehicleId: string): Promise<InsurancesDetailsDTO> {
+    return this.vehicleDetailsService.getInsuranceHistory(vehicleId, true);
   }
 
   map(details: InsurancesDetailsDTO): Row[] {
