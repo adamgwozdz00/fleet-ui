@@ -18,7 +18,7 @@ export class ChartComponent implements OnChanges {
   }
 
   ngOnChanges(): void {
-    const myChart = new Chart("myChart", {
+    const myChart = new Chart(this.fleetChart.title, {
       type: this.fleetChart.type,
       data: {
         labels: this.fleetChart.data.map(d => d.label),

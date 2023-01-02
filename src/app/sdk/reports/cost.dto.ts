@@ -8,5 +8,15 @@ export interface CostDTO {
   overviewCostData: {
     cost: number
   },
+
+  repairCostData: {
+    cost: number
+  },
+
   totalCost: number
+}
+
+export interface YearlyCostDTO {
+  year: number,
+  cost: CostDTO
 }
