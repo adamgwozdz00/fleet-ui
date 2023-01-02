@@ -46,7 +46,10 @@ export interface UpdateVehicleStateDTO {
   data: {
     driverId: number,
     kilometers: number,
+    latitude: number,
     liters: number,
+    longitude: number,
+    status: string,
     time: Date
   }
 }
@@ -58,4 +61,15 @@ export interface RefuelDTO {
     liters: number,
     time: Date
   }
+}
+
+export interface RepairDTO {
+  vehicleId: string
+  data: {
+    cost: number;
+    from: Date;
+    serviceName: string;
+    to: Date;
+    title: string
+  };
 }

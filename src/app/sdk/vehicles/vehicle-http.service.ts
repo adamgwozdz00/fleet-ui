@@ -2,6 +2,7 @@ import {Injectable} from "@angular/core";
 import {
   CreateVehicleDTO,
   RefuelDTO,
+  RepairDTO,
   UpdateInsuranceDTO,
   UpdateOverviewDTO,
   UpdateVehicleStateDTO,
@@ -95,6 +96,15 @@ export class VehicleHttpService implements VehicleService {
     ).toPromise();
   }
 
+  async updateRepairs(repair: RepairDTO) {
+    await this.http.put<void>(
+      ApiUrl.builder(VehicleHttpService.API_URL)
+      .withPathVariable(repair.vehicleId)
+      .withAdditionalSegment("repairs")
+      .build().endpoint,
+      repair.data
+    ).toPromise();
+  }
 }
 
 export interface VehicleFilters {

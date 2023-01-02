@@ -5,6 +5,8 @@ import {ApiUrl} from "../../../http/api-url";
 import {OverviewsDetailsDTO} from "./overviews-details.dto";
 import {InsurancesDetailsDTO} from "./insurances-details.dto";
 import {RefuelsDetailsDTO} from "./refuel-details.dto";
+import {VehicleStateDetailsDTO} from "./vehicle-state-details.dto";
+import {RepairDetailsDTO} from "./repair-details.dto";
 
 @Injectable({providedIn: "root"})
 export class VehicleDetailsHttpService {
@@ -63,6 +65,32 @@ export class VehicleDetailsHttpService {
       .withAdditionalSegment("fuels")
       .withPathVariable(vehicleId)
       .build().endpoint)
+    .toPromise();
+  }
+
+  public getVehicleStateHistory(
+    vehicleId: string,
+  ): Promise<VehicleStateDetailsDTO> {
+    return this.http
+    .get<VehicleStateDetailsDTO>(
+      ApiUrl.builder(VehicleDetailsHttpService.API_URL)
+      .withAdditionalSegment("states")
+      .withPathVariable(vehicleId)
+      .build().endpoint)
+    .toPromise();
+  }
+
+  public getRepairHistory(
+    vehicleId: string,
+    onlyLastRepair: boolean = false
+  ): Promise<RepairDetailsDTO> {
+    return this.http
+    .get<RepairDetailsDTO>(
+      ApiUrl.builder(VehicleDetailsHttpService.API_URL)
+      .withAdditionalSegment("repairs")
+      .withPathVariable(vehicleId)
+      .build().endpoint,
+      {params: new HttpParams().append("onlyLastRepair", onlyLastRepair)})
     .toPromise();
   }
 }

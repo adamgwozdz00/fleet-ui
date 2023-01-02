@@ -7,6 +7,7 @@ import {
 } from "../../common/creation-sidebar/creation-form";
 import {VehicleHttpService} from "./vehicle-http.service";
 import {FormControl, Validators} from "@angular/forms";
+import {VehicleStatus} from "./vehicle-status";
 
 export class CreateVehicleStateCommand extends CreationCommand {
 
@@ -29,7 +30,19 @@ export class CreateVehicleStateCommand extends CreationCommand {
       new InputCreationFormControl({
         key: "kilometers",
         control: new FormControl(0, Validators.required)
-      })
+      }),
+      new InputCreationFormControl({
+        key: "longitude",
+        control: new FormControl(0, Validators.required)
+      }),
+      new InputCreationFormControl({
+        key: "latitude",
+        control: new FormControl(0, Validators.required)
+      }),
+      new SelectCreationFormControl({
+        key: "status",
+        control: new FormControl(0, Validators.required)
+      }, [VehicleStatus.ACTIVE, VehicleStatus.SERVICE])
     ]));
   }
 
@@ -41,7 +54,10 @@ export class CreateVehicleStateCommand extends CreationCommand {
         driverId: values.driverId as number,
         time: values.time,
         liters: values.liters as number,
-        kilometers: values.kilometers as number
+        kilometers: values.kilometers as number,
+        longitude: values.longitude as number,
+        latitude: values.latitude as number,
+        status: values.status
       }
     })
   }

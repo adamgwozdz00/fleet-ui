@@ -30,7 +30,8 @@ export class VehicleDetailsSidebarComponent implements OnInit, OnChanges {
     "Driver History",
     "Insurance History",
     "Overview History",
-    "Fuel History"
+    "Fuel History",
+    "Repair History"
   ];
   protected overviewVehicle: OverviewsDetailsDTO;
   protected insuranceVehicle: InsurancesDetailsDTO;

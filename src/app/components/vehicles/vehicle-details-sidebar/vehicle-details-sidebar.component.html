@@ -19,6 +19,10 @@
           <refuel-history [objectId]="actualVehicleId"></refuel-history>
         </div>
         <div *ngSwitchDefault>{{detailsTab[index]}}</div>
+        <div *ngSwitchCase="'Repair History'">
+          <repairs-history [objectId]="actualVehicleId"></repairs-history>
+        </div>
+        <div *ngSwitchDefault>{{detailsTab[index]}}</div>
       </ng-container>
     </ng-template>
   </details-tab>
