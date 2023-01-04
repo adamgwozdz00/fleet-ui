@@ -6,7 +6,7 @@ import {ChartType, FleetChart} from "../../common/chart/fleet-chart";
 export class CostReportsFleetChartFactory {
   createServicesSpendChart(cost: CostDTO): FleetChart {
     return {
-      ref: "chart1",
+      id: "chart1",
       title: "Services spend total : " + (cost.overviewCost.cost + cost.insuranceCost.cost + cost.repairCost.cost) + " €",
       type: ChartType.DOUGHNUT,
       label: "cost €",
@@ -35,7 +35,7 @@ export class CostReportsFleetChartFactory {
 
   createYearlyFuelSpend(costs: YearlyCostDTO[]): FleetChart {
     return {
-      ref: "chart2",
+      id: "chart2",
       title: "Fuel Yearly Spend €",
       type: ChartType.BAR,
       label: "cost €",

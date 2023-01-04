@@ -1,4 +1,4 @@
-import {Component, ElementRef, Input, OnChanges} from '@angular/core';
+import {ChangeDetectorRef, Component, Input, OnChanges, SimpleChanges} from '@angular/core';
 import {Chart, registerables} from 'chart.js';
 import {FleetChart} from "./fleet-chart";
 
@@ -12,18 +12,17 @@ Chart.register(...registerables);
 export class ChartComponent implements OnChanges {
 
   @Input()
-  fleetChart: FleetChart = undefined
+  fleetChart: FleetChart;
 
 
-  constructor(private elementRef: ElementRef) {
+  constructor(private changeDetectionRef: ChangeDetectorRef) {
   }
 
 
-  ngOnChanges(): void {
-    if (this.fleetChart) {
-      const ref = this.elementRef.nativeElement.querySelector(`#${this.fleetChart.ref}`)
-      console.log(ref)
-      const myChart = new Chart(ref, {
+  ngOnChanges(changes: SimpleChanges): void {
+    if (this.fleetChart && changes.fleetChart) {
+      this.changeDetectionRef.detectChanges()
+      new Chart(this.fleetChart.id, {
         type: this.fleetChart.type,
         data: {
           labels: this.fleetChart.data.map(d => d.label),
@@ -51,9 +50,5 @@ export class ChartComponent implements OnChanges {
       });
     }
 
-  }
-
-  isChartLoaded() {
-    return this.fleetChart != undefined;
   }
 }
