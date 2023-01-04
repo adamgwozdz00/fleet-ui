@@ -1,19 +1,21 @@
 export interface CostDTO {
-  fuelCostData: {
+  fuelCost: {
     cost: number
   },
-  insuranceCostData: {
+  insuranceCost: {
     cost: number
   },
-  overviewCostData: {
-    cost: number
-  },
-
-  repairCostData: {
+  overviewCost: {
     cost: number
   },
 
-  totalCost: number
+  repairCost: {
+    cost: number
+  },
+
+  totalCost: {
+    cost: number
+  }
 }
 
 export interface YearlyCostDTO {

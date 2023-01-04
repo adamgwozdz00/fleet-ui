@@ -1,4 +1,5 @@
 export interface FleetChart {
+  ref: string;
   title: string,
   label: string,
   type: ChartType,

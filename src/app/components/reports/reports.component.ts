@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {CostReportsHttpService} from "../../sdk/reports/cost-reports-http.service";
 import {FleetChart} from "../../common/chart/fleet-chart";
-import {CostParams} from "../../sdk/reports/cost-params";
+import {CostParamsBuilder} from "../../sdk/reports/cost-params";
 import {CostReportsFleetChartFactory} from "./cost-reports-fleet-chart-factory";
 import {YearlyCostDTO} from "../../sdk/reports/cost.dto";
 
@@ -20,7 +20,11 @@ export class ReportsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.costReportsService.getCost(new CostParams()).then(data => this.servicesSpendChart = this.costReportsChartFactory.createServicesSpendChart(data))
+    this.costReportsService.getCost(new CostParamsBuilder()
+    .withIncludedRepairCost()
+    .withIncludedInsuranceCost()
+    .withIncludedOverviewCost()
+    .build()).then(data => this.servicesSpendChart = this.costReportsChartFactory.createServicesSpendChart(data))
     Promise.all(this.getYearlyCost()).then(data => this.monthlyFuelSpendChart = this.costReportsChartFactory.createYearlyFuelSpend(data))
   }
 
@@ -28,7 +32,10 @@ export class ReportsComponent implements OnInit {
     const yearlyCost$: Promise<YearlyCostDTO>[] = [];
 
     for (let year of this.getFiveYears()) {
-      yearlyCost$.push(this.costReportsService.getCost(new CostParams([year])).then(cost => ({
+      yearlyCost$.push(this.costReportsService.getCost(new CostParamsBuilder()
+      .withIncludedFuelCost()
+      .withDataInYears([year])
+      .build()).then(cost => ({
         year: year,
         cost: cost
       })));
