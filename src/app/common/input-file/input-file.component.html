@@ -1,0 +1,13 @@
+<input type="file"
+       name="file"
+       accept=".csv, .xlsx, .xls, .txt, .xml"
+       class="fill"
+       (change)="fileChange($event)">
+<ng-container [ngSwitch]="!!file">
+    <button buttonStyle="navy"
+            class="inputButton"
+            [ngSwitch]="!!file">
+        <ng-container *ngSwitchCase="true">{{file.name}}</ng-container>
+        <ng-container *ngSwitchDefault>Import CSV</ng-container>
+    </button>
+</ng-container>
