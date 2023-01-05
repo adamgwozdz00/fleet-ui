@@ -1,10 +1,16 @@
 <fleet-table [headerRow]="headerRow" [rows]="rows" [title]="title">
   <ng-template #additionalButtonTemplate>
-    <button (click)="openAdditionSidebar()"
-            buttonStyle
-            class="mr-2 align-middle">
-      Add
-    </button>
+    <div>
+      <button (click)="openAdditionSidebar()"
+              buttonStyle
+              class="mr-2 align-middle">
+        Add
+      </button>
+      <input-file (importedEvent)="updateRows()" [importer]="importer">
+
+      </input-file>
+
+    </div>
   </ng-template>
 </fleet-table>
 

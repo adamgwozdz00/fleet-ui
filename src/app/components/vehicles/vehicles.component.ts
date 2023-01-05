@@ -8,8 +8,7 @@ import {VehicleHttpService} from "../../sdk/vehicles/vehicle-http.service";
 import {CreateVehicleCommand} from "../../sdk/vehicles/create-vehicle.command";
 import {DeleteVehicleCommand} from "../../sdk/vehicles/delete-vehicle.command";
 import {IdFormatter} from "../../common/fleet-table/column-formatter";
-import {CsvToVehicleFactory} from "../../sdk/csv/csv-to-vehicle.factory";
-import {VehicleCsvImporter} from "../../sdk/csv/vehicle-csv-importer";
+import {VehicleCsvImporter} from "../../sdk/vehicles/import/vehicle-csv-importer";
 
 @Component({
   selector: 'app-vehicles',
@@ -41,7 +40,7 @@ export class VehiclesComponent implements OnInit {
               private readonly userRoleStorage: UserRoleStorage) {
     this.createVehicleCommand = new CreateVehicleCommand(service);
     this.deleteVehicleCommand = new DeleteVehicleCommand(service, undefined);
-    this.importer = new VehicleCsvImporter(service, new CsvToVehicleFactory());
+    this.importer = new VehicleCsvImporter(service);
   }
 
   hasAddButton(): boolean {

@@ -10,6 +10,7 @@ import {Column} from "../../../common/fleet-table/column";
 import {CreateRefuelCommand} from "../../../sdk/vehicles/create-refuel.command";
 import {VehicleHttpService} from "../../../sdk/vehicles/vehicle-http.service";
 import {DateTimeFormatter, EuroFormatter} from "../../../common/fleet-table/column-formatter";
+import {FuelCsvImporter} from "../../../sdk/vehicles/import/fuel-csv-importer";
 
 @Component({
   selector: 'refuel-history',
@@ -19,12 +20,14 @@ import {DateTimeFormatter, EuroFormatter} from "../../../common/fleet-table/colu
 export class RefuelHistoryComponent extends HistoryComponent<RefuelsDetailsDTO> {
 
   createCommand: CreateRefuelCommand
+  importer: FuelCsvImporter
   isOpenAdditionSidebar: boolean = false;
 
   constructor(private readonly vehicleDetailsHttpService: VehicleDetailsHttpService,
               private readonly vehicleService: VehicleHttpService) {
     super(new Title("Refuel History"), HeaderRow.createForColumnTitles(["cost", "liters", "time"]));
     this.createCommand = new CreateRefuelCommand(vehicleService, undefined);
+    this.importer = new FuelCsvImporter(vehicleService);
   }
 
   ngOnInit(): void {

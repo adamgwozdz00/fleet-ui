@@ -1,8 +1,10 @@
-import {CsvToVehicleFactory} from "./csv-to-vehicle.factory";
+import {CsvToBusinessObjectFactory} from "./csv-to-business-object.factory";
 import {CSV} from "../importer/csv";
+import {CSVToCreateVehicleStrategy} from "../vehicles/import/csv-to-create-vehicle.strategy";
+
 
 describe("csv to vehicle strategy test", () => {
-  const instance = new CsvToVehicleFactory();
+  const instance = new CsvToBusinessObjectFactory(['make', 'model', 'productionYear', 'vinNumber', 'fuelType'], new CSVToCreateVehicleStrategy());
 
 
   it('should transform csv to vehicle', function () {
