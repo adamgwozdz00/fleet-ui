@@ -1,11 +1,7 @@
-import { Component, OnInit } from "@angular/core";
-import { AuthService } from "src/app/auth/auth.service";
-import { FormBuilder } from "@angular/forms";
-import {
-  AuthCredentials,
-  Password,
-  Username,
-} from "src/app/auth/auth-credentials";
+import {Component, OnInit} from "@angular/core";
+import {AuthService} from "src/app/auth/auth.service";
+import {FormBuilder} from "@angular/forms";
+import {AuthCredentials, Password, Username,} from "src/app/auth/auth-credentials";
 
 @Component({
   selector: "app-login",
@@ -21,9 +17,11 @@ export class LoginComponent implements OnInit {
   constructor(
     private readonly authService: AuthService,
     private formBuilder: FormBuilder
-  ) {}
+  ) {
+  }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 
   onSignIn() {
     this.authService.login(this.prepareCredentials());
@@ -37,7 +35,4 @@ export class LoginComponent implements OnInit {
     );
   }
 
-  readFile(fileContent: string) {
-    console.log(fileContent);
-  }
 }

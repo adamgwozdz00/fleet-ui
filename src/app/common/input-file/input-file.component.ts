@@ -1,4 +1,5 @@
-import { Component, Output, EventEmitter, ViewChild } from "@angular/core";
+import {Component, EventEmitter, Input, Output} from "@angular/core";
+import {InputFileImporter} from "../../sdk/importer/input-file-importer";
 
 @Component({
   selector: "input-file",
@@ -6,9 +7,10 @@ import { Component, Output, EventEmitter, ViewChild } from "@angular/core";
   styleUrls: ["./input-file.component.scss"],
 })
 export class InputFileComponent {
+  @Input()
+  importer: InputFileImporter
   @Output()
-  fileAsText = new EventEmitter<string>();
-
+  importedEvent = new EventEmitter<boolean>();
   protected file: File;
 
   fileChange(e) {
@@ -21,7 +23,7 @@ export class InputFileComponent {
     let fileReader = new FileReader();
     fileReader.readAsText(this.file);
     fileReader.onload = () => {
-      this.fileAsText.emit(fileReader.result as string);
+      this.importer.import(fileReader.result).then(() => this.importedEvent.emit());
     };
   }
 }

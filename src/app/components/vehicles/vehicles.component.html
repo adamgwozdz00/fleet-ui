@@ -5,11 +5,17 @@
                  [title]="title">
       <ng-template #additionalButtonTemplate>
         <ng-container *ngIf="hasAddButton()">
-          <button (click)="openAdditionSidebar()"
-                  buttonStyle
-                  class="mr-2 align-middle">
-            Add
-          </button>
+          <div>
+
+            <button (click)="openAdditionSidebar()"
+                    buttonStyle
+                    class="mr-2 align-middle">
+              Add
+            </button>
+            <input-file (importedEvent)="updateVehicles()" [importer]="importer">
+
+            </input-file>
+          </div>
 
         </ng-container>
       </ng-template>
