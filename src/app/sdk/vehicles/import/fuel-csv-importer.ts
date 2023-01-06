@@ -12,6 +12,6 @@ export class FuelCsvImporter implements InputFileImporter {
 
   import(data: string | ArrayBuffer): Promise<void> {
     const factory = new CsvToBusinessObjectFactory(['vehicleId', 'cost', 'liters', 'time'], new CsvToRefuelStrategy())
-    return Promise.all(factory.create(CSV.of(data as string)).map(refuel => this.service.refuel(refuel))).then();
+    return this.service.refuelMany(factory.create(CSV.of(data as string)));
   }
 }

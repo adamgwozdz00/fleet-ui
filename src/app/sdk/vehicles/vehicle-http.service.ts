@@ -50,6 +50,12 @@ export class VehicleHttpService implements VehicleService {
     .build().endpoint, body).toPromise();
   }
 
+  createMany(body: CreateVehicleDTO[]): Promise<void> {
+    return this.http.post<void>(ApiUrl.builder(VehicleHttpService.API_URL)
+    .withAdditionalSegment("csv")
+    .build().endpoint, body).toPromise();
+  }
+
   getFuelTypes(): Promise<FuelTypes> {
     return this.http.get<FuelTypes>(ApiUrl.builder(VehicleHttpService.API_URL)
     .withAdditionalSegment("fuels")
@@ -103,6 +109,17 @@ export class VehicleHttpService implements VehicleService {
       .withAdditionalSegment("repairs")
       .build().endpoint,
       repair.data
+    ).toPromise();
+  }
+
+  async refuelMany(refuels: RefuelDTO[]) {
+    await this.http.put<void>(
+      ApiUrl.builder(VehicleHttpService.API_URL)
+      .withPathVariable(refuels[0].vehicleId)
+      .withAdditionalSegment("fuels")
+      .withAdditionalSegment("csv")
+      .build().endpoint,
+      refuels.map(d => d.data)
     ).toPromise();
   }
 }

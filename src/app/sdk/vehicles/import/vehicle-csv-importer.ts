@@ -10,7 +10,7 @@ export class VehicleCsvImporter implements InputFileImporter {
 
   import(data: string | ArrayBuffer): Promise<void> {
     const factory = new CsvToBusinessObjectFactory(['make', 'model', 'productionYear', 'vinNumber', 'fuelType'], new CSVToCreateVehicleStrategy())
-    return Promise.all(factory.create(CSV.of(data as string)).map(vehicle => this.service.create(vehicle))).then();
+    return this.service.createMany(factory.create(CSV.of(data as string)));
   }
 
 }
