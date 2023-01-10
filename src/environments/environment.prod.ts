@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiHost: "http://localhost:8080/"
+  apiHost: "https://ec2-3-70-69-123.eu-central-1.compute.amazonaws.com/"
 };
