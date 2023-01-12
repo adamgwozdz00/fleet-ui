@@ -26,7 +26,7 @@ export class InsurancesHistoryComponent extends HistoryComponent<InsurancesDetai
 
   constructor(private readonly vehicleDetailsService: VehicleDetailsHttpService,
               private readonly vehicleHttpService: VehicleHttpService) {
-    super(new Title("Insurance"), HeaderRow.createForColumnTitles(["id", "name", "cost", "expires at"]));
+    super(new Title("Insurances"), HeaderRow.createForColumnTitles(["id", "name", "cost", "expires at"]));
     this.createCommand = new CreateInsuranceCommand(this.vehicleHttpService, undefined);
   }
 

@@ -25,7 +25,7 @@ export class RefuelHistoryComponent extends HistoryComponent<RefuelsDetailsDTO> 
 
   constructor(private readonly vehicleDetailsHttpService: VehicleDetailsHttpService,
               private readonly vehicleService: VehicleHttpService) {
-    super(new Title("Refuel History"), HeaderRow.createForColumnTitles(["cost", "liters", "time"]));
+    super(new Title("Refueling"), HeaderRow.createForColumnTitles(["cost", "liters", "time"]));
     this.createCommand = new CreateRefuelCommand(vehicleService, undefined);
     this.importer = new FuelCsvImporter(vehicleService);
   }

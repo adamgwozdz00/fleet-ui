@@ -26,12 +26,12 @@ export class VehicleDetailsSidebarComponent implements OnInit, OnChanges {
   @Output()
   closeEvent = new EventEmitter<boolean>();
 
-  detailsTab: string[] = [
-    "Driver History",
-    "Insurance History",
-    "Overview History",
-    "Fuel History",
-    "Repair History"
+  detailsTabs: string[] = [
+    "Drivers History",
+    "Insurances",
+    "Overviews",
+    "Refueling",
+    "Repairs"
   ];
   protected overviewVehicle: OverviewsDetailsDTO;
   protected insuranceVehicle: InsurancesDetailsDTO;

@@ -1,28 +1,28 @@
 <sidebar (onClose)="onClose()"
          [isOpen]="isOpen"
          title="Details">
-  <details-tab [tabs]="detailsTab">
+  <details-tab [tabs]="detailsTabs">
     <ng-template #tabTemplate
                  let-index="index">
-      <ng-container [ngSwitch]="detailsTab[index]">
-        <div *ngSwitchCase="'Driver History'">
+      <ng-container [ngSwitch]="detailsTabs[index]">
+        <div *ngSwitchCase="'Drivers History'">
           <vehicle-drivers-history [objectId]="actualVehicleId"></vehicle-drivers-history>
         </div>
-        <div *ngSwitchCase="'Overview History'">
+        <div *ngSwitchCase="'Overviews'">
           <overviews-history [objectId]="actualVehicleId"
           ></overviews-history>
         </div>
-        <div *ngSwitchCase="'Insurance History'">
+        <div *ngSwitchCase="'Insurances'">
           <insurances-history [objectId]="actualVehicleId"></insurances-history>
         </div>
-        <div *ngSwitchCase="'Fuel History'">
+        <div *ngSwitchCase="'Refueling'">
           <refuel-history [objectId]="actualVehicleId"></refuel-history>
         </div>
-        <div *ngSwitchDefault>{{detailsTab[index]}}</div>
-        <div *ngSwitchCase="'Repair History'">
+        <div *ngSwitchDefault>{{detailsTabs[index]}}</div>
+        <div *ngSwitchCase="'Repairs'">
           <repairs-history [objectId]="actualVehicleId"></repairs-history>
         </div>
-        <div *ngSwitchDefault>{{detailsTab[index]}}</div>
+        <div *ngSwitchDefault>{{detailsTabs[index]}}</div>
       </ng-container>
     </ng-template>
   </details-tab>
