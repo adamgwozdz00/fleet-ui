@@ -1,5 +1,5 @@
 import {ImportDataFactory} from "../importer/import-data.factory";
-import {CSV} from "../importer/csv";
+import {CSV, CSVRow} from "../importer/csv";
 import {CSVConvertStrategy} from "./csv-convert-strategy";
 
 export class CsvToBusinessObjectFactory<T> implements ImportDataFactory<CSV, T[]> {
@@ -13,7 +13,7 @@ export class CsvToBusinessObjectFactory<T> implements ImportDataFactory<CSV, T[]
     this.vetoIfKeysInvalid(keys);
     const keysMap = this.toKeysMap(keys);
 
-    return this.strategy.convert(data.rows, keysMap);
+    return this.strategy.convert(this.removeEmptyRows(data.rows, keysMap), keysMap);
   }
 
   private toKeysMap(keys: string[]): Map<string, number> {
@@ -36,5 +36,16 @@ export class CsvToBusinessObjectFactory<T> implements ImportDataFactory<CSV, T[]
         throw Error("Incorrect csv header.");
       }
     })
+  }
+
+  private removeEmptyRows(rows: CSVRow[], keyMap: Map<string, number>) {
+    return rows.filter(row => {
+      for (let idx of keyMap.values()) {
+        if (!row.cells[idx]) {
+          return false;
+        }
+      }
+      return true;
+    });
   }
 }
